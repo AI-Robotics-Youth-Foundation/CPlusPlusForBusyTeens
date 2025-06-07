@@ -1,0 +1,55 @@
+# C++ build artifacts
+*.o
+*.obj
+*.so
+*.dll
+*.exe
+*.out
+*.a
+*.lib
+*.dylib
+*.pch
+*.pdb
+*.ilk
+*.idb
+*.class
+*.gch
+*.swp
+
+# VSCode settings
+.vscode/
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Reveal.js node_modules (if ever used)
+revealjs/node_modules/
+
+# Reveal.js build output
+revealjs/dist/
+revealjs/.cache/
+
+# Logs
+*.log
+
+# Compiled Python (if any)
+__pycache__/
+*.pyc
+
+# Backup files
+*~
+*.bak
+
+# Other system files
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# Environment files
+.env
+.env.* 
