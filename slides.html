@@ -958,7 +958,7 @@ cout << "You picked up a " << gameItems[0] << "!" << endl;</code></pre>
             <li><b>Gear Ratio = Driven Gear ÷ Driving Gear</b></li>
             <li><b>Output RPM = Input RPM ÷ Gear Ratio</b></li>
           </ul>
-          <pre><code>// Use the functions from Lesson 2!
+          <pre><code>// Use the functions from Lesson 1!
 double calculateGearRatio(int drivingGear, int drivenGear) {
   return (double)drivenGear / drivingGear;
 }
@@ -1047,7 +1047,7 @@ ANALYSIS COMPLETE: 147 combinations tested!</code></pre>
           <ul>
             <li>☐ Use <b>arrays</b> to store RPM and gear options</li>
             <li>☐ Use <b>nested loops</b> to test all combinations</li>
-            <li>☐ Use <b>functions</b> from Lesson 2 for calculations</li>
+            <li>☐ Use <b>functions</b> from Lesson 1 for calculations</li>
             <li>☐ Display all 147 combinations in a clear format</li>
             <li>☐ Add at least one bonus challenge</li>
             <li>☐ Test your program with the expected output</li>
@@ -1074,6 +1074,322 @@ ANALYSIS COMPLETE: 147 combinations tested!</code></pre>
           </ul>
         </section>
         <!-- End Project 1 -->
+
+        <!-- Lesson 4: Objects & Structs -->
+        <section>
+          <h1>🏗️ Lesson 4: Objects & Structs</h1>
+          <h3>
+            <span class="emoji">📦</span> Grouping Related Information Together
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What are Structs?</h2>
+          <ul>
+            <li>
+              A <span class="highlight">struct</span> lets you group related
+              information together in one place.
+            </li>
+            <li>
+              Like creating a player profile with name, level, health, and coins
+              all bundled together!
+            </li>
+            <li>
+              Think of it as a custom container or blueprint for your data.
+            </li>
+            <li>
+              Perfect for organizing complex information that belongs together.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📋 Creating Your First Struct</h2>
+          <ul>
+            <li>
+              Use the <code>struct</code> keyword to define your blueprint
+            </li>
+            <li>List all the related data inside curly braces</li>
+            <li>Don't forget the semicolon at the end!</li>
+          </ul>
+          <pre><code>struct Player {
+  string name;
+  int level;
+  int health;
+  int coins;
+  bool isOnline;
+};</code></pre>
+          <ul>
+            <li>
+              This creates a <b>blueprint</b> - like a template for making
+              players
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🎮 Using Structs: Creating Objects</h2>
+          <pre><code>struct Player {
+  string name;
+  int level;
+  int health;
+  int coins;
+};
+
+int main() {
+  // Create a player object
+  Player hero;
+  hero.name = "DragonSlayer";
+  hero.level = 15;
+  hero.health = 100;
+  hero.coins = 250;
+  
+  cout << "Player: " << hero.name << endl;
+  cout << "Level: " << hero.level << endl;
+  cout << "Health: " << hero.health << endl;
+  cout << "Coins: " << hero.coins << endl;
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>⚡ Initializing Structs</h2>
+          <ul>
+            <li>You can set values when you create the struct object</li>
+            <li>Two ways: individual assignment or list initialization</li>
+          </ul>
+          <pre><code>// Method 1: List initialization (C++11 and newer)
+Player hero = {"DragonSlayer", 15, 100, 250};
+
+// Method 2: Individual assignment
+Player sidekick;
+sidekick.name = "MagicArcher";
+sidekick.level = 12;
+sidekick.health = 85;
+sidekick.coins = 180;
+
+// Method 3: Default then modify
+Player newbie = {"Rookie", 1, 50, 10};
+newbie.health = 75;  // Power up!</code></pre>
+        </section>
+        <section>
+          <h2>🎯 Struct Example: Robot Sensor Data</h2>
+          <pre><code>struct SensorReading {
+  string sensorName;
+  double temperature;
+  double humidity;
+  bool isWorking;
+  int batteryLevel;
+};
+
+int main() {
+  SensorReading frontSensor = {"Front-Cam", 23.5, 45.2, true, 87};
+  
+  cout << "🤖 Robot Sensor Report 🤖" << endl;
+  cout << "Sensor: " << frontSensor.sensorName << endl;
+  cout << "Temperature: " << frontSensor.temperature << "°C" << endl;
+  cout << "Humidity: " << frontSensor.humidity << "%" << endl;
+  cout << "Status: " << (frontSensor.isWorking ? "Working" : "Broken") << endl;
+  cout << "Battery: " << frontSensor.batteryLevel << "%" << endl;
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>👥 Arrays of Structs</h2>
+          <ul>
+            <li>You can create arrays that hold multiple struct objects!</li>
+            <li>
+              Perfect for managing teams, inventories, or sensor networks.
+            </li>
+          </ul>
+          <pre><code>struct Enemy {
+  string name;
+  int health;
+  int damage;
+  string type;
+};
+
+Enemy bosses[3] = {
+  {"Fire Dragon", 500, 75, "Mythical"},
+  {"Ice Giant", 400, 60, "Legendary"},  
+  {"Shadow Warrior", 300, 85, "Elite"}
+};
+
+cout << "🏰 Boss Battle Arena 🏰" << endl;
+for (int i = 0; i < 3; i++) {
+  cout << bosses[i].name << " (" << bosses[i].type << ")" << endl;
+  cout << "  HP: " << bosses[i].health << " | DMG: " << bosses[i].damage << endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 1: Project 1 Extension - Gear Data Structures</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Convert Project 1 to use structs instead of just
+              printing results
+            </li>
+            <li>
+              Create a <code>GearCombination</code> struct to store each setup
+            </li>
+            <li>
+              Generate all 147 combinations and store them in an array of
+              structs
+            </li>
+            <li>Display the data in an organized way</li>
+            <li>
+              <b>Bonus:</b> Find the fastest combination using struct data!
+            </li>
+          </ul>
+          <pre><code>// Hint: Start with this structure
+struct GearCombination {
+  int inputRPM;
+  int drivingGear;
+  int drivenGear;
+  double gearRatio;
+  double outputRPM;
+};
+
+// Create array to store all combinations
+GearCombination allCombinations[147];
+
+// Use your Project 1 nested loops to fill the array
+// Then display and analyze the data!</code></pre>
+        </section>
+        <section>
+          <h2>🔧 Functions with Structs</h2>
+          <ul>
+            <li>You can pass structs to functions just like other variables</li>
+            <li>Great for organizing code and reusing logic</li>
+            <li>Perfect for processing your gear combination data!</li>
+          </ul>
+          <pre><code>struct GearCombination {
+  int inputRPM;
+  int drivingGear;
+  int drivenGear;
+  double outputRPM;
+};
+
+// Function to display a single combination
+void displayCombination(GearCombination combo) {
+  cout << "Input: " << combo.inputRPM << " RPM | ";
+  cout << "Gears: " << combo.drivingGear << "T → " << combo.drivenGear << "T | ";
+  cout << "Output: " << combo.outputRPM << " RPM" << endl;
+}
+
+// Function to find fastest combination
+GearCombination findFastest(GearCombination combos[], int size) {
+  GearCombination fastest = combos[0];
+  for (int i = 1; i < size; i++) {
+    if (combos[i].outputRPM > fastest.outputRPM) {
+      fastest = combos[i];
+    }
+  }
+  return fastest;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 2: Roblox Game Collection Manager</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create a digital library to track your favorite
+              Roblox games
+            </li>
+            <li>
+              Design a <code>RobloxGame</code> struct to store game information
+            </li>
+            <li>Build functions to manage and analyze your game collection</li>
+            <li>Find your gaming patterns and discover new favorites!</li>
+            <li>
+              <b>Super Bonus:</b> Create a recommendation system based on your
+              preferences!
+            </li>
+          </ul>
+          <pre><code>// Hint: Start with this structure
+struct RobloxGame {
+  string name;
+  string genre;      // "Adventure", "Simulator", "Fighting", etc.
+  double rating;     // 1.0 to 5.0 stars
+  int playtimeHours;
+  bool isFavorite;
+  string lastPlayed; // "2024-01-15"
+};
+
+// Create your game collection
+RobloxGame myGames[10];
+
+// Functions to implement:
+// - displayGame() - show game details
+// - findHighestRated() - discover your top games  
+// - calculateTotalPlaytime() - see your gaming hours
+// - findGamesByGenre() - filter by game type</code></pre>
+        </section>
+
+        <section>
+          <h2>💡 Real-World Applications</h2>
+          <ul>
+            <li><b>Game Development:</b> Player stats, items, NPCs, levels</li>
+            <li>
+              <b>Robotics:</b> Sensor data, motor configurations, waypoints
+            </li>
+            <li>
+              <b>Database Systems:</b> User records, product catalogs,
+              transactions
+            </li>
+            <li>
+              <b>Scientific Computing:</b> Experiment data, measurements,
+              results
+            </li>
+            <li>
+              <b>Mobile Apps:</b> User profiles, settings, content objects
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🎓 Structs vs Arrays: When to Use What?</h2>
+          <ul>
+            <li>
+              <b>Use Arrays when:</b> You have multiple items of the
+              <u>same type</u>
+            </li>
+            <li>
+              <b>Use Structs when:</b> You need to group
+              <u>different types</u> of related data
+            </li>
+          </ul>
+          <pre><code>// Array: Multiple items of same type
+int playerScores[5] = {100, 85, 92, 78, 95};
+
+// Struct: Different types of related data
+struct Player {
+  string name;    // text
+  int score;      // number
+  bool isActive;  // true/false
+  double rating;  // decimal
+};
+
+// Best of both: Array of structs!
+Player team[5];</code></pre>
+        </section>
+        <section>
+          <h2>🏁 Lesson 4 Recap</h2>
+          <ul>
+            <li>
+              <b>Structs</b> group related data of different types together
+            </li>
+            <li><b>Dot notation</b> (.) accesses individual struct members</li>
+            <li>
+              <b>Arrays of structs</b> manage collections of complex objects
+            </li>
+            <li><b>Functions with structs</b> organize and reuse your code</li>
+            <li>
+              <b>Real applications</b> everywhere: games, robots, databases,
+              apps
+            </li>
+            <li>
+              Structs make your programs more organized and easier to
+              understand!
+            </li>
+          </ul>
+        </section>
+        <!-- End Lesson 4 -->
       </div>
     </div>
     <script src="libs/revealjs/reveal.js"></script>
