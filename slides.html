@@ -23,14 +23,14 @@
         color: #f8f8fa;
       }
       .reveal .slides {
-        max-width: 98vw;
+        max-width: 900px;
         margin: 0 auto;
         padding: 0 2vw;
       }
       .reveal section {
         max-width: 900px;
         margin: 0 auto;
-        padding: 4vw 0 3vw 0;
+        padding: 0.5vw 0 1vw 0;
       }
       .reveal h1 {
         font-size: clamp(1.2em, 5vw, 2.5em);
@@ -135,6 +135,10 @@
           max-width: 99vw;
           padding: 10px 0;
         }
+      }
+      .reveal ul li.no-bullet {
+        list-style-type: none;
+        padding-left: 0;
       }
     </style>
     <link
@@ -405,6 +409,175 @@ int main() {
           </ul>
         </section>
         <!-- End Lesson 1 -->
+        <!-- Lesson 2: Control Flow -->
+        <section>
+          <h1>🔀 Lesson 2: Control Flow</h1>
+          <h3>
+            <span class="emoji">🕹️</span> Making Decisions and Repeating Actions
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What is Control Flow?</h2>
+          <ul>
+            <li>
+              Control flow is how your program decides
+              <span class="highlight">what to do next</span>.
+            </li>
+            <li>
+              It lets you make choices and repeat actions—like a game character
+              deciding to jump or run!
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🔎 If Statements</h2>
+          <ul>
+            <li>
+              Use <span class="highlight">if</span> to make decisions in your
+              code.
+            </li>
+            <li>Example:</li>
+          </ul>
+          <pre><code>int score = 100;
+if (score &gt; 50) {
+  cout &lt;&lt; "You win!" &lt;&lt; endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>⚖️ Comparison Operators</h2>
+          <ul>
+            <li>Used to compare values in if statements:</li>
+            <li><code>==</code> (equal), <code>!=</code> (not equal)</li>
+            <li><code>&gt;</code> (greater), <code>&lt;</code> (less)</li>
+            <li>
+              <code>&gt;=</code> (greater or equal), <code>&lt;=</code> (less or
+              equal)
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🧩 Else and Else If</h2>
+          <ul>
+            <li>
+              Use <span class="highlight">if</span>,
+              <span class="highlight">else if</span>, and
+              <span class="highlight">else</span> to check age and print a
+              label:
+            </li>
+          </ul>
+          <pre><code>int age;
+cout << "Enter your age: ";
+cin >> age;
+
+if (age < 13) {
+  cout << "You are a Child." << endl;
+} else if (age < 20) {
+  cout << "You are a Teen." << endl;
+} else if (age < 65) {
+  cout << "You are an Adult." << endl;
+} else {
+  cout << "You are a Senior." << endl;
+}
+</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 1: Roblox Obby Ranker</h2>
+          <ul>
+            <li>
+              Write a program that asks how many obstacles ("obbies") you
+              completed in a Roblox game.
+            </li>
+            <li>Print your rank:</li>
+            <li class="no-bullet">
+              <ul>
+                <li><b>Legend</b>: 50 or more</li>
+                <li><b>Pro</b>: 30–49</li>
+                <li><b>Gamer</b>: 15–29</li>
+                <li><b>Rookie</b>: 5–14</li>
+                <li><b>Noob</b>: less than 5</li>
+                <li>Try different numbers to see your rank!</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🔁 Loops: While and For</h2>
+          <ul>
+            <li>Loops let you repeat actions.</li>
+            <li><b>while</b> loop: repeats while a condition is true</li>
+            <li><b>for</b> loop: repeats a set number of times</li>
+          </ul>
+          <pre><code>// while loop
+int count = 1;
+while (count &lt;= 5) {
+  cout &lt;&lt; count &lt;&lt; endl;
+  count++;
+}
+
+// for loop
+for (int i = 1; i &lt;= 5; i++) {
+  cout &lt;&lt; i &lt;&lt; endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 2: Counting Game</h2>
+          <ul>
+            <li>
+              Write a program that prints numbers from 1 to 10 using a loop.
+            </li>
+            <li>Can you make it count down from 10 to 1?</li>
+          </ul>
+        </section>
+        <section>
+          <h2>🚀 Challenge 3: Guessing Game</h2>
+          <ul>
+            <li>
+              Write a program that asks the user to guess a number between 1 and
+              10.
+            </li>
+            <li>If the guess is correct, print "You win!"</li>
+            <li>
+              If the guess is incorrect, print "Too high!" or "Too low!"
+              followed by " Please try again" and ask the user to guess again.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🛑 The break Statement</h2>
+          <ul>
+            <li>
+              <span class="highlight">break</span> lets you exit a loop early.
+            </li>
+            <li>
+              When the program hits <code>break;</code>, it jumps out of the
+              loop.
+            </li>
+          </ul>
+          <pre><code>while (true) {
+  cin >> guess;
+  if (guess == secret) {
+    cout << "You win!" << endl;
+    break; // exit the loop
+  }
+  // ...
+}
+</code></pre>
+          <ul>
+            <li>
+              Use <span class="highlight">break</span> when you want to stop
+              looping as soon as a condition is met.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🏁 Lesson 2 Recap</h2>
+          <ul>
+            <li><b>If</b> statements let your program make decisions</li>
+            <li><b>Loops</b> let your program repeat actions</li>
+            <li>Practice using control flow to make your programs smarter!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 2 -->
       </div>
     </div>
     <script src="libs/revealjs/reveal.js"></script>
@@ -416,7 +589,12 @@ int main() {
         slideNumber: true,
         transition: "slide",
         backgroundTransition: "zoom",
-        center: true,
+        center: false,
+        width: 1280,
+        height: 720,
+        margin: 0.05,
+        minScale: 0.2,
+        maxScale: 1.5,
       });
     </script>
   </body>
