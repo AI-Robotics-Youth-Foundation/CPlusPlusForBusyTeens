@@ -23,12 +23,12 @@
         color: #f8f8fa;
       }
       .reveal .slides {
-        max-width: 900px;
+        max-width: 1100px;
         margin: 0 auto;
         padding: 0 2vw;
       }
       .reveal section {
-        max-width: 900px;
+        max-width: 1100px;
         margin: 0 auto;
         padding: 0.5vw 0 1vw 0;
       }
@@ -311,91 +311,73 @@ int main() {
             <code>using namespace std;</code> so students see the difference.
           </aside>
         </section>
-        <!-- End: Create Your First C++ Application -->
-        <!-- Lesson 1: Variables, Data Types, and Input/Output -->
         <section>
-          <h1>🔢 Lesson 1: Variables, Data Types, and Input/Output</h1>
-          <h3>
-            <span class="emoji">🧩</span> The Building Blocks of Every Program
-          </h3>
-        </section>
-        <section>
-          <h2>💡 What is a Variable?</h2>
+          <h2>🛠️ What are Operators?</h2>
           <ul>
             <li>
-              A <span class="highlight">variable</span> is like a labeled box
-              that stores information.
+              Operators are symbols that let you do things like add coins,
+              subtract health, or multiply your score in a Roblox game.
             </li>
             <li>
-              You can put things in, take things out, or change what's inside.
+              They help you change and calculate values stored in variables.
+            </li>
+            <li>Think of them as the action buttons in your code!</li>
+          </ul>
+        </section>
+        <section>
+          <h2>➕ Arithmetic Operators</h2>
+          <ul>
+            <li>
+              <b>+</b> (add): <code>coins = coins + 10;</code>
+              <small>(add 10 coins)</small>
             </li>
             <li>
-              In games: score, player health, or level number are all stored in
-              variables!
+              <b>-</b> (subtract): <code>health = health - 5;</code>
+              <small>(lose 5 health)</small>
+            </li>
+            <li>
+              <b>*</b> (multiply): <code>score = score * 2;</code>
+              <small>(double your score)</small>
+            </li>
+            <li>
+              <b>/</b> (divide):
+              <code>lootPerPlayer = totalLoot / numPlayers;</code>
+              <small>(split loot)</small>
+            </li>
+            <li>
+              <b>%</b> (modulo):
+              <code>leftover = totalCoins % numPlayers;</code>
+              <small>(coins left after sharing)</small>
             </li>
           </ul>
         </section>
         <section>
-          <h2>📦 Data Types in C++</h2>
+          <h2>🎮 Example: Roblox Coin Collector</h2>
+          <pre><code>// Roblox Coin Collector Example
+int coins = 50;
+int bonus = 20;
+int total = coins + bonus;
+cout << "You collected " << total << " coins in Roblox!" << endl;
+</code></pre>
           <ul>
-            <li>
-              Variables can store different
-              <span class="highlight">types</span> of data:
-            </li>
-            <li><b>int</b>: Whole numbers (e.g., 5, -2, 100)</li>
-            <li><b>double</b>: Decimal numbers (e.g., 3.14, -0.5)</li>
-            <li><b>char</b>: Single characters (e.g., 'A', 'z', '!')</li>
-            <li>
-              <b>string</b>: Text (e.g., "Hello!")
-              <small>(needs <code>#include &lt;string&gt;</code>)</small>
-            </li>
+            <li>Try changing the values and see what happens!</li>
           </ul>
         </section>
         <section>
-          <h2>✍️ Declaring and Using Variables</h2>
-          <ul>
-            <li>To make a variable, tell C++ the type and a name:</li>
-          </ul>
-          <pre><code>int score = 0;
-double temperature = 23.5;
-char grade = 'A';</code></pre>
-          <ul>
-            <li>You can change the value later:</li>
-          </ul>
-          <pre><code>score = 10;
-temperature = temperature + 1.5;</code></pre>
-        </section>
-        <section>
-          <h2>🖥️ Input and Output</h2>
-          <ul>
-            <li><b>cout</b>: Print info to the screen</li>
-            <li><b>cin</b>: Get input from the user</li>
-          </ul>
-          <pre><code>#include &lt;iostream&gt;
-using namespace std;
-
-int main() {
-  int age;
-  cout &lt;&lt; "Enter your age: ";
-  cin &gt;&gt; age;
-  cout &lt;&lt; "You are " &lt;&lt; age &lt;&lt; " years old!" &lt;&lt; endl;
-  return 0;
-}</code></pre>
-        </section>
-        <section>
-          <h2>🚀 Challenge</h2>
+          <h2>🚀 Challenge: Roblox Game Stats Calculator</h2>
           <ul>
             <li>
-              Make a program that asks for your name, age, and favorite Roblox
-              game, then prints them out.
+              Write a program that asks for the number of coins you collected
+              and the number of bonus coins you earned in a Roblox game.
+            </li>
+            <li>Calculate and display your total coins.</li>
+            <li>
+              <b>Bonus:</b> Ask how many players are in the game, then show how
+              many coins each player gets and how many are left over.
             </li>
             <li>
-              Tip: Use <code>string</code> for names and <code>int</code> for
-              numbers. Remember to <code>#include &lt;string&gt;</code> and
-              <code>#include &lt;iostream&gt;</code>!
-            </li>
-            <li>
-              Save your program as <code>lesson1.cpp</code>. Compile and run it.
+              Tip: Use <code>int</code> for whole numbers and the arithmetic
+              operators you just learned!
             </li>
           </ul>
         </section>
@@ -587,8 +569,10 @@ for (int i = 1; i &lt;= 5; i++) {
         controls: true,
         progress: true,
         slideNumber: true,
+        jumpToSlide: true,
         transition: "slide",
         backgroundTransition: "zoom",
+        embedded: false,
         center: false,
         width: 1280,
         height: 720,
