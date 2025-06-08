@@ -1,0 +1,41 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Project Structure Guide
+
+## Directory Organization
+
+### Core Content Directories
+- **`lessons/`** - Markdown lesson files with C++ instruction
+- **`exercises/`** - Coding practice problems and solutions
+- **`projects/`** - 4 major hands-on projects:
+  - Virtual Robot Controller
+  - Obstacle Detector Game  
+  - Multi-Sensor Dashboard
+  - Competition Simulator
+- **`challenges/`** - Additional coding challenges for advanced students
+
+### Support Directories
+- **`libs/`** - External libraries (e.g., `libs/revealjs/`)
+- **`resources/`** - Images, assets, reference materials
+- **`simulations/`** - Code simulation environments
+- **`tools/`** - Development and build tools
+
+### Root Files
+- **[slides.html](mdc:slides.html)** - Main course presentation (reveal.js)
+- **[README.md](mdc:README.md)** - Course overview with teen-friendly language
+- **[.gitignore](mdc:.gitignore)** - Comprehensive exclusions for C++ build artifacts
+
+## File Naming Conventions
+- Lesson files: `lesson1.md`, `lesson2.md`, etc.
+- Exercise files: `exercise1.cpp`, `exercise2.cpp`, etc.
+- Project directories: descriptive names matching project titles
+- Use lowercase with hyphens for multi-word files: `obstacle-detector/`
+
+## Content Organization Principles
+1. **Progressive Complexity**: Content builds from basic to advanced
+2. **Self-Contained Lessons**: Each lesson can be understood independently
+3. **Hands-On Focus**: Every concept includes practical coding examples
+4. **Offline Ready**: All dependencies included locally for classroom use

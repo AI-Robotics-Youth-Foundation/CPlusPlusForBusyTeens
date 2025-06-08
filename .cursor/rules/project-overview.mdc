@@ -1,0 +1,36 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# C++ Course for Teenagers - Project Overview
+
+## Project Purpose
+This is a **C++ fundamentals course** designed specifically for teenagers (middle to high schoolers) as preparation for VEX V5 robotics programming using the PROS library. The course focuses on pure C++ instruction with engaging Roblox and robotics analogies.
+
+## Target Audience & Tone
+- **Age Group**: Middle to high school students (13-18 years old)
+- **Tone**: Teen-friendly, modern, engaging with emoji usage
+- **Approach**: Hands-on learning with immediate practical application
+- **Context**: Uses Roblox analogies and robotics examples for relatability
+
+## Course Structure
+- **Duration**: 8-10 hours total
+- **Week 1**: Variables & I/O
+- **Week 2**: Control Flow  
+- **Week 3**: Objects & Arrays
+- **Week 4**: Advanced C++ (Memory/Pointers)
+- **Projects**: 4 hands-on projects
+- **Exercises**: 20 coding exercises throughout
+
+## Key Design Principles
+1. **Pure C++ Focus**: Teach C++ concepts directly, not through comparisons
+2. **Engaging Stories**: Use Roblox/robotics as context, not code examples
+3. **Practical Application**: Every lesson connects to real-world robotics
+4. **Modern Presentation**: Professional but teen-friendly visual design
+5. **Self-Contained**: All dependencies included locally
+
+## Main Entry Points
+- **Course Presentation**: [slides.html](mdc:slides.html) - reveal.js presentation for course introduction
+- **Course Overview**: [README.md](mdc:README.md) - teen-friendly overview with Roblox analogies
+- **Build Exclusions**: [.gitignore](mdc:.gitignore) - comprehensive exclusions for C++ projects

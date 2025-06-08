@@ -100,9 +100,12 @@
         background: #232946;
         color: #00f2fe;
         border-radius: 8px;
-        font-size: clamp(0.8em, 1.5vw, 1em);
-        padding: 1em;
+        font-size: clamp(0.6em, 1.5vw, 1em);
+        padding: 0.5em;
+        margin: 0.5em 0;
         overflow-x: auto;
+        overflow-y: auto;
+        max-height: 140vh;
       }
       .reveal ul {
         font-size: clamp(0.9em, 2vw, 1.08em);
@@ -149,82 +152,39 @@
           </h3>
         </section>
         <section>
-          <h2>
-            Ready to level up and learn <span class="highlight">C++</span>?
-          </h2>
+          <h2>📝 What is a Program?</h2>
           <ul>
-            <li>Master C++ with games, robots, and interactive projects!</li>
-          </ul>
-          <p>
-            <span class="emoji">🎯</span> <b>Goal:</b> Master C++ fundamentals
-            through engaging stories
-          </p>
-          <p>
-            <span class="emoji">🚀</span> <b>Bonus:</b> Perfect prep for VEX
-            robotics, game dev, and more!
-          </p>
-        </section>
-        <section>
-          <h2>🎯 Why Learn C++ This Way?</h2>
-          <ul>
-            <li>
-              <b>Master C++ Fundamentals:</b> Variables, Functions, Classes,
-              Control Flow, OOP, Memory
-            </li>
-            <li>
-              <b>Learn with Stories:</b> Robot commands, game stats, real
-              scenarios
-            </li>
-            <li><b>Hands-On:</b> 8-10 hours, 20 exercises, 4 projects</li>
+            <li>A set of instructions for a computer</li>
+            <li>Like a recipe: step-by-step directions</li>
+            <li>Or a game script: "If you press jump, the character jumps!"</li>
+            <li>Or a robot mission: "Move forward, turn, pick up object"</li>
           </ul>
         </section>
         <section>
-          <h2>📅 4-Week Roadmap</h2>
+          <h2>👨‍💻 What is Programming?</h2>
           <ul>
-            <li>
-              <b>Week 1:</b> Variables & I/O <span class="emoji">🤖</span>
-            </li>
-            <li><b>Week 2:</b> Control Flow <span class="emoji">🧠</span></li>
-            <li>
-              <b>Week 3:</b> Objects & Arrays <span class="emoji">⚙️</span>
-            </li>
-            <li><b>Week 4:</b> Advanced C++ <span class="emoji">🏆</span></li>
+            <li>Writing instructions for computers to follow</li>
+            <li>Turning ideas into actions on a screen or in the real world</li>
+            <li>Anyone can learn it—no magic required!</li>
           </ul>
         </section>
         <section>
-          <h2>🤖 Week 1: Variables & I/O</h2>
+          <h2>✨ What is C++?</h2>
           <ul>
-            <li>Track a player's score or a robot's battery level</li>
-            <li><b>Skills:</b> Variables, Input/Output, Math, Strings</li>
-            <li><b>Project:</b> Virtual Robot Controller</li>
+            <li>A powerful programming language</li>
+            <li>Used for games, robots, apps, and more</li>
+            <li>Fast, flexible, and used by pros everywhere</li>
+            <li>Learning C++ = unlocking real-world tech skills</li>
           </ul>
         </section>
         <section>
-          <h2>🧠 Week 2: Control Flow</h2>
+          <h2>🗺️ Course Roadmap</h2>
           <ul>
-            <li>Make decisions: avoid obstacles, check coins</li>
-            <li><b>Skills:</b> If/Else, Switch, Loops, Functions</li>
-            <li><b>Project:</b> Obstacle Detector Game</li>
+            <li><b>Variables & Input/Output:</b> Store and display info</li>
+            <li><b>Control Flow:</b> Make decisions, repeat actions</li>
+            <li><b>Objects & Arrays:</b> Organize and manage data</li>
+            <li><b>Advanced C++:</b> Memory, pointers, big projects</li>
           </ul>
-        </section>
-        <section>
-          <h2>⚙️ Week 3: Objects & Arrays</h2>
-          <ul>
-            <li>Track multiple players or robot sensors</li>
-            <li><b>Skills:</b> Classes, Arrays, Object Properties</li>
-            <li><b>Project:</b> Multi-Sensor Dashboard</li>
-          </ul>
-        </section>
-        <section>
-          <h2>🏆 Week 4: Advanced C++</h2>
-          <ul>
-            <li>Manage lots of info in a big game or robot system</li>
-            <li><b>Skills:</b> Memory, Pointers, Code Organization</li>
-            <li><b>Project:</b> Mini Robot Competition Simulator</li>
-          </ul>
-        </section>
-        <section>
-          <h2>🚀 What You'll Build</h2>
           <ul>
             <li>🎮 Virtual Robot Controller</li>
             <li>🚧 Obstacle Detector Game</li>
@@ -233,47 +193,218 @@
           </ul>
         </section>
         <section>
-          <h2>💪 After This C++ Primer</h2>
+          <h2>🎉 Ready to Start?</h2>
           <ul>
-            <li>✅ Core C++ Programming</li>
-            <li>✅ Object-Oriented Design</li>
-            <li>✅ Problem-Solving Skills</li>
-            <li>✅ Real Applications: VEX, games, and more</li>
+            <li>Jump in and code your first program!</li>
+            <li>If you can imagine it, you can build it in C++</li>
+            <li><b>Tip:</b> Ask questions, experiment, and have fun!</li>
+          </ul>
+        </section>
+        <!-- Lesson 1: Create Your First C++ Application -->
+        <section>
+          <h1>🚀 Create Your First C++ Application</h1>
+          <h3>
+            <span class="emoji">🛠️</span> Get Set Up and Run Your First Program
+          </h3>
+        </section>
+        <section>
+          <h2>🧰 What You Need</h2>
+          <ul>
+            <li>
+              <b>C++ Compiler</b> (e.g.,
+              <span class="highlight">clang++</span> or
+              <span class="highlight">g++</span>)
+            </li>
+            <li>
+              <b>Text Editor or IDE</b> (e.g., VS Code, Xcode, Sublime Text)
+            </li>
+            <li>A terminal (the <b>Terminal</b> app on Mac)</li>
           </ul>
         </section>
         <section>
-          <h2>🎯 Getting Started</h2>
+          <h2>💻 Installing a Compiler (Mac)</h2>
           <ul>
-            <li>Computer (any kind works!)</li>
-            <li>1 hour per day for 4 weeks</li>
-            <li>Curiosity and creativity!</li>
+            <li>
+              Open <b>Terminal</b> (find it in Applications &gt; Utilities)
+            </li>
+            <li>Type: <code>xcode-select --install</code></li>
+            <li>
+              This installs <span class="highlight">clang++</span>, a C++
+              compiler
+            </li>
+            <li>Check it works: <code>clang++ --version</code></li>
           </ul>
-          <div class="folder-structure">
-            <b>📁 Course Folder Structure</b><br /><br />
-            CPlusPlus-Robotics-Primer/<br />
-            ├── 📖 lessons/ # Step-by-step tutorials with slides<br />
-            ├── 💻 exercises/ # Hands-on coding practice<br />
-            ├── 🎯 projects/ # Major build challenges<br />
-            ├── 🎮 simulations/ # Interactive robot/game simulators<br />
-            ├── 📚 resources/ # Reference materials & cheat sheets<br />
-            ├── 🏆 challenges/ # Bonus advanced problems<br />
-            └── 🔧 tools/ # Helper utilities and templates
-          </div>
         </section>
         <section>
-          <h2>🎉 Ready to Level Up?</h2>
+          <h2>📝 Choosing an Editor or IDE</h2>
           <ul>
-            <li>Week 1 starts now!</li>
+            <li><b>VS Code</b> (free, popular, lots of extensions)</li>
+            <li><b>Xcode</b> (Apple's official IDE, great for Mac users)</li>
             <li>
-              If you can imagine a game or a robot, you can learn to program it
-              in C++!
+              <b>CLion</b> (powerful C++ IDE by JetBrains, free for students)
             </li>
             <li>
-              <b>Tip:</b> Coding is all about learning together. If you get
-              stuck, ask for help and keep experimenting!
+              <b>Sublime Text</b>, <b>Atom</b>, or even <b>TextEdit</b> (for
+              simple editing)
+            </li>
+            <li>
+              <b
+                >We'll be using VS Code in this course, but feel free to try out
+                any of them!</b
+              >
             </li>
           </ul>
         </section>
+        <section>
+          <h2>📄 Your First C++ Program</h2>
+          <pre><code>// hello.cpp
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+  cout &lt;&lt; "Hello, world!" &lt;&lt; endl;
+  return 0;
+}</code></pre>
+          <ul>
+            <li>Save this as <code>hello.cpp</code></li>
+          </ul>
+        </section>
+        <section>
+          <h2>⚡ Compile and Run</h2>
+          <ul>
+            <li>In Terminal, go to the folder with <code>hello.cpp</code></li>
+            <li>Type: <code>clang++ hello.cpp -o hello</code></li>
+            <li>Run it: <code>./hello</code></li>
+            <li>
+              You should see: <span class="highlight">Hello, world!</span>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🗂️ What is a namespace?</h2>
+          <ul>
+            <li>
+              A <span class="highlight">namespace</span> is like a "last name"
+              for code.
+            </li>
+            <li>It helps the computer know exactly which thing you mean.</li>
+            <li>
+              Example: <code>std::cout</code> means "cout from the standard
+              library."
+            </li>
+            <li>
+              If you write <code>using namespace std;</code>, you can just say
+              <code>cout</code> instead of <code>std::cout</code>.
+            </li>
+          </ul>
+          <aside class="notes">
+            Explain that in real life, names can be confusing if more than one
+            person has the same name. Namespaces in C++ help avoid this
+            confusion by grouping names, just like saying "Alex from Math Club"
+            vs. "Alex from Soccer Team." Mention that <code>std</code> is the
+            standard namespace in C++ for things like <code>cout</code> and
+            <code>cin</code>. Show both with and without
+            <code>using namespace std;</code> so students see the difference.
+          </aside>
+        </section>
+        <!-- End: Create Your First C++ Application -->
+        <!-- Lesson 1: Variables, Data Types, and Input/Output -->
+        <section>
+          <h1>🔢 Lesson 1: Variables, Data Types, and Input/Output</h1>
+          <h3>
+            <span class="emoji">🧩</span> The Building Blocks of Every Program
+          </h3>
+        </section>
+        <section>
+          <h2>💡 What is a Variable?</h2>
+          <ul>
+            <li>
+              A <span class="highlight">variable</span> is like a labeled box
+              that stores information.
+            </li>
+            <li>
+              You can put things in, take things out, or change what's inside.
+            </li>
+            <li>
+              In games: score, player health, or level number are all stored in
+              variables!
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📦 Data Types in C++</h2>
+          <ul>
+            <li>
+              Variables can store different
+              <span class="highlight">types</span> of data:
+            </li>
+            <li><b>int</b>: Whole numbers (e.g., 5, -2, 100)</li>
+            <li><b>double</b>: Decimal numbers (e.g., 3.14, -0.5)</li>
+            <li><b>char</b>: Single characters (e.g., 'A', 'z', '!')</li>
+            <li>
+              <b>string</b>: Text (e.g., "Hello!")
+              <small>(needs <code>#include &lt;string&gt;</code>)</small>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>✍️ Declaring and Using Variables</h2>
+          <ul>
+            <li>To make a variable, tell C++ the type and a name:</li>
+          </ul>
+          <pre><code>int score = 0;
+double temperature = 23.5;
+char grade = 'A';</code></pre>
+          <ul>
+            <li>You can change the value later:</li>
+          </ul>
+          <pre><code>score = 10;
+temperature = temperature + 1.5;</code></pre>
+        </section>
+        <section>
+          <h2>🖥️ Input and Output</h2>
+          <ul>
+            <li><b>cout</b>: Print info to the screen</li>
+            <li><b>cin</b>: Get input from the user</li>
+          </ul>
+          <pre><code>#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+  int age;
+  cout &lt;&lt; "Enter your age: ";
+  cin &gt;&gt; age;
+  cout &lt;&lt; "You are " &lt;&lt; age &lt;&lt; " years old!" &lt;&lt; endl;
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge</h2>
+          <ul>
+            <li>
+              Make a program that asks for your name, age, and favorite Roblox
+              game, then prints them out.
+            </li>
+            <li>
+              Tip: Use <code>string</code> for names and <code>int</code> for
+              numbers. Remember to <code>#include &lt;string&gt;</code> and
+              <code>#include &lt;iostream&gt;</code>!
+            </li>
+            <li>
+              Save your program as <code>lesson1.cpp</code>. Compile and run it.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🏁 Lesson 1 Recap</h2>
+          <ul>
+            <li>Variables store info for your program</li>
+            <li>Different data types for different kinds of info</li>
+            <li>Use <b>cin</b> and <b>cout</b> for user interaction</li>
+            <li>Practice makes perfect—experiment and have fun!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 1 -->
       </div>
     </div>
     <script src="libs/revealjs/reveal.js"></script>

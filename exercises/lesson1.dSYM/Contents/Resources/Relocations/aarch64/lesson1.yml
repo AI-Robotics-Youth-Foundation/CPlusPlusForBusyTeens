@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/robert/devel/Training/CPlusPlus/exercises/lesson1'
+relocations:     []
+...

@@ -1,0 +1,62 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Content Creation Guidelines
+
+## Writing Style and Tone
+
+### Target Audience Voice
+- **Age-Appropriate**: Written for 13-18 year olds
+- **Conversational**: Friendly, encouraging, not condescending  
+- **Modern Language**: Current slang and references (when appropriate)
+- **Emoji Integration**: Strategic use for visual appeal and emotional connection
+
+### Technical Communication
+- **Plain English First**: Introduce concepts in everyday language
+- **Analogies Over Abstractions**: Use Roblox/gaming/robotics examples
+- **Progressive Complexity**: Start simple, build understanding gradually
+- **Practical Context**: Always connect to real-world applications
+
+## Pedagogical Approach
+
+### Learning Philosophy
+1. **Learn by Doing**: Code examples in every lesson
+2. **Immediate Application**: Practice follows theory immediately  
+3. **Scaffolded Learning**: Each concept builds on previous knowledge
+4. **Multiple Learning Styles**: Visual, auditory, and kinesthetic elements
+
+### Content Structure Standards
+- **Hook**: Start each lesson with an engaging question or scenario
+- **Context**: Explain why this concept matters for robotics
+- **Instruction**: Core C++ concept with clear examples
+- **Practice**: Hands-on coding exercise
+- **Connection**: Link to upcoming lessons or projects
+
+## Analogy Guidelines
+
+### Roblox Integration
+- Use Roblox concepts as **context**, not code comparisons
+- Examples: Variables as "game settings", functions as "scripts"
+- Keep analogies accurate to both domains
+- Don't assume all students play Roblox - provide alternative explanations
+
+### Robotics Connection
+- Connect every C++ concept to robotics applications
+- Examples: Loops for sensor monitoring, arrays for sensor data
+- Reference VEX V5 components when relevant
+- Emphasize practical problem-solving
+
+## Code Examples Standards
+- **Complete Examples**: Always runnable, no partial code
+- **Comments**: Explain every line for beginners
+- **Progressive Complexity**: Start with minimal examples
+- **Real-World Context**: Prefer robotics scenarios over abstract examples
+- **Error Prevention**: Show common mistakes and how to avoid them
+
+## Assessment Integration
+- **Formative**: Quick checks throughout lessons
+- **Practical**: Coding exercises, not just multiple choice
+- **Project-Based**: Major assessments through hands-on projects
+- **Self-Evaluation**: Reflection questions and debugging challenges

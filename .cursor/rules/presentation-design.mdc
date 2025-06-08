@@ -1,0 +1,48 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# Presentation Design Guidelines
+
+## Visual Design Philosophy
+The course presentation in [slides.html](mdc:slides.html) follows a modern, teen-friendly design approach that balances professionalism with engagement.
+
+## Design System
+
+### Color Palette
+- **Background**: Dark gradient from deep blue-purple to black (`#1a1a2e` to `#000`)  
+- **Primary Accent**: Neon blue (`#00d4ff`)
+- **Secondary Accent**: Purple (`#8a2be2`)
+- **Highlight**: Hot pink (`#ff1493`)
+- **Text**: High contrast white for readability
+
+### Typography
+- **Font Family**: Inter (modern, readable sans-serif)
+- **Responsive Sizing**: Uses `clamp()` and `vw` units for adaptive scaling
+- **Hierarchy**: Clear distinction between headings (h1, h2) and body text
+- **Line Height**: Optimized for readability (1.4-1.6)
+
+### Layout Principles
+1. **Responsive Design**: Prevents text overflow on various screen sizes
+2. **Visual Balance**: Ample white space, centered content
+3. **Progressive Disclosure**: One concept per slide
+4. **Accessibility**: High contrast ratios, readable fonts
+
+## Technical Implementation
+- **Framework**: reveal.js for professional presentation capabilities
+- **Dependencies**: Self-contained - reveal.js dist folder included locally
+- **Performance**: Optimized for offline classroom use
+- **Responsiveness**: Adaptive font sizing prevents content cutoffs
+
+## Content Guidelines
+- **Concise Text**: Brief, scannable bullet points
+- **Emoji Usage**: Strategic use for visual interest and teen appeal
+- **No Jargon**: Technical terms explained in accessible language
+- **Action-Oriented**: Focus on what students will do/learn
+
+## Maintenance Notes
+- Font sizes use responsive units - test on multiple screen sizes
+- Color values are CSS custom properties for easy theme updates  
+- Content should remain concise to prevent overflow issues
+- Images and media should be optimized for web delivery
