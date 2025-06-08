@@ -186,7 +186,8 @@
           <ul>
             <li><b>Variables & Input/Output:</b> Store and display info</li>
             <li><b>Control Flow:</b> Make decisions, repeat actions</li>
-            <li><b>Objects & Arrays:</b> Organize and manage data</li>
+            <li><b>Arrays:</b> Working with collections of data</li>
+            <li><b>Objects & Structs:</b> Grouping related information</li>
             <li><b>Advanced C++:</b> Memory, pointers, big projects</li>
           </ul>
           <ul>
@@ -312,6 +313,81 @@ int main() {
           </aside>
         </section>
         <section>
+          <h2>💬 Input and Output with cin and cout</h2>
+          <ul>
+            <li>
+              Programs are more fun when they can
+              <span class="highlight">talk</span> to users!
+            </li>
+            <li><b>cout</b> displays messages to the user (output)</li>
+            <li><b>cin</b> gets information from the user (input)</li>
+            <li>
+              Think of it like a conversation between you and the computer!
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📤 Output with cout</h2>
+          <ul>
+            <li>
+              <b>cout</b> means "console output" - it prints to the screen
+            </li>
+            <li>Use <code>&lt;&lt;</code> to send text or numbers to cout</li>
+            <li>Use <code>endl</code> to create a new line</li>
+          </ul>
+          <pre><code>cout << "Hello, World!" << endl;
+cout << "I am learning C++!" << endl;
+
+int score = 95;
+cout << "Your score is: " << score << endl;
+cout << "Great job!" << endl;</code></pre>
+        </section>
+        <section>
+          <h2>📥 Input with cin</h2>
+          <ul>
+            <li>
+              <b>cin</b> means "console input" - it gets data from the user
+            </li>
+            <li>Use <code>&gt;&gt;</code> to read data into a variable</li>
+            <li>
+              The program waits until the user types something and presses Enter
+            </li>
+          </ul>
+          <pre><code>string playerName;
+int playerAge;
+
+cout << "What's your name? ";
+cin >> playerName;
+
+cout << "How old are you? ";
+cin >> playerAge;
+
+cout << "Hi " << playerName << ", you are " << playerAge << " years old!" << endl;</code></pre>
+        </section>
+        <section>
+          <h2>💡 cin and cout Tips</h2>
+          <ul>
+            <li><b>Always prompt first:</b> Tell users what to enter</li>
+            <li>
+              <b>Use descriptive messages:</b> "Enter your age: " not just
+              "Number: "
+            </li>
+            <li>
+              <b>cin stops at spaces:</b> For names with spaces, use
+              <code>getline()</code>
+            </li>
+            <li>
+              <b>Chain outputs:</b>
+              <code>cout << "Score: " << score << " points!" << endl;</code>
+            </li>
+          </ul>
+          <pre><code>// For names with spaces
+string fullName;
+cout << "Enter your full name: ";
+cin.ignore(); // Clear any leftover input
+getline(cin, fullName); // Gets the whole line including spaces</code></pre>
+        </section>
+        <section>
           <h2>🛠️ What are Operators?</h2>
           <ul>
             <li>
@@ -381,6 +457,96 @@ cout << "You collected " << total << " coins in Roblox!" << endl;
             </li>
           </ul>
         </section>
+        <section>
+          <h2>🔧 Engineering Challenge: Gear Ratios</h2>
+          <ul>
+            <li>
+              Let's apply operators to solve real
+              <span class="highlight">robotics engineering</span> problems!
+            </li>
+            <li>Robots use gears to control speed and power.</li>
+            <li>
+              We'll create functions to calculate gear ratios and output speeds.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>⚙️ Exercise 1: Calculate Gear Ratio</h2>
+          <ul>
+            <li><b>Gear Ratio = Driven Gear ÷ Driving Gear</b></li>
+            <li>This tells us how much the speed changes.</li>
+            <li>
+              <b>Try it:</b> Ask the user for gear sizes and calculate the
+              ratio!
+            </li>
+          </ul>
+          <pre><code>// Function to calculate gear ratio
+double calculateGearRatio(int drivingGear, int drivenGear) {
+  return (double)drivenGear / drivingGear;
+}
+
+int main() {
+  int driving, driven;
+  
+  cout << "⚙️ Gear Ratio Calculator ⚙️" << endl;
+  cout << "Enter driving gear teeth: ";
+  cin >> driving;
+  cout << "Enter driven gear teeth: ";
+  cin >> driven;
+  
+  double ratio = calculateGearRatio(driving, driven);
+  cout << "Gear ratio: " << ratio << ":1" << endl;
+  
+  if (ratio > 1) {
+    cout << "Result: SLOWER speed, MORE torque" << endl;
+  } else if (ratio < 1) {
+    cout << "Result: FASTER speed, LESS torque" << endl;
+  } else {
+    cout << "Result: SAME speed, SAME torque" << endl;
+  }
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Exercise 2: Calculate Output RPM</h2>
+          <ul>
+            <li><b>Output RPM = Input RPM ÷ Gear Ratio</b></li>
+            <li>This tells us the final spinning speed.</li>
+            <li>
+              <b>Interactive:</b> Let users test their own motor and gear
+              combinations!
+            </li>
+          </ul>
+          <pre><code>// Function to calculate output RPM
+double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear) {
+  double gearRatio = calculateGearRatio(drivingGear, drivenGear);
+  return inputRPM / gearRatio;
+}
+
+int main() {
+  int inputRPM, driving, driven;
+  
+  cout << "🚀 Robot RPM Calculator 🚀" << endl;
+  cout << "Enter motor input RPM: ";
+  cin >> inputRPM;
+  cout << "Enter driving gear teeth: ";
+  cin >> driving;
+  cout << "Enter driven gear teeth: ";
+  cin >> driven;
+  
+  double gearRatio = calculateGearRatio(driving, driven);
+  double outputRPM = calculateOutputRPM(inputRPM, driving, driven);
+  
+  cout << "\n🔧 RESULTS 🔧" << endl;
+  cout << "Input: " << inputRPM << " RPM" << endl;
+  cout << "Gear Ratio: " << gearRatio << ":1" << endl;
+  cout << "Output: " << outputRPM << " RPM" << endl;
+  
+  return 0;
+}</code></pre>
+        </section>
+
         <section>
           <h2>🏁 Lesson 1 Recap</h2>
           <ul>
@@ -552,14 +718,362 @@ for (int i = 1; i &lt;= 5; i++) {
           </ul>
         </section>
         <section>
+          <h2>🤖 Real Robot Example</h2>
+          <pre><code>// Complete gear analysis program
+#include &lt;iostream&gt;
+using namespace std;
+
+double calculateGearRatio(int drivingGear, int drivenGear) {
+  return (double)drivenGear / drivingGear;
+}
+
+double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear) {
+  double gearRatio = calculateGearRatio(drivingGear, drivenGear);
+  return inputRPM / gearRatio;
+}
+
+int main() {
+  cout << "🤖 Robot Drivetrain Calculator 🤖" << endl;
+  
+  // Test different configurations
+  int configs[][3] = {{100, 12, 24}, {200, 24, 48}, {600, 36, 12}};
+  
+  for (int i = 0; i < 3; i++) {
+    int rpm = configs[i][0];
+    int driving = configs[i][1];
+    int driven = configs[i][2];
+    
+    double ratio = calculateGearRatio(driving, driven);
+    double output = calculateOutputRPM(rpm, driving, driven);
+    
+    cout << "Input: " << rpm << " RPM | ";
+    cout << "Gears: " << driving << "T → " << driven << "T | ";
+    cout << "Ratio: " << ratio << ":1 | ";
+    cout << "Output: " << output << " RPM" << endl;
+  }
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
           <h2>🏁 Lesson 2 Recap</h2>
           <ul>
             <li><b>If</b> statements let your program make decisions</li>
             <li><b>Loops</b> let your program repeat actions</li>
+            <li>
+              <b>Functions</b> organize code and solve engineering problems
+            </li>
+            <li><b>Operators</b> perform calculations like gear ratios</li>
             <li>Practice using control flow to make your programs smarter!</li>
           </ul>
         </section>
         <!-- End Lesson 2 -->
+        <!-- Lesson 3: Arrays -->
+        <section>
+          <h1>📦 Lesson 3: Arrays</h1>
+          <h3>
+            <span class="emoji">🗂️</span> Working with Collections of Data
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What are Arrays?</h2>
+          <ul>
+            <li>
+              An <span class="highlight">array</span> is like a backpack that
+              can hold multiple items of the same type.
+            </li>
+            <li>
+              Instead of creating 10 separate variables for 10 player scores,
+              you can use one array!
+            </li>
+            <li>
+              Think of it as a row of lockers, each with a number (called an
+              <span class="highlight">index</span>).
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📋 Creating Arrays</h2>
+          <pre><code>// Creating an array of 5 integers
+int scores[5];
+
+// Creating and initializing an array
+int levels[4] = {1, 5, 10, 15};
+
+// Let C++ figure out the size
+int coins[] = {100, 250, 500, 750, 1000};</code></pre>
+          <ul>
+            <li>
+              Array indexes start at <span class="highlight">0</span>, not 1!
+            </li>
+            <li><code>levels[0]</code> is the first element (value: 1)</li>
+            <li><code>levels[3]</code> is the fourth element (value: 15)</li>
+          </ul>
+        </section>
+        <section>
+          <h2>🎮 Array Example: Roblox Inventory</h2>
+          <pre><code>// Player's gem collection
+int gems[5] = {12, 8, 25, 3, 17};
+
+cout << "Your gem inventory:" << endl;
+for (int i = 0; i < 5; i++) {
+  cout << "Slot " << i+1 << ": " << gems[i] << " gems" << endl;
+}
+
+// Add gems to slot 2 (index 1)
+gems[1] = gems[1] + 5;
+cout << "After finding 5 more gems in slot 2: " << gems[1] << endl;</code></pre>
+        </section>
+        <section>
+          <h2>🔍 Accessing and Modifying Arrays</h2>
+          <ul>
+            <li><b>Access:</b> <code>int firstScore = scores[0];</code></li>
+            <li><b>Modify:</b> <code>scores[2] = 95;</code></li>
+            <li><b>Loop through:</b> Use a for loop to visit each element</li>
+          </ul>
+          <pre><code>int playerScores[3] = {85, 92, 78};
+
+// Print all scores
+for (int i = 0; i < 3; i++) {
+  cout << "Player " << i+1 << ": " << playerScores[i] << endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🎯 What are Strings?</h2>
+          <ul>
+            <li>
+              A <span class="highlight">string</span> is text—like player names,
+              game messages, or chat text.
+            </li>
+            <li>In C++, we use <code>string</code> to store text.</li>
+            <li>
+              You need to include <code>&lt;string&gt;</code> at the top of your
+              program.
+            </li>
+          </ul>
+          <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+string playerName = "CoolGamer123";
+string welcomeMessage = "Welcome to the game!";
+cout << welcomeMessage << " Hello, " << playerName << endl;</code></pre>
+        </section>
+        <section>
+          <h2>📝 Arrays of Strings</h2>
+          <ul>
+            <li>You can create arrays that hold multiple strings!</li>
+            <li>
+              Perfect for storing player names, game levels, or item names.
+            </li>
+          </ul>
+          <pre><code>string playerNames[4] = {"Alex", "Jordan", "Casey", "Riley"};
+string gameItems[3] = {"Sword", "Shield", "Potion"};
+
+cout << "Players in the game:" << endl;
+for (int i = 0; i < 4; i++) {
+  cout << (i+1) << ". " << playerNames[i] << endl;
+}
+
+cout << "You picked up a " << gameItems[0] << "!" << endl;</code></pre>
+        </section>
+
+        <section>
+          <h2>💡 Real-World Applications</h2>
+          <ul>
+            <li>
+              <b>Game Development:</b> Player scoreboards, inventory lists,
+              level data
+            </li>
+            <li>
+              <b>Robotics:</b> Sensor readings, coordinate paths, measurement
+              data
+            </li>
+            <li>
+              <b>Apps:</b> User lists, message history, shopping cart items
+            </li>
+            <li>
+              <b>Data Analysis:</b> Survey responses, test scores, measurement
+              collections
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🏁 Lesson 3 Recap</h2>
+          <ul>
+            <li><b>Arrays</b> store multiple values of the same type</li>
+            <li><b>Strings</b> handle text data in your programs</li>
+            <li><b>Array indexing</b> starts at 0, not 1</li>
+            <li><b>Loops</b> help you work with arrays efficiently</li>
+            <li><b>Arrays of strings</b> manage text collections</li>
+            <li>Arrays are perfect for organizing related data!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 3 -->
+
+        <!-- Project 1: Robot Gear System Optimizer -->
+        <section>
+          <h1>🤖 PROJECT 1: Robot Gear System Optimizer</h1>
+          <h3>
+            <span class="emoji">⚙️</span> Engineering Challenge: Find the
+            Perfect Gear Setup
+          </h3>
+        </section>
+        <section>
+          <h2>🎯 Project Mission</h2>
+          <ul>
+            <li>
+              You're designing a <b>robot drivetrain system</b> for competition!
+            </li>
+            <li>
+              Your team has <b>different motor speeds</b> and
+              <b>gear sizes</b> available.
+            </li>
+            <li>
+              Calculate <b>ALL possible combinations</b> to find the perfect
+              setup.
+            </li>
+            <li>
+              Analyze the results to optimize for speed, torque, or balance.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📊 Available Components</h2>
+          <ul>
+            <li>
+              <b>Input RPM Options:</b> 100, 200, 600 (different motor speeds)
+            </li>
+            <li><b>Available Gears:</b> 12, 24, 36, 48, 60, 72, 80 teeth</li>
+            <li><b>Each gear can be:</b> Driving gear OR Driven gear</li>
+            <li>
+              <b>Total Combinations:</b> 3 × 7 × 7 =
+              <span class="highlight">147 setups</span>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🧮 Engineering Formulas</h2>
+          <ul>
+            <li><b>Gear Ratio = Driven Gear ÷ Driving Gear</b></li>
+            <li><b>Output RPM = Input RPM ÷ Gear Ratio</b></li>
+          </ul>
+          <pre><code>// Use the functions from Lesson 2!
+double calculateGearRatio(int drivingGear, int drivenGear) {
+  return (double)drivenGear / drivingGear;
+}
+
+double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear) {
+  double gearRatio = calculateGearRatio(drivingGear, drivenGear);
+  return inputRPM / gearRatio;
+}</code></pre>
+        </section>
+        <section>
+          <h2>💻 Project Code Structure</h2>
+          <pre><code>// Robot Gear System Optimizer
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+  // Available options (use arrays!)
+  int inputRPMs[] = {100, 200, 600};
+  int gearSizes[] = {12, 24, 36, 48, 60, 72, 80};
+  
+  cout << "🤖 ROBOT GEAR SYSTEM ANALYSIS 🤖" << endl;
+  cout << "=====================================" << endl;
+  
+  // YOUR CODE HERE: Use nested loops to test all combinations
+  // For each input RPM...
+  //   For each driving gear...
+  //     For each driven gear...
+  //       Calculate ratio and output RPM
+  //       Display the results
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>📋 Expected Output Format</h2>
+          <pre><code>🤖 ROBOT GEAR SYSTEM ANALYSIS 🤖
+=====================================
+Input: 100 RPM | Driving: 12T | Driven: 12T | Ratio: 1.00 | Output: 100 RPM
+Input: 100 RPM | Driving: 12T | Driven: 24T | Ratio: 2.00 | Output: 50 RPM
+Input: 100 RPM | Driving: 12T | Driven: 36T | Ratio: 3.00 | Output: 33 RPM
+Input: 100 RPM | Driving: 12T | Driven: 48T | Ratio: 4.00 | Output: 25 RPM
+...
+Input: 600 RPM | Driving: 80T | Driven: 80T | Ratio: 1.00 | Output: 600 RPM
+
+ANALYSIS COMPLETE: 147 combinations tested!</code></pre>
+        </section>
+        <section>
+          <h2>🏆 Bonus Challenges</h2>
+          <ul>
+            <li>
+              <b>Speed Demon:</b> Find and highlight the fastest setup (highest
+              output RPM)
+            </li>
+            <li>
+              <b>Balanced Bot:</b> Find the setup closest to 300 RPM output
+            </li>
+            <li>
+              <b>Perfect Ratios:</b> Count how many setups have whole number
+              ratios (1:1, 2:1, 3:1, etc.)
+            </li>
+            <li>
+              <b>Efficiency Expert:</b> Find setups where input gear = output
+              gear (1:1 ratio)
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🔬 Real-World Engineering</h2>
+          <ul>
+            <li>
+              <b>FRC/VEX Robotics:</b> Teams use this exact analysis for
+              competition robots
+            </li>
+            <li>
+              <b>Automotive:</b> Car transmissions work on the same principles
+            </li>
+            <li>
+              <b>Manufacturing:</b> Conveyor belts and factory machines use gear
+              calculations
+            </li>
+            <li><b>Drones/RC:</b> Motor and propeller combinations</li>
+          </ul>
+        </section>
+        <section>
+          <h2>✅ Project Checklist</h2>
+          <ul>
+            <li>☐ Use <b>arrays</b> to store RPM and gear options</li>
+            <li>☐ Use <b>nested loops</b> to test all combinations</li>
+            <li>☐ Use <b>functions</b> from Lesson 2 for calculations</li>
+            <li>☐ Display all 147 combinations in a clear format</li>
+            <li>☐ Add at least one bonus challenge</li>
+            <li>☐ Test your program with the expected output</li>
+          </ul>
+        </section>
+        <section>
+          <h2>🚀 Ready to Build?</h2>
+          <ul>
+            <li>
+              This project combines <b>everything</b> you've learned so far!
+            </li>
+            <li>
+              <b>Arrays</b> for data storage, <b>loops</b> for repetition,
+              <b>functions</b> for calculations
+            </li>
+            <li>
+              You're solving <b>real engineering problems</b> that robotics
+              teams face every day
+            </li>
+            <li>
+              <b>Have fun and experiment!</b> Try different approaches and see
+              what works
+            </li>
+          </ul>
+        </section>
+        <!-- End Project 1 -->
       </div>
     </div>
     <script src="libs/revealjs/reveal.js"></script>
