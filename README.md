@@ -17,21 +17,20 @@ Welcome to the C++ Fundamentals course for teens! This repository contains every
 3. **No Extra Setup Needed:**
    - All required libraries (like reveal.js for slides) are included in `libs/`—no npm or external downloads required.
 
-## 📁 Folder Structure & Conventions
+## 📁 Folder Structure
 
 - `slides.html` — Main course presentation (uses reveal.js from `libs/`)
-- `lessons/` — Step-by-step C++ tutorials and slides
-- `exercises/` — Hands-on coding practice
-- `projects/` — Major build challenges
-- `simulations/` — Interactive robot/game simulators
-- `resources/` — Reference materials & cheat sheets
-- `challenges/` — Bonus advanced problems
-- `tools/` — Helper utilities and templates
-- `libs/` — All third-party libraries (e.g., `libs/revealjs`)
+- `exercises/` — Hands-on coding practice and solutions
+  - `lesson1/` — Gear ratio exercises with interactive input/output
+  - `lesson4/` — Struct-based challenges (gear analysis & Roblox collection)
+  - `project1/` — Robot Gear System Optimizer (basic & advanced solutions)
+- `libs/` — Third-party libraries
+  - `revealjs/` — Presentation framework for slides
 
 **Convention:**
 
 - All external libraries go in `libs/`, named by library (e.g., `libs/revealjs`).
+- Exercise solutions include comprehensive documentation and compilation instructions.
 - Keep the project root clean—put new dependencies in `libs/`.
 
 ## 🤝 Contributing & Extending
