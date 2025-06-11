@@ -2212,6 +2212,319 @@ srand(time(NULL)); rand(); // Old random ❌</code></pre>
           </ul>
         </section>
         <!-- End Lesson 6 -->
+        
+        <!-- Lesson 7: Classes & Object-Oriented Programming -->
+        <section>
+          <h1>🏗️ Lesson 7: Classes</h1>
+          <h3>
+            <span class="emoji">🎭</span> Structs with Superpowers
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What are Classes?</h2>
+          <ul>
+            <li>
+              A <span class="highlight">class</span> is like a struct that can also have functions!
+            </li>
+            <li>
+              Classes bundle data and actions together in one place.
+            </li>
+            <li>
+              Think of it as a <b>blueprint</b> - like a recipe for making objects.
+            </li>
+            <li>
+              Perfect for creating game characters, robots, or any "thing" that has both properties and behaviors.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📋 Your First Class</h2>
+          <ul>
+            <li>
+              Let's upgrade our Player struct to a Player class with built-in abilities!
+            </li>
+          </ul>
+          <pre><code>class Player {
+private:
+  string name;
+  int level;
+  int health;
+  int coins;
+
+public:
+  // Constructor - runs when you create a player
+  Player(string playerName) {
+    name = playerName;
+    level = 1;
+    health = 100;
+    coins = 50;
+  }
+  
+  // Functions that belong to the player
+  void showStats() {
+    cout << "🎮 " << name << " (Level " << level << ")" << endl;
+    cout << "Health: " << health << " | Coins: " << coins << endl;
+  }
+  
+  void takeDamage(int damage) {
+    health -= damage;
+    cout << name << " takes " << damage << " damage!" << endl;
+  }
+  
+  void earnCoins(int amount) {
+    coins += amount;
+    cout << name << " earned " << amount << " coins!" << endl;
+  }
+};</code></pre>
+        </section>
+        <section>
+          <h2>🎮 Using Your Class</h2>
+          <pre><code>int main() {
+  // Create players using your class
+  Player hero("DragonSlayer");
+  Player friend("MagicArcher");
+  
+  // Use their built-in abilities
+  hero.showStats();
+  friend.showStats();
+  
+  // Simulate gameplay
+  cout << "\n⚔️ Adventure begins!" << endl;
+  hero.takeDamage(25);
+  hero.earnCoins(100);
+  hero.showStats();
+  
+  return 0;
+}</code></pre>
+          <ul>
+            <li>
+              Creating objects automatically runs the constructor
+            </li>
+            <li>
+              Use dot notation to call methods: <code>hero.showStats()</code>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🔒 Private vs Public</h2>
+          <ul>
+            <li>
+              <b>Private:</b> Data that only the class can access (hidden and protected)
+            </li>
+            <li>
+              <b>Public:</b> Functions that other code can use
+            </li>
+            <li>
+              This protects your data from being accidentally broken!
+            </li>
+          </ul>
+          <pre><code>class Robot {
+private:
+  int batteryLevel;  // Can't access this directly from outside
+  double speed;      // Protected from external changes
+  
+public:
+  Robot(string name) {
+    batteryLevel = 100;
+    speed = 0;
+  }
+  
+  // Safe ways to interact with private data
+  void moveForward() {
+    if (batteryLevel > 10) {
+      speed = 5.0;
+      batteryLevel -= 10;
+      cout << "Moving forward!" << endl;
+    } else {
+      cout << "Battery too low!" << endl;
+    }
+  }
+  
+  int getBatteryLevel() {
+    return batteryLevel;
+  }
+};</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 1: Game Inventory Class</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create an Inventory class for managing game items!
+            </li>
+            <li>Keep track of items and make sure players can't cheat.</li>
+          </ul>
+          <pre><code>class Inventory {
+private:
+  map&lt;string, int&gt; items;
+  int maxSlots;
+  
+public:
+  Inventory(int slots = 10) {
+    maxSlots = slots;
+  }
+  
+  // Methods to implement:
+  bool addItem(string itemName, int quantity = 1);
+  bool removeItem(string itemName, int quantity = 1);
+  void showInventory();
+  int getItemCount(string itemName);
+  bool isFull();
+  
+  // Bonus: Add weight limits, rare items, item categories!
+};</code></pre>
+        </section>
+        <section>
+          <h2>👑 Inheritance: Making Specialized Classes</h2>
+          <ul>
+            <li>
+              <span class="highlight">Inheritance</span> lets you create specialized versions of a class.
+            </li>
+            <li>
+              Like how a Gaming Laptop is a type of Computer - it has everything a Computer has, plus gaming features!
+            </li>
+          </ul>
+          <pre><code>// Base class - the general version
+class Character {
+protected:  // Like private, but child classes can use it
+  string name;
+  int health;
+  int level;
+  
+public:
+  Character(string charName) {
+    name = charName;
+    health = 100;
+    level = 1;
+  }
+  
+  void showInfo() {
+    cout << name << " (Level " << level << ", HP: " << health << ")" << endl;
+  }
+  
+  virtual void attack() {  // virtual = can be customized by child classes
+    cout << name << " attacks!" << endl;
+  }
+};
+
+// Specialized class - inherits from Character
+class Warrior : public Character {
+public:
+  Warrior(string name) : Character(name) {
+    health = 150;  // Warriors have more health
+  }
+  
+  void attack() override {  // Custom attack for warriors
+    cout << name << " swings a mighty sword! ⚔️" << endl;
+  }
+};</code></pre>
+        </section>
+        <section>
+          <h2>🎮 Simple Inheritance Example</h2>
+          <pre><code>// Let's see inheritance in action!
+int main() {
+  Character basicChar("Alex");
+  Warrior strongHero("Conan");
+  
+  cout << "Basic character:" << endl;
+  basicChar.showInfo();
+  basicChar.attack();
+  
+  cout << "\nWarrior character:" << endl;
+  strongHero.showInfo();
+  strongHero.attack();  // Uses the warrior's special attack!
+  
+  return 0;
+}</code></pre>
+          <ul>
+            <li>
+              The Warrior gets everything from Character, plus its own special abilities
+            </li>
+            <li>
+              You can override methods to make specialized versions
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🚀 Challenge 2: Robot Family</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create different types of robots using inheritance!
+            </li>
+            <li>Each robot type should have unique abilities.</li>
+          </ul>
+          <pre><code>// Base Robot class
+class Robot {
+protected:
+  string name;
+  int batteryLevel;
+  double x, y;  // position
+  
+public:
+  Robot(string robotName) {
+    name = robotName;
+    batteryLevel = 100;
+    x = 0; y = 0;
+  }
+  
+  void showStatus() {
+    cout << name << " - Battery: " << batteryLevel << "%" << endl;
+  }
+  
+  virtual void performTask() {
+    cout << name << " is working..." << endl;
+  }
+};
+
+// Your task: Create these robot types
+class CleaningRobot : public Robot {
+  // Should vacuum and mop
+};
+
+class SecurityRobot : public Robot {
+  // Should patrol and sound alarms
+};
+
+class DeliveryRobot : public Robot {
+  // Should carry packages and navigate
+};</code></pre>
+        </section>
+        <section>
+          <h2>💡 When to Use Classes</h2>
+          <ul>
+            <li><b>Game Development:</b> Players, enemies, items with special abilities</li>
+            <li><b>Robotics:</b> Different robot types with specialized functions</li>
+            <li><b>Apps:</b> User accounts, posts, messages with behaviors</li>
+            <li><b>Simulations:</b> Cars, animals, particles that act and react</li>
+          </ul>
+          <pre><code>// Classes make code cleaner and more organized
+class Car {
+private:
+  double fuel, speed;
+  bool engineOn;
+  
+public:
+  Car() { fuel = 100; speed = 0; engineOn = false; }
+  
+  void startEngine() { engineOn = true; }
+  void accelerate() { if (engineOn) speed += 10; }
+  void brake() { speed = max(0.0, speed - 15); }
+  void showDashboard() {
+    cout << "Speed: " << speed << " | Fuel: " << fuel << "%" << endl;
+  }
+};</code></pre>
+        </section>
+        <section>
+          <h2>🏁 Lesson 7 Recap</h2>
+          <ul>
+            <li><b>Classes</b> are structs that can also contain functions</li>
+            <li><b>Private/Public</b> controls who can access your data</li>
+            <li><b>Constructors</b> set up objects when they're created</li>
+            <li><b>Inheritance</b> lets you create specialized versions of classes</li>
+            <li><b>Methods</b> are functions that belong to objects</li>
+            <li>Classes help organize complex programs and keep data safe!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 7 -->
       </div>
     </div>
     <script src="libs/revealjs/reveal.js"></script>
