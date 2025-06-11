@@ -6,140 +6,308 @@
       No external reveal.js repo or node_modules required.
     -->
     <meta charset="utf-8" />
-    <title>C++ Fundamentals for the Busy Teens</title>
+    <title>C++ Fundamentals for Busy Teens</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="libs/revealjs/reveal.css" />
     <link rel="stylesheet" href="libs/revealjs/theme/black.css" id="theme" />
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+      
       body {
-        background: linear-gradient(
-          135deg,
-          #181c2f 0%,
-          #2b1055 100%
-        ) !important;
+        background: radial-gradient(ellipse at center, #0f1419 0%, #0a0e1a 50%, #000000 100%) !important;
+        overflow: hidden;
       }
-      .reveal {
-        font-family: "Inter", "Segoe UI", "Roboto", Arial, sans-serif;
-        color: #f8f8fa;
+      
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          radial-gradient(circle at 20% 20%, rgba(0, 242, 254, 0.1) 0%, transparent 40%),
+          radial-gradient(circle at 80% 80%, rgba(252, 0, 255, 0.08) 0%, transparent 40%),
+          radial-gradient(circle at 40% 60%, rgba(79, 91, 213, 0.05) 0%, transparent 40%);
+        pointer-events: none;
+        z-index: -1;
       }
-      .reveal .slides {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0 2vw;
-      }
-      .reveal section {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0.5vw 0 1vw 0;
-      }
-      .reveal h1 {
-        font-size: clamp(1.2em, 5vw, 2.5em);
-        margin-bottom: 0.5em;
-        color: #fff;
-        background: linear-gradient(
-          90deg,
-          #00f2fe 0%,
-          #4f5bd5 50%,
-          #fc00ff 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-fill-color: transparent;
-        font-weight: 800;
-        letter-spacing: 2px;
-        word-break: break-word;
-        white-space: normal;
-        line-height: 1.1;
-        overflow-wrap: anywhere;
-      }
-      .reveal h2 {
-        font-size: clamp(1em, 3.5vw, 2em);
-        margin-bottom: 0.5em;
-        color: #00f2fe;
-        font-weight: 700;
-        word-break: break-word;
-        white-space: normal;
-        letter-spacing: 1px;
-        line-height: 1.15;
-        overflow-wrap: anywhere;
-      }
-      .reveal h3 {
-        font-size: clamp(0.9em, 2.5vw, 1.3em);
-        color: #fc00ff;
-        margin-bottom: 0.5em;
-        font-weight: 600;
-        word-break: break-word;
-        white-space: normal;
-        overflow-wrap: anywhere;
-      }
-      .reveal p,
-      .reveal ul,
-      .reveal li {
-        font-size: clamp(0.9em, 2vw, 1.08em);
-        line-height: 1.7;
-        color: #f8f8fa;
-        word-break: break-word;
-        white-space: normal;
-        overflow-wrap: anywhere;
-      }
-      .reveal .emoji {
-        font-size: 1.1em;
-        margin-right: 0.2em;
-        filter: drop-shadow(0 0 2px #00f2fe);
-        vertical-align: middle;
-      }
-      .reveal .highlight {
-        background: #fc00ff33;
-        color: #fff;
-        border-radius: 5px;
-        padding: 2px 8px;
-        font-weight: 600;
-      }
-      .reveal pre {
-        background: #232946;
-        color: #00f2fe;
-        border-radius: 8px;
-        font-size: clamp(0.6em, 1.5vw, 1em);
-        padding: 0.5em;
-        margin: 0.5em 0;
-        overflow-x: auto;
-        overflow-y: auto;
-        max-height: 140vh;
-      }
+      
+             .reveal {
+         font-family: "Space Grotesk", "Segoe UI", Arial, sans-serif;
+         color: #e8eaed;
+         font-weight: 400;
+       }
+      
+             .reveal .slides {
+         max-width: 1200px;
+         margin: 0 auto;
+         padding: 2vh 3vw;
+         height: 100vh !important;
+         display: flex !important;
+         align-items: center !important;
+         justify-content: center !important;
+         box-sizing: border-box;
+         transform-origin: center center;
+       }
+      
+             .reveal section {
+         max-width: 1200px;
+         margin: 0 auto;
+         padding: 2rem;
+         background: rgba(15, 20, 25, 0.6);
+         border-radius: 6px;
+         border: 1px solid rgba(255, 255, 255, 0.1);
+         position: relative;
+         min-height: auto !important;
+         height: auto !important;
+         max-height: none;
+         overflow: visible;
+         display: flex !important;
+         flex-direction: column !important;
+         justify-content: flex-start !important;
+         box-sizing: border-box;
+       }
+       
+
+      
+      
+      
+             .reveal h1 {
+         font-family: "Space Grotesk", sans-serif;
+         font-size: clamp(1.5em, 6vw, 3.2em);
+         margin-bottom: 1rem;
+         font-weight: 700;
+         color: #00f2fe;
+         letter-spacing: -0.01em;
+         line-height: 1.1;
+         position: relative;
+         text-transform: uppercase;
+       }
+      
+      
+       
+       .reveal h1::after {
+         content: '';
+         position: absolute;
+         bottom: -8px;
+         left: 50%;
+         transform: translateX(-50%);
+         width: 60px;
+         height: 2px;
+         background: #00f2fe;
+         border-radius: 0;
+       }
+      
+             .reveal h2 {
+         font-family: "Space Grotesk", sans-serif;
+         font-size: clamp(1.1em, 4vw, 2.4em);
+         margin-bottom: 1.5rem;
+         color: #00f2fe;
+         font-weight: 600;
+         letter-spacing: -0.005em;
+         line-height: 1.2;
+         position: relative;
+         padding-left: 2rem;
+       }
+      
+             .reveal h2::before {
+         content: '';
+         position: absolute;
+         left: 0;
+         top: 50%;
+         transform: translateY(-50%);
+         width: 3px;
+         height: 2em;
+         background: #00f2fe;
+         border-radius: 0;
+       }
+      
+             .reveal h3 {
+         font-family: "Space Grotesk", sans-serif;
+         font-size: clamp(1em, 3vw, 1.6em);
+         color: #a78bfa;
+         margin-bottom: 1rem;
+         font-weight: 500;
+         letter-spacing: -0.005em;
+       }
+      
+             .reveal p, .reveal li {
+         font-size: clamp(1em, 2.2vw, 1.3em);
+         line-height: 1.7;
+         color: #e8eaed;
+         font-weight: 500;
+         letter-spacing: 0.01em;
+       }
+      
       .reveal ul {
-        font-size: clamp(0.9em, 2vw, 1.08em);
-        margin: 1em auto;
-        max-width: 700px;
-        text-align: left;
+        margin: 2rem auto;
+        max-width: 900px;
+        padding-left: 0;
+        list-style: none;
       }
-      .reveal .folder-structure {
-        font-family: "Fira Mono", "Courier New", monospace;
-        background: #181c2f;
-        color: #00f2fe;
-        border-radius: 8px;
-        padding: 1em;
-        margin: 1em 0;
-        font-size: clamp(0.8em, 1.5vw, 0.98em);
-        border: 1px solid #4f5bd5;
-        word-break: break-all;
-        overflow-wrap: anywhere;
+      
+             .reveal ul li {
+         position: relative;
+         margin-bottom: 1.2rem;
+         padding-left: 2.5rem;
+         font-weight: 500;
+       }
+      
+             .reveal ul li::before {
+         content: '';
+         position: absolute;
+         left: 0;
+         top: 0.7em;
+         width: 8px;
+         height: 8px;
+         background: #00f2fe;
+         border-radius: 50%;
+       }
+      
+      
+      
+             .reveal .modern-icon {
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         width: 1.8em;
+         height: 1.8em;
+         margin-right: 0.8rem;
+         background: #00f2fe;
+         border-radius: 4px;
+         font-size: 0.9em;
+         vertical-align: middle;
+         color: #000;
+       }
+      
+      
+      
+                    .reveal .highlight {
+         background: rgba(252, 0, 255, 0.2);
+         color: #ffffff;
+         border-radius: 4px;
+         padding: 4px 12px;
+         font-weight: 600;
+         border: 1px solid rgba(252, 0, 255, 0.3);
+       }
+      
+             .reveal pre {
+         background: #1a1f2e;
+         color: #a78bfa;
+         border-radius: 8px;
+         font-size: clamp(0.7em, 1.8vw, 1.1em);
+         padding: 1.5rem;
+         margin: 1.5rem 0;
+         font-family: "JetBrains Mono", "Fira Code", monospace;
+         border: 1px solid rgba(167, 139, 250, 0.2);
+         position: relative;
+         overflow-x: auto;
+         overflow-y: auto;
+         scrollbar-width: thin;
+         scrollbar-color: rgba(0, 242, 254, 0.7) rgba(255, 255, 255, 0.1);
+       }
+      
+                    .reveal pre::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         height: 3px;
+         background: #00f2fe;
+         border-radius: 8px 8px 0 0;
+       }
+      
+      .reveal code {
+        color: #e8eaed;
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 500;
       }
-      .reveal small,
-      .reveal .emoji {
-        color: #00f2fe;
-      }
-      @media (max-width: 900px) {
-        .reveal .slides,
-        .reveal section {
-          max-width: 99vw;
-          padding: 10px 0;
-        }
-      }
+      
+             .reveal .folder-structure {
+         font-family: "JetBrains Mono", monospace;
+         background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+         color: #00f2fe;
+         border-radius: 6px;
+         padding: 1.5rem;
+         margin: 1.5rem 0;
+         font-size: clamp(0.9em, 1.8vw, 1.1em);
+         border: 1px solid rgba(0, 242, 254, 0.3);
+         box-shadow: 0 8px 25px rgba(0, 242, 254, 0.1);
+       }
+      
+             .reveal small {
+         color: #a78bfa;
+         font-weight: 500;
+         font-family: "Space Grotesk", sans-serif;
+       }
+      
+             .reveal b, .reveal strong {
+         color: #ffffff;
+         font-weight: 700;
+       }
+      
+               @media (max-width: 900px) {
+           .reveal .slides {
+             max-width: none;
+             padding: 1vh 2vw;
+           }
+           
+           .reveal section {
+             max-width: none;
+             padding: 1.5rem;
+             max-height: none;
+           }
+           
+           .reveal h2 {
+             padding-left: 1.5rem;
+           }
+           
+           .reveal ul li {
+             padding-left: 2rem;
+           }
+         }
+      
       .reveal ul li.no-bullet {
         list-style-type: none;
         padding-left: 0;
       }
+      
+      .reveal ul li.no-bullet::before {
+        display: none;
+      }
+      
+      
+      
+      
+       
+
+         
+         /* Simple scrollbars for code blocks */
+         .reveal pre::-webkit-scrollbar {
+           width: 8px;
+           height: 8px;
+         }
+         
+         .reveal pre::-webkit-scrollbar-track {
+           background: rgba(255, 255, 255, 0.1);
+           border-radius: 4px;
+         }
+         
+         .reveal pre::-webkit-scrollbar-thumb {
+           background: #00f2fe;
+           border-radius: 4px;
+         }
+         
+         .reveal pre::-webkit-scrollbar-thumb:hover {
+           background: #4f5bd5;
+         }
+         
+         /* Ensure content flows properly */
+         .reveal section > * {
+           flex-shrink: 0;
+         }
     </style>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Fira+Mono&display=swap"
@@ -150,13 +318,13 @@
     <div class="reveal">
       <div class="slides">
         <section>
-          <h1>💻 C++ Fundamentals<br />for the Busy Teens</h1>
+          <h1>💻 C++ Fundamentals<br />for Busy Teens</h1>
           <h3>
             <span class="emoji">🎮</span> Games, Robots, and Real-World Coding
           </h3>
         </section>
         <section>
-          <h2>📝 What is a Program?</h2>
+          <h2><span class="modern-icon">⟨⟩</span>What is a Program?</h2>
           <ul>
             <li>A set of instructions for a computer</li>
             <li>Like a recipe: step-by-step directions</li>
@@ -165,7 +333,7 @@
           </ul>
         </section>
         <section>
-          <h2>👨‍💻 What is Programming?</h2>
+          <h2><span class="modern-icon">⚡</span>What is Programming?</h2>
           <ul>
             <li>Writing instructions for computers to follow</li>
             <li>Turning ideas into actions on a screen or in the real world</li>
@@ -173,7 +341,7 @@
           </ul>
         </section>
         <section>
-          <h2>✨ What is C++?</h2>
+          <h2><span class="modern-icon">◇</span>What is C++?</h2>
           <ul>
             <li>A powerful programming language</li>
             <li>Used for games, robots, apps, and more</li>
@@ -182,19 +350,13 @@
           </ul>
         </section>
         <section>
-          <h2>🗺️ Course Roadmap</h2>
+          <h2><span class="modern-icon">⟨/⟩</span>Course Roadmap</h2>
           <ul>
             <li><b>Variables & Input/Output:</b> Store and display info</li>
             <li><b>Control Flow:</b> Make decisions, repeat actions</li>
             <li><b>Arrays:</b> Working with collections of data</li>
             <li><b>Objects & Structs:</b> Grouping related information</li>
             <li><b>Advanced C++:</b> Memory, pointers, big projects</li>
-          </ul>
-          <ul>
-            <li>🎮 Virtual Robot Controller</li>
-            <li>🚧 Obstacle Detector Game</li>
-            <li>📊 Multi-Sensor Dashboard</li>
-            <li>🏆 Competition Simulator</li>
           </ul>
         </section>
         <section>
@@ -213,7 +375,7 @@
           </h3>
         </section>
         <section>
-          <h2>🧰 What You Need</h2>
+          <h2><span class="modern-icon">◈</span>What You Need</h2>
           <ul>
             <li>
               <b>C++ Compiler</b> (e.g.,
@@ -227,7 +389,7 @@
           </ul>
         </section>
         <section>
-          <h2>💻 Installing a Compiler (Mac)</h2>
+          <h2><span class="modern-icon">▲</span>Installing a Compiler (Mac)</h2>
           <ul>
             <li>
               Open <b>Terminal</b> (find it in Applications &gt; Utilities)
@@ -911,6 +1073,211 @@ cout << "You picked up a " << gameItems[0] << "!" << endl;</code></pre>
         </section>
         <!-- End Lesson 3 -->
 
+        <!-- Lesson 4: Functions -->
+        <section>
+          <h1>🔧 Lesson 4: Functions</h1>
+          <h3>
+            <span class="emoji">⚙️</span> Organizing Code and Eliminating Repetition
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What are Functions?</h2>
+          <ul>
+            <li>
+              A <span class="highlight">function</span> is a reusable block of code that performs a specific task.
+            </li>
+            <li>
+              Like a <b>recipe</b>: you write it once, then use it whenever you need it!
+            </li>
+            <li>
+              Functions help you <span class="highlight">organize</span> code and <span class="highlight">avoid repetition</span>.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📝 Function Syntax</h2>
+          <pre><code>// Function definition
+returnType functionName(parameters) {
+  // code to execute
+  return value; // optional
+}
+
+// Example: Calculate area of a rectangle
+int calculateArea(int length, int width) {
+  int area = length * width;
+  return area;
+}
+
+// Using the function
+int main() {
+  int roomArea = calculateArea(10, 12);
+  cout << "Room area: " << roomArea << " sq ft" << endl;
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🎮 Function Example: Roblox Score Calculator</h2>
+          <pre><code>// Function to calculate bonus score
+int calculateBonus(int baseScore, int multiplier) {
+  return baseScore * multiplier;
+}
+
+// Function to display player stats
+void displayPlayerStats(string name, int score, int level) {
+  cout << "🎮 PLAYER STATS 🎮" << endl;
+  cout << "Name: " << name << endl;
+  cout << "Score: " << score << endl;
+  cout << "Level: " << level << endl;
+}
+
+int main() {
+  int baseScore = 1000;
+  int bonusScore = calculateBonus(baseScore, 3);
+  
+  displayPlayerStats("CoolGamer", bonusScore, 15);
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🔄 Return Values vs Void Functions</h2>
+          <ul>
+            <li><b>Functions with return values:</b> Give back a result you can use</li>
+            <li><b>Void functions:</b> Perform an action but don't return anything</li>
+          </ul>
+          <pre><code>// Returns a value - you can use the result
+double calculateGearRatio(int driving, int driven) {
+  return (double)driven / driving;
+}
+
+// Void function - performs an action
+void printWelcomeMessage(string playerName) {
+  cout << "Welcome to the game, " << playerName << "!" << endl;
+  cout << "Get ready for adventure!" << endl;
+}
+
+// Usage
+double ratio = calculateGearRatio(12, 24);  // Store the result
+printWelcomeMessage("Alex");                // Just run the action</code></pre>
+        </section>
+        <section>
+          <h2>📊 Parameters: Passing Information to Functions</h2>
+          <ul>
+            <li><b>Parameters</b> are the inputs your function needs to work</li>
+            <li>Think of them as <span class="highlight">customizable settings</span> for your function</li>
+            <li>You can have zero, one, or many parameters</li>
+          </ul>
+          <pre><code>// No parameters
+void printGameTitle() {
+  cout << "🎮 ULTIMATE ROBOT BATTLE 🎮" << endl;
+}
+
+// One parameter
+void levelUp(int currentLevel) {
+  cout << "Level up! You are now level " << (currentLevel + 1) << endl;
+}
+
+// Multiple parameters
+int calculateDamage(int baseDamage, int weaponBonus, double critMultiplier) {
+  return (baseDamage + weaponBonus) * critMultiplier;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🤖 Refactoring Project 1: Gear Functions</h2>
+          <ul>
+            <li>Let's take the gear calculations from Project 1 and organize them into functions!</li>
+            <li>This makes the code <span class="highlight">cleaner</span>, <span class="highlight">reusable</span>, and easier to understand</li>
+          </ul>
+          <pre><code>// Clean, reusable functions for gear calculations
+double calculateGearRatio(int drivingGear, int drivenGear) {
+  return (double)drivenGear / drivingGear;
+}
+
+double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear) {
+  double gearRatio = calculateGearRatio(drivingGear, drivenGear);
+  return inputRPM / gearRatio;
+}
+
+void displayGearInfo(int inputRPM, int driving, int driven) {
+  double ratio = calculateGearRatio(driving, driven);
+  double outputRPM = calculateOutputRPM(inputRPM, driving, driven);
+  
+  cout << "Input: " << inputRPM << " RPM | ";
+  cout << "Gears: " << driving << "T → " << driven << "T | ";
+  cout << "Ratio: " << ratio << ":1 | ";
+  cout << "Output: " << outputRPM << " RPM" << endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Enhanced Project 1: Using Functions</h2>
+          <pre><code>// Enhanced Robot Gear System with Functions
+#include <iostream>
+using namespace std;
+
+// Function prototypes (declarations)
+double calculateGearRatio(int drivingGear, int drivenGear);
+double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear);
+void displayGearInfo(int inputRPM, int driving, int driven);
+void findOptimalSetup(int inputRPMs[], int gearSizes[], int rpmCount, int gearCount);
+
+int main() {
+  int inputRPMs[] = {100, 200, 600};
+  int gearSizes[] = {12, 24, 36, 48, 60, 72, 80};
+  
+  cout << "🤖 ENHANCED ROBOT GEAR ANALYZER 🤖" << endl;
+  cout << "=====================================" << endl;
+  
+  // Use functions to organize the analysis
+  findOptimalSetup(inputRPMs, gearSizes, 3, 7);
+  
+  return 0;
+}
+
+// Function implementations go here...</code></pre>
+        </section>
+        <section>
+          <h2>🎯 Function Best Practices</h2>
+          <ul>
+            <li><b>One job per function:</b> Each function should do one specific thing well</li>
+            <li><b>Descriptive names:</b> <code>calculateArea()</code> not <code>doMath()</code></li>
+            <li><b>Clear parameters:</b> Use meaningful parameter names</li>
+            <li><b>Document your functions:</b> Add comments explaining what they do</li>
+            <li><b>Keep them short:</b> If a function is getting long, split it into smaller functions</li>
+          </ul>
+          <pre><code>// Good function: clear purpose and name
+double convertMphToKph(double milesPerHour) {
+  return milesPerHour * 1.60934;
+}
+
+// Good function: well-documented
+// Calculates robot wheel speed needed for desired movement speed
+double calculateWheelRPM(double robotSpeed, double wheelDiameter) {
+  double wheelCircumference = 3.14159 * wheelDiameter;
+  return (robotSpeed * 60) / wheelCircumference;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🔬 Real-World Function Applications</h2>
+          <ul>
+            <li><b>Game Development:</b> Physics calculations, AI behavior, rendering</li>
+            <li><b>Robotics:</b> Sensor processing, motor control, path planning</li>
+            <li><b>Mobile Apps:</b> User authentication, data processing, UI updates</li>
+            <li><b>Web Development:</b> Database queries, API calls, form validation</li>
+            <li><b>Scientific Computing:</b> Mathematical models, data analysis, simulations</li>
+          </ul>
+        </section>
+        <section>
+          <h2>🏁 Lesson 4 Recap</h2>
+          <ul>
+            <li><b>Functions</b> organize code and eliminate repetition</li>
+            <li><b>Parameters</b> let you customize function behavior</li>
+            <li><b>Return values</b> give you results to use elsewhere</li>
+            <li><b>Void functions</b> perform actions without returning values</li>
+            <li><b>Good function design</b> makes code cleaner and easier to understand</li>
+            <li>Functions are the building blocks of larger programs!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 4 -->
+
         <!-- Project 1: Robot Gear System Optimizer -->
         <section>
           <h1>🤖 PROJECT 1: Robot Gear System Optimizer</h1>
@@ -1075,9 +1442,9 @@ ANALYSIS COMPLETE: 147 combinations tested!</code></pre>
         </section>
         <!-- End Project 1 -->
 
-        <!-- Lesson 4: Objects & Structs -->
+        <!-- Lesson 5: Objects & Structs -->
         <section>
-          <h1>🏗️ Lesson 4: Objects & Structs</h1>
+          <h1>🏗️ Lesson 5: Objects & Structs</h1>
           <h3>
             <span class="emoji">📦</span> Grouping Related Information Together
           </h3>
@@ -1369,7 +1736,7 @@ struct Player {
 Player team[5];</code></pre>
         </section>
         <section>
-          <h2>🏁 Lesson 4 Recap</h2>
+          <h2>🏁 Lesson 5 Recap</h2>
           <ul>
             <li>
               <b>Structs</b> group related data of different types together
@@ -1389,7 +1756,7 @@ Player team[5];</code></pre>
             </li>
           </ul>
         </section>
-        <!-- End Lesson 4 -->
+        <!-- End Lesson 5 -->
       </div>
     </div>
     <script src="libs/revealjs/reveal.js"></script>
@@ -1407,9 +1774,98 @@ Player team[5];</code></pre>
         width: 1280,
         height: 720,
         margin: 0.05,
-        minScale: 0.2,
-        maxScale: 1.5,
+        minScale: 0.1,
+        maxScale: 2.0,
+        disableLayout: true,
+        touch: true,
+        scrollActivationWidth: null,
       });
+
+      // Dynamic scaling system to ensure content is always fully visible
+      function adjustPresentationScale() {
+        const slides = document.querySelector('.reveal .slides');
+        const currentSlide = document.querySelector('.reveal .slides section.present');
+        
+        if (!currentSlide || !slides) return;
+
+        // Reset any existing transform to get true dimensions
+        slides.style.transform = '';
+        
+        // Force a reflow to ensure accurate measurements
+        slides.offsetHeight;
+        
+        // Get viewport dimensions with padding
+        const viewportWidth = window.innerWidth * 0.95;
+        const viewportHeight = window.innerHeight * 0.95;
+        
+        // Get actual content dimensions - use scrollHeight/Width for full content
+        const slideScrollHeight = currentSlide.scrollHeight;
+        const slideScrollWidth = currentSlide.scrollWidth;
+        
+        // Add the slides container padding to the measurements
+        const slidesStyle = window.getComputedStyle(slides);
+        const slidePaddingTop = parseFloat(slidesStyle.paddingTop) || 0;
+        const slidePaddingBottom = parseFloat(slidesStyle.paddingBottom) || 0;
+        const slidePaddingLeft = parseFloat(slidesStyle.paddingLeft) || 0;
+        const slidePaddingRight = parseFloat(slidesStyle.paddingRight) || 0;
+        
+        const totalContentWidth = slideScrollWidth + slidePaddingLeft + slidePaddingRight;
+        const totalContentHeight = slideScrollHeight + slidePaddingTop + slidePaddingBottom;
+        
+        // Calculate required scale factors
+        const scaleX = viewportWidth / totalContentWidth;
+        const scaleY = viewportHeight / totalContentHeight;
+        
+        // Use the smaller scale factor to ensure everything fits
+        const scale = Math.min(scaleX, scaleY, 1); // Don't scale up beyond 100%
+        
+        // Only apply scaling if we need to scale down
+        if (scale < 1) {
+          slides.style.transform = `scale(${scale})`;
+          
+          // Adjust the reveal container to prevent overflow
+          const reveal = document.querySelector('.reveal');
+          if (reveal) {
+            reveal.style.overflow = 'hidden';
+          }
+        } else {
+          // Reset overflow for normal cases
+          const reveal = document.querySelector('.reveal');
+          if (reveal) {
+            reveal.style.overflow = '';
+          }
+        }
+        
+                 // Debug info (remove this in production)
+         // console.log('Scale calculation:', { viewportWidth, viewportHeight, totalContentWidth, totalContentHeight, scaleX, scaleY, finalScale: scale });
+      }
+
+      // Run scaling on slide changes with slight delay for rendering
+      Reveal.on('slidechanged', () => {
+        setTimeout(adjustPresentationScale, 50);
+      });
+      
+      Reveal.on('ready', () => {
+        setTimeout(adjustPresentationScale, 100);
+      });
+      
+      // Run scaling on window resize with debouncing
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(adjustPresentationScale, 150);
+      });
+
+      // Also run after delays to ensure everything is loaded
+      setTimeout(adjustPresentationScale, 300);
+      setTimeout(adjustPresentationScale, 800);
+      
+      // Run scaling when fonts are loaded
+      if (document.fonts) {
+        document.fonts.ready.then(() => {
+          setTimeout(adjustPresentationScale, 100);
+        });
+      }
     </script>
   </body>
 </html>

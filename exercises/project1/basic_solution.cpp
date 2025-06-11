@@ -77,4 +77,4 @@ double calculateGearRatio(int drivingGear, int drivenGear) {
 double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear) {
     double gearRatio = calculateGearRatio(drivingGear, drivenGear);
     return inputRPM / gearRatio;
-} 
+}
