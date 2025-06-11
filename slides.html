@@ -1757,6 +1757,461 @@ Player team[5];</code></pre>
           </ul>
         </section>
         <!-- End Lesson 5 -->
+        
+        <!-- Lesson 6: Standard Library Power Tools -->
+        <section>
+          <h1>🛠️ Lesson 6: Standard Library Power Tools</h1>
+          <h3>
+            <span class="emoji">⚡</span> Unlock C++'s Built-in Superpowers
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What is the Standard Library?</h2>
+          <ul>
+            <li>
+              The <span class="highlight">Standard Library</span> is like a toolbox of pre-built functions that come with C++.
+            </li>
+            <li>
+              Instead of writing everything from scratch, you can use these powerful, tested tools!
+            </li>
+            <li>
+              Think of it as <b>superpowers for your code</b> - math, text processing, data handling, and more.
+            </li>
+            <li>
+              Just add <code>#include</code> statements to unlock these features.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🎯 String Power Functions</h2>
+          <ul>
+            <li>
+              Beyond basic string storage, C++ provides amazing text manipulation tools!
+            </li>
+            <li>Perfect for chat systems, usernames, game text, and data processing.</li>
+          </ul>
+          <pre><code>#include &lt;string&gt;
+using namespace std;
+
+string playerName = "DragonSlayer123";
+string message = "Welcome to the epic battle arena!";
+
+// Find text within strings
+if (playerName.find("Dragon") != string::npos) {
+  cout << "You have dragon powers!" << endl;
+}
+
+// Get part of a string (substring)
+string shortName = playerName.substr(0, 6); // "Dragon"
+cout << "Short name: " << shortName << endl;
+
+// Replace text
+string cleanMessage = message;
+size_t pos = cleanMessage.find("battle");
+if (pos != string::npos) {
+  cleanMessage.replace(pos, 6, "peaceful");
+}
+cout << cleanMessage << endl; // "Welcome to the epic peaceful arena!"</code></pre>
+        </section>
+        <section>
+          <h2>🎮 Challenge 1: Roblox Username Validator</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create a username validation system for a Roblox-style game!
+            </li>
+            <li>Check if usernames meet requirements and suggest improvements.</li>
+          </ul>
+          <pre><code>// Username validation function
+bool isValidUsername(string username) {
+  // Check length (must be 3-20 characters)
+  if (username.length() < 3 || username.length() > 20) {
+    return false;
+  }
+  
+  // Check for inappropriate words
+  if (username.find("admin") != string::npos || 
+      username.find("moderator") != string::npos) {
+    return false;
+  }
+  
+  // Must contain at least one letter
+  bool hasLetter = false;
+  for (char c : username) {
+    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+      hasLetter = true;
+      break;
+    }
+  }
+  
+  return hasLetter;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🔢 Math Library Magic</h2>
+          <ul>
+            <li>
+              The <code>&lt;cmath&gt;</code> library provides powerful mathematical functions.
+            </li>
+            <li>Perfect for physics simulations, graphics, robotics calculations!</li>
+          </ul>
+          <pre><code>#include &lt;cmath&gt;
+using namespace std;
+
+// Distance between two points (Pythagorean theorem)
+double calculateDistance(double x1, double y1, double x2, double y2) {
+  double deltaX = x2 - x1;
+  double deltaY = y2 - y1;
+  return sqrt(deltaX * deltaX + deltaY * deltaY);
+}
+
+// Power calculations for robot motors
+double motorPower = pow(2.5, 3); // 2.5^3 = 15.625
+
+// Trigonometry for robot arm positioning
+double angle = 45.0;
+double radians = angle * M_PI / 180.0; // Convert to radians
+double armX = 10 * cos(radians);       // X position
+double armY = 10 * sin(radians);       // Y position
+
+cout << "Arm position: (" << armX << ", " << armY << ")" << endl;</code></pre>
+        </section>
+        <section>
+          <h2>🎲 Random Number Generation</h2>
+          <ul>
+            <li>
+              Create unpredictable games, simulations, and challenges!
+            </li>
+            <li>C++11 introduced much better random number tools.</li>
+          </ul>
+          <pre><code>#include &lt;random&gt;
+using namespace std;
+
+// Modern C++ random number generation
+random_device rd;  // Hardware random seed
+mt19937 gen(rd()); // Mersenne Twister generator
+
+// Generate random integers in a range
+uniform_int_distribution&lt;int&gt; diceRoll(1, 6);
+uniform_int_distribution&lt;int&gt; damage(10, 50);
+
+// Generate random floating point numbers
+uniform_real_distribution&lt;double&gt; critChance(0.0, 1.0);
+
+// Use in your game
+int playerDice = diceRoll(gen);
+int enemyDamage = damage(gen);
+double criticalHit = critChance(gen);
+
+cout << "🎲 Dice roll: " << playerDice << endl;
+cout << "💥 Enemy damage: " << enemyDamage << endl;
+if (criticalHit > 0.8) {
+  cout << "⚡ CRITICAL HIT!" << endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>📊 Vector: Dynamic Arrays</h2>
+          <ul>
+            <li>
+              <span class="highlight">vector</span> is like an array that can grow and shrink automatically!
+            </li>
+            <li>No more worrying about fixed sizes - perfect for game inventories, sensor data, scoreboards.</li>
+          </ul>
+          <pre><code>#include &lt;vector&gt;
+using namespace std;
+
+// Create a vector (dynamic array)
+vector&lt;int&gt; playerScores;
+vector&lt;string&gt; inventory;
+
+// Add items to the vector
+playerScores.push_back(1250);  // Add score
+playerScores.push_back(980);
+playerScores.push_back(1500);
+
+inventory.push_back("Sword");
+inventory.push_back("Shield");
+inventory.push_back("Health Potion");
+
+// Access elements just like arrays
+cout << "Best score: " << playerScores[2] << endl;
+cout << "First item: " << inventory[0] << endl;
+
+// Vector automatically knows its size
+cout << "Total scores: " << playerScores.size() << endl;
+cout << "Inventory items: " << inventory.size() << endl;
+
+// Remove the last item
+inventory.pop_back(); // Removes "Health Potion"</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 2: Dynamic Sensor Array</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create a robot sensor monitoring system that can handle any number of sensors!
+            </li>
+            <li>Use vectors to store sensor data and calculate statistics.</li>
+          </ul>
+          <pre><code>#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt; // for accumulate
+
+struct SensorReading {
+  string name;
+  double value;
+  bool isOnline;
+};
+
+int main() {
+  vector&lt;SensorReading&gt; sensors;
+  
+  // Add sensors dynamically
+  sensors.push_back({"Temperature", 23.5, true});
+  sensors.push_back({"Humidity", 67.2, true});
+  sensors.push_back({"Distance", 45.8, false});
+  sensors.push_back({"Light", 892.1, true});
+  
+  // Process all sensors
+  cout << "🤖 Robot Sensor Dashboard 🤖" << endl;
+  int onlineCount = 0;
+  vector&lt;double&gt; validReadings;
+  
+  for (const auto& sensor : sensors) {
+    cout << sensor.name << ": " << sensor.value;
+    if (sensor.isOnline) {
+      cout << " ✅ ONLINE" << endl;
+      onlineCount++;
+      validReadings.push_back(sensor.value);
+    } else {
+      cout << " ❌ OFFLINE" << endl;
+    }
+  }
+  
+  cout << "\n📊 Statistics:" << endl;
+  cout << "Total sensors: " << sensors.size() << endl;
+  cout << "Online sensors: " << onlineCount << endl;
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🔍 Algorithm Library</h2>
+          <ul>
+            <li>
+              The <code>&lt;algorithm&gt;</code> library provides powerful functions for working with data collections.
+            </li>
+            <li>Sorting, searching, counting - all optimized and ready to use!</li>
+          </ul>
+          <pre><code>#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+vector&lt;int&gt; gameScores = {1250, 890, 1500, 750, 1100, 2000, 650};
+vector&lt;string&gt; players = {"Alex", "Jordan", "Casey", "Riley", "Sam"};
+
+// Sort scores from highest to lowest
+sort(gameScores.begin(), gameScores.end(), greater&lt;int&gt;());
+
+// Find specific values
+auto it = find(players.begin(), players.end(), "Jordan");
+if (it != players.end()) {
+  cout << "Found Jordan at position " << (it - players.begin()) << endl;
+}
+
+// Count how many scores are above 1000
+int highScores = count_if(gameScores.begin(), gameScores.end(), 
+                         [](int score) { return score > 1000; });
+cout << "Players with 1000+ points: " << highScores << endl;
+
+// Find the maximum score
+auto maxScore = *max_element(gameScores.begin(), gameScores.end());
+cout << "Highest score: " << maxScore << endl;</code></pre>
+        </section>
+        <section>
+          <h2>📁 File Input/Output Basics</h2>
+          <ul>
+            <li>
+              Save game progress, load configuration files, log robot sensor data!
+            </li>
+            <li>C++ makes it easy to work with files.</li>
+          </ul>
+          <pre><code>#include &lt;fstream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+// Write data to a file
+void saveGameData(const string& playerName, int level, int score) {
+  ofstream file("savegame.txt");
+  if (file.is_open()) {
+    file << "Player: " << playerName << endl;
+    file << "Level: " << level << endl;
+    file << "Score: " << score << endl;
+    file.close();
+    cout << "Game saved successfully!" << endl;
+  }
+}
+
+// Read data from a file
+void loadGameData() {
+  ifstream file("savegame.txt");
+  string line;
+  
+  if (file.is_open()) {
+    cout << "📁 Loading save game:" << endl;
+    while (getline(file, line)) {
+      cout << line << endl;
+    }
+    file.close();
+  } else {
+    cout << "No save file found!" << endl;
+  }
+}</code></pre>
+        </section>
+        <section>
+          <h2>🗺️ Map: Key-Value Storage</h2>
+          <ul>
+            <li>
+              <span class="highlight">map</span> stores pairs of keys and values - like a dictionary!
+            </li>
+            <li>Perfect for player inventories, settings, translations, or any lookup system.</li>
+          </ul>
+          <pre><code>#include &lt;map&gt;
+using namespace std;
+
+// Player inventory using map
+map&lt;string, int&gt; inventory;
+inventory["Sword"] = 1;
+inventory["Health Potion"] = 5;
+inventory["Gold Coins"] = 247;
+inventory["Magic Shield"] = 1;
+
+// Check if player has an item
+if (inventory.find("Sword") != inventory.end()) {
+  cout << "Player has a sword!" << endl;
+}
+
+// Display all inventory items
+cout << "🎒 Player Inventory:" << endl;
+for (const auto& item : inventory) {
+  cout << item.first << ": " << item.second << endl;
+}
+
+// Add or modify items
+inventory["Health Potion"] += 3; // Add 3 more potions
+inventory["Magic Bow"] = 1;      // Add new item
+
+cout << "Health Potions: " << inventory["Health Potion"] << endl;</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 3: Advanced Game Statistics System</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create a comprehensive game statistics tracker that uses multiple standard library tools!
+            </li>
+            <li>Track players, scores, achievements, and generate reports.</li>
+          </ul>
+          <pre><code>// Hint: Combine multiple standard library features
+#include &lt;vector&gt;
+#include &lt;map&gt;
+#include &lt;algorithm&gt;
+#include &lt;string&gt;
+#include &lt;random&gt;
+
+struct PlayerStats {
+  string name;
+  vector&lt;int&gt; gameScores;
+  map&lt;string, bool&gt; achievements;
+  int totalPlaytime; // minutes
+};
+
+class GameStatsManager {
+private:
+  vector&lt;PlayerStats&gt; players;
+  map&lt;string, int&gt; globalAchievements;
+  
+public:
+  void addPlayer(const string& name);
+  void recordScore(const string& playerName, int score);
+  void unlockAchievement(const string& playerName, const string& achievement);
+  void generateLeaderboard();
+  void generatePlayerReport(const string& playerName);
+  PlayerStats findTopPlayer();
+  vector&lt;string&gt; getPlayersWithAchievement(const string& achievement);
+};
+
+// Your task: Implement all these functions using standard library tools!</code></pre>
+        </section>
+        <section>
+          <h2>⏰ Time and Date Utilities</h2>
+          <ul>
+            <li>
+              Track play sessions, measure performance, create timestamps!
+            </li>
+            <li>C++ provides several ways to work with time.</li>
+          </ul>
+          <pre><code>#include &lt;chrono&gt;
+#include &lt;ctime&gt;
+using namespace std;
+
+// Measure how long code takes to run
+auto start = chrono::high_resolution_clock::now();
+
+// ... your code here (like a complex calculation) ...
+vector&lt;int&gt; bigArray(1000000);
+for (int i = 0; i < 1000000; i++) {
+  bigArray[i] = i * i;
+}
+
+auto end = chrono::high_resolution_clock::now();
+auto duration = chrono::duration_cast&lt;chrono::milliseconds&gt;(end - start);
+cout << "Code took " << duration.count() << " milliseconds" << endl;
+
+// Get current date and time
+time_t now = time(0);
+string timeStr = ctime(&now);
+cout << "Game session started: " << timeStr;</code></pre>
+        </section>
+        <section>
+          <h2>🎯 Best Practices: When to Use What</h2>
+          <ul>
+            <li><b>vector</b> instead of arrays when size changes</li>
+            <li><b>map</b> for key-value lookups (inventories, settings)</li>
+            <li><b>string functions</b> for text processing and validation</li>
+            <li><b>algorithm</b> functions instead of writing your own loops</li>
+            <li><b>random</b> library for any randomness (not rand()!)</li>
+            <li><b>chrono</b> for precise timing measurements</li>
+          </ul>
+          <pre><code>// Good practices examples
+vector&lt;int&gt; scores;        // Dynamic size ✅
+map&lt;string, Player&gt; team;  // Fast lookups ✅
+sort(scores.begin(), scores.end()); // Optimized sorting ✅
+
+// Avoid these older approaches
+int scores[100];           // Fixed size ❌
+srand(time(NULL)); rand(); // Old random ❌</code></pre>
+        </section>
+        <section>
+          <h2>💡 Real-World Applications</h2>
+          <ul>
+            <li><b>Game Development:</b> Inventory systems, leaderboards, save files, random events</li>
+            <li><b>Robotics:</b> Sensor data processing, pathfinding algorithms, configuration files</li>
+            <li><b>Data Analysis:</b> Processing CSV files, statistical calculations, data visualization</li>
+            <li><b>Web Development:</b> JSON parsing, template systems, user session management</li>
+            <li><b>Scientific Computing:</b> Mathematical modeling, data collection, result analysis</li>
+          </ul>
+        </section>
+        <section>
+          <h2>🏁 Lesson 6 Recap</h2>
+          <ul>
+            <li><b>Standard Library</b> provides powerful, tested tools out of the box</li>
+            <li><b>String functions</b> handle text processing and validation</li>
+            <li><b>vector</b> gives you dynamic arrays that grow as needed</li>
+            <li><b>map</b> provides fast key-value storage and lookups</li>
+            <li><b>Algorithm library</b> offers optimized sorting, searching, and processing</li>
+            <li><b>Random, math, and time</b> libraries handle specialized tasks</li>
+            <li>These tools make your programs more powerful and professional!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 6 -->
       </div>
     </div>
     <script src="libs/revealjs/reveal.js"></script>
