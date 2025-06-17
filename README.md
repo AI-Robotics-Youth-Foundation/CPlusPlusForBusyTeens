@@ -1,6 +1,10 @@
-# C++ Fundamentals for the Busy Teens
+# C++ Fundamentals for Busy Teens
 
 Welcome to the C++ Fundamentals course for teens! This repository contains everything you need to run an engaging, hands-on C++ primer, including interactive slides and code exercises.
+
+## 🎯 **[START THE COURSE HERE →](https://ai-robotics-youth-foundation.github.io/CPlusPlusForBusyTeens/slides.html)**
+
+Click the link above to begin with the course slides!
 
 ## 🚀 What's in this Repo?
 
