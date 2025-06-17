@@ -1,0 +1,3054 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--
+      All third-party libraries are in the 'libs/' directory, named by library (e.g., libs/revealjs).
+      No external reveal.js repo or node_modules required.
+    -->
+    <meta charset="utf-8" />
+    <title>C++ Fundamentals for Busy Teens</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="libs/revealjs/reveal.css" />
+    <link rel="stylesheet" href="libs/revealjs/theme/black.css" id="theme" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+      
+      body {
+        background: radial-gradient(ellipse at center, #0f1419 0%, #0a0e1a 50%, #000000 100%) !important;
+        overflow: hidden;
+      }
+      
+      body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+          radial-gradient(circle at 20% 20%, rgba(0, 242, 254, 0.1) 0%, transparent 40%),
+          radial-gradient(circle at 80% 80%, rgba(252, 0, 255, 0.08) 0%, transparent 40%),
+          radial-gradient(circle at 40% 60%, rgba(79, 91, 213, 0.05) 0%, transparent 40%);
+        pointer-events: none;
+        z-index: -1;
+      }
+      
+             .reveal {
+         font-family: "Space Grotesk", "Segoe UI", Arial, sans-serif;
+         color: #e8eaed;
+         font-weight: 400;
+       }
+      
+             .reveal .slides {
+         max-width: 1200px;
+         margin: 0 auto;
+         padding: 2vh 3vw;
+         height: 100vh !important;
+         display: flex !important;
+         align-items: center !important;
+         justify-content: center !important;
+         box-sizing: border-box;
+         transform-origin: center center;
+       }
+      
+             .reveal section {
+         max-width: 1200px;
+         margin: 0 auto;
+         padding: 2rem;
+         background: rgba(15, 20, 25, 0.6);
+         border-radius: 6px;
+         border: 1px solid rgba(255, 255, 255, 0.1);
+         position: relative;
+         min-height: auto !important;
+         height: auto !important;
+         max-height: none;
+         overflow: visible;
+         display: flex !important;
+         flex-direction: column !important;
+         justify-content: flex-start !important;
+         box-sizing: border-box;
+       }
+       
+
+      
+      
+      
+             .reveal h1 {
+         font-family: "Space Grotesk", sans-serif;
+         font-size: clamp(1.5em, 6vw, 3.2em);
+         margin-bottom: 1rem;
+         font-weight: 700;
+         color: #00f2fe;
+         letter-spacing: -0.01em;
+         line-height: 1.1;
+         position: relative;
+         text-transform: uppercase;
+       }
+      
+      
+       
+       .reveal h1::after {
+         content: '';
+         position: absolute;
+         bottom: -8px;
+         left: 50%;
+         transform: translateX(-50%);
+         width: 60px;
+         height: 2px;
+         background: #00f2fe;
+         border-radius: 0;
+       }
+      
+             .reveal h2 {
+         font-family: "Space Grotesk", sans-serif;
+         font-size: clamp(1.1em, 4vw, 2.4em);
+         margin-bottom: 1.5rem;
+         color: #00f2fe;
+         font-weight: 600;
+         letter-spacing: -0.005em;
+         line-height: 1.2;
+         position: relative;
+         padding-left: 2rem;
+       }
+      
+             .reveal h2::before {
+         content: '';
+         position: absolute;
+         left: 0;
+         top: 50%;
+         transform: translateY(-50%);
+         width: 3px;
+         height: 2em;
+         background: #00f2fe;
+         border-radius: 0;
+       }
+      
+             .reveal h3 {
+         font-family: "Space Grotesk", sans-serif;
+         font-size: clamp(1em, 3vw, 1.6em);
+         color: #a78bfa;
+         margin-bottom: 1rem;
+         font-weight: 500;
+         letter-spacing: -0.005em;
+       }
+      
+             .reveal p, .reveal li {
+         font-size: clamp(1em, 2.2vw, 1.3em);
+         line-height: 1.7;
+         color: #e8eaed;
+         font-weight: 500;
+         letter-spacing: 0.01em;
+       }
+      
+      .reveal ul {
+        margin: 2rem auto;
+        max-width: 900px;
+        padding-left: 0;
+        list-style: none;
+      }
+      
+             .reveal ul li {
+         position: relative;
+         margin-bottom: 1.2rem;
+         padding-left: 2.5rem;
+         font-weight: 500;
+       }
+      
+             .reveal ul li::before {
+         content: '';
+         position: absolute;
+         left: 0;
+         top: 0.7em;
+         width: 8px;
+         height: 8px;
+         background: #00f2fe;
+         border-radius: 50%;
+       }
+      
+      
+      
+             .reveal .modern-icon {
+         display: inline-flex;
+         align-items: center;
+         justify-content: center;
+         width: 1.8em;
+         height: 1.8em;
+         margin-right: 0.8rem;
+         background: #00f2fe;
+         border-radius: 4px;
+         font-size: 0.9em;
+         vertical-align: middle;
+         color: #000;
+       }
+      
+      
+      
+                    .reveal .highlight {
+         background: rgba(252, 0, 255, 0.2);
+         color: #ffffff;
+         border-radius: 4px;
+         padding: 4px 12px;
+         font-weight: 600;
+         border: 1px solid rgba(252, 0, 255, 0.3);
+       }
+      
+             .reveal pre {
+         background: #1a1f2e;
+         color: #a78bfa;
+         border-radius: 8px;
+         font-size: clamp(0.7em, 1.8vw, 1.1em);
+         padding: 1.5rem;
+         margin: 1.5rem 0;
+         font-family: "JetBrains Mono", "Fira Code", monospace;
+         border: 1px solid rgba(167, 139, 250, 0.2);
+         position: relative;
+         overflow-x: auto;
+         overflow-y: auto;
+         scrollbar-width: thin;
+         scrollbar-color: rgba(0, 242, 254, 0.7) rgba(255, 255, 255, 0.1);
+       }
+      
+                    .reveal pre::before {
+         content: '';
+         position: absolute;
+         top: 0;
+         left: 0;
+         right: 0;
+         height: 3px;
+         background: #00f2fe;
+         border-radius: 8px 8px 0 0;
+       }
+      
+      .reveal code {
+        color: #e8eaed;
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 500;
+      }
+      
+             .reveal .folder-structure {
+         font-family: "JetBrains Mono", monospace;
+         background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
+         color: #00f2fe;
+         border-radius: 6px;
+         padding: 1.5rem;
+         margin: 1.5rem 0;
+         font-size: clamp(0.9em, 1.8vw, 1.1em);
+         border: 1px solid rgba(0, 242, 254, 0.3);
+         box-shadow: 0 8px 25px rgba(0, 242, 254, 0.1);
+       }
+      
+             .reveal small {
+         color: #a78bfa;
+         font-weight: 500;
+         font-family: "Space Grotesk", sans-serif;
+       }
+      
+             .reveal b, .reveal strong {
+         color: #ffffff;
+         font-weight: 700;
+       }
+      
+               @media (max-width: 900px) {
+           .reveal .slides {
+             max-width: none;
+             padding: 1vh 2vw;
+           }
+           
+           .reveal section {
+             max-width: none;
+             padding: 1.5rem;
+             max-height: none;
+           }
+           
+           .reveal h2 {
+             padding-left: 1.5rem;
+           }
+           
+           .reveal ul li {
+             padding-left: 2rem;
+           }
+         }
+      
+      .reveal ul li.no-bullet {
+        list-style-type: none;
+        padding-left: 0;
+      }
+      
+      .reveal ul li.no-bullet::before {
+        display: none;
+      }
+      
+      
+      
+      
+       
+
+         
+         /* Simple scrollbars for code blocks */
+         .reveal pre::-webkit-scrollbar {
+           width: 8px;
+           height: 8px;
+         }
+         
+         .reveal pre::-webkit-scrollbar-track {
+           background: rgba(255, 255, 255, 0.1);
+           border-radius: 4px;
+         }
+         
+         .reveal pre::-webkit-scrollbar-thumb {
+           background: #00f2fe;
+           border-radius: 4px;
+         }
+         
+         .reveal pre::-webkit-scrollbar-thumb:hover {
+           background: #4f5bd5;
+         }
+         
+         /* Ensure content flows properly */
+         .reveal section > * {
+           flex-shrink: 0;
+         }
+    </style>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Fira+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>💻 C++ Fundamentals<br />for Busy Teens</h1>
+          <h3>
+            <span class="emoji">🎮</span> Games, Robots, and Real-World Coding
+          </h3>
+          <aside class="notes">
+            <h3>🎤 Opening Hook (30 seconds)</h3>
+            <p><strong>"Good morning/afternoon everyone! Who here uses TikTok, plays Roblox, or has ever used a robot vacuum at home?"</strong></p>
+            <p><em>[Wait for hands, acknowledge responses enthusiastically]</em></p>
+            <p><strong>"Awesome! Well, here's something that's going to blow your mind - every single one of those things, from TikTok's app to the robots cleaning your house, was built using programming languages like C++!"</strong></p>
+            
+            <h3>Course Introduction (30 seconds)</h3>
+            <p><strong>"Today we're starting an amazing journey where you'll learn to create your own programs. This isn't just theory - by the end of this course, you'll be building real working programs that solve actual problems!"</strong></p>
+            <p><strong>"We're calling this 'C++ Fundamentals for Busy Teens' because I know you've got a lot going on - school, friends, activities, maybe jobs. So we're going to make this super practical and fun. We'll connect everything to stuff you actually care about!"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>You're about to learn a superpower that runs the digital world around you.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"So let's start with the basics - what exactly is a program anyway?"</strong></p>
+          </aside>
+        </section>
+        <section>
+          <h2><span class="modern-icon">⟨⟩</span>What is a Program?</h2>
+          <ul>
+            <li>A set of instructions for a computer</li>
+            <li>Like a recipe: step-by-step directions</li>
+            <li>Or a game script: "If you press jump, the character jumps!"</li>
+            <li>Or a robot mission: "Move forward, turn, pick up object"</li>
+          </ul>
+          <aside class="notes">
+            <h3>🎤 Main Explanation (1 minute)</h3>
+            <p><strong>"Think about this - when you're playing a game and you press the space bar to jump, how does the computer know what to do?"</strong></p>
+            <p><em>[Pause for responses]</em></p>
+            <p><strong>"Exactly! Someone wrote instructions telling the computer: 'When the player presses space, make the character go up 50 pixels, then fall back down.' That's a program - just a list of instructions!"</strong></p>
+            <p><strong>"It's like writing a recipe. If you want to make pancakes, you write: 'Step 1: Mix flour and milk. Step 2: Heat the pan. Step 3: Pour batter.' Programming is the same thing, but instead of making pancakes, you're telling a computer what to do."</strong></p>
+            
+            <h3>Interactive Examples (1 minute)</h3>
+            <p><strong>"Let's try this - imagine you're programming a robot. What instructions would you give it to get a snack from the kitchen?"</strong></p>
+            <p><em>[Take 2-3 student responses, like "go to kitchen," "open fridge," "grab snack"]</em></p>
+            <p><strong>"Perfect! You just wrote a program! In real programming, it might look like:</strong></p>
+            <ul>
+              <li><code>moveToRoom("kitchen")</code></li>
+              <li><code>openAppliance("refrigerator")</code></li>
+              <li><code>pickUpItem("apple")</code></li>
+            </ul>
+            <p><strong>"The cool thing is, these instructions work the same way whether you're programming a game character, a robot vacuum, or even the app on your phone!"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>Programming is just writing step-by-step instructions - like recipes for computers.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"So if programming is writing instructions, what exactly IS programming?"</strong></p>
+          </aside>
+        </section>
+        <section>
+          <h2><span class="modern-icon">⚡</span>What is Programming?</h2>
+          <ul>
+            <li>Writing instructions for computers to follow</li>
+            <li>Turning ideas into actions on a screen or in the real world</li>
+            <li>Anyone can learn it—no magic required!</li>
+          </ul>
+          <aside class="notes">
+            <h3>🎤 Building on Previous Concept (45 seconds)</h3>
+            <p><strong>"So we know a program is a set of instructions, like a recipe. But what exactly IS programming?"</strong></p>
+            <p><strong>"Programming is the act of writing those instructions! It's like being a director of a movie - you tell the actors (the computer) exactly what to do, when to do it, and how to do it."</strong></p>
+            <p><strong>"Here's the coolest part - programming lets you take an idea in your head and make it real on a computer screen, or even in the physical world with robots!"</strong></p>
+            
+            <h3>Real-World Connection (45 seconds)</h3>
+            <p><strong>"Think about your favorite app - maybe Instagram or Snapchat. Someone had the idea: 'What if people could share photos with fun filters?' Then they used programming to turn that idea into the app you use every day!"</strong></p>
+            <p><strong>"Or think about those Boston Dynamics robots that can do backflips. Someone programmed every single movement - 'lift leg 30 degrees, shift weight, rotate torso...' Programming brought that robot to life!"</strong></p>
+            
+            <h3>Encouragement & Accessibility (30 seconds)</h3>
+            <p><strong>"Now, I want to make something super clear - programming isn't some mysterious superpower that only 'computer geniuses' can learn. It's a skill, just like learning to drive or cook or play an instrument."</strong></p>
+            <p><strong>"Some of you might think 'I'm not a math person' or 'I'm not technical.' But programming is really about logical thinking and problem-solving - skills you already use every day!"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>Programming is the bridge between imagination and reality in the digital world.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"So if programming is writing instructions, what makes C++ special compared to other programming languages?"</strong></p>
+          </aside>
+        </section>
+        <section>
+          <h2><span class="modern-icon">◇</span>What is C++?</h2>
+          <ul>
+            <li>A powerful programming language</li>
+            <li>Used for games, robots, apps, and more</li>
+            <li>Fast, flexible, and used by pros everywhere</li>
+            <li>Learning C++ = unlocking real-world tech skills</li>
+          </ul>
+          <aside class="notes">
+            <h3>🎤 Introduction to C++ (45 seconds)</h3>
+            <p><strong>"Great question! C++ is like the Swiss Army knife of programming languages - it's incredibly powerful and can do almost anything!"</strong></p>
+            <p><strong>"Think of programming languages like different tools. If you wanted to hang a picture, you could use a rock, but a hammer works way better, right? C++ is like having a professional-grade toolbox."</strong></p>
+            
+            <h3>Real-World Applications (1 minute)</h3>
+            <p><strong>"Let me blow your mind with where C++ is actually used:"</strong></p>
+            <p><strong>"Video Games: Fortnite, Call of Duty, most PlayStation and Xbox games - built with C++!"</strong></p>
+            <p><strong>"Your favorite apps: Instagram's photo processing, Chrome browser, even parts of YouTube - C++!"</strong></p>
+            <p><strong>"Cool technology: Tesla's autopilot system, Mars rovers, the International Space Station's computers - all running C++ programs!"</strong></p>
+            <p><strong>"Even Roblox itself - while you might script in Lua, the actual Roblox platform that runs your games is built with C++!"</strong></p>
+            
+            <h3>Why Learn C++? (30 seconds)</h3>
+            <p><strong>"So why are we learning C++ instead of something 'easier'? Because C++ teaches you to think like a real programmer. It's like learning to drive with a manual transmission - once you master it, you can drive anything!"</strong></p>
+            <p><strong>"Plus, C++ skills are super valuable. Companies like Google, Microsoft, and game studios actively look for people who know C++!"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>C++ is the programming language that powers the technology you use every day.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"Okay, so C++ is awesome and powerful. But what exactly are we going to learn in this course?"</strong></p>
+          </aside>
+        </section>
+        <section>
+          <h2><span class="modern-icon">⟨/⟩</span>Course Roadmap</h2>
+          <ul>
+            <li><b>Setup & Basics:</b> First programs, variables, I/O, operators</li>
+            <li><b>Control Flow:</b> Make decisions, repeat actions</li>
+            <li><b>Arrays & Strings:</b> Working with collections of data</li>
+            <li><b>Functions:</b> Organizing code, reusable building blocks</li>
+            <li><b>Structs & Objects:</b> Grouping related information</li>
+            <li><b>Standard Library:</b> Built-in tools for real-world programming</li>
+            <li><b>Classes & OOP:</b> Object-oriented design and inheritance</li>
+            <li><b>Hands-On Project:</b> Robot gear system engineering challenge</li>
+          </ul>
+          <aside class="notes">
+            <h3>🎤 Overview Introduction (30 seconds)</h3>
+            <p><strong>"Alright, let's talk about our journey! This isn't just a random collection of programming concepts - we're building real skills step by step, like levels in a video game!"</strong></p>
+            <p><strong>"Each lesson builds on the last one, so by the end, you'll be creating programs that solve actual engineering problems!"</strong></p>
+            
+            <h3>Breaking Down the Journey (1 minute 15 seconds)</h3>
+            <p><strong>"Let's walk through what we're going to master:"</strong></p>
+            <p><strong>"First, Setup & Basics - we'll get your computer ready and write your first real program. You'll learn how to store information and do calculations."</strong></p>
+            <p><strong>"Then Control Flow - this is where your programs get smart! You'll teach them to make decisions and repeat actions, just like game logic."</strong></p>
+            <p><strong>"Arrays & Strings - imagine managing a whole team of players in Roblox. You'll learn to handle lots of data at once."</strong></p>
+            <p><strong>"Functions - these are like creating your own custom commands. Instead of writing the same code over and over, you'll build reusable pieces."</strong></p>
+            <p><strong>"Structs & Objects - this is where we organize complex information, like creating a player profile with name, level, health, and inventory all in one place."</strong></p>
+            <p><strong>"Standard Library - C++ comes with amazing built-in tools, like having cheat codes for programming! We'll learn to use these professional-grade features."</strong></p>
+            <p><strong>"Classes & OOP - the advanced stuff! You'll create your own types of objects and build sophisticated programs."</strong></p>
+            
+            <h3>The Big Project (15 seconds)</h3>
+            <p><strong>"And throughout everything, we're building toward our final challenge - a robot gear system calculator that real engineers use! You'll analyze gear ratios, calculate speeds, and optimize robotic systems!"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>This course builds programming skills progressively, culminating in real engineering applications.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"This sounds like a lot, but trust me - we're going to take it one step at a time. Ready to jump in and start coding?"</strong></p>
+          </aside>
+        </section>
+        <section>
+          <h2>🎉 Ready to Start?</h2>
+          <ul>
+            <li>Jump in and code your first program!</li>
+            <li>If you can imagine it, you can build it in C++</li>
+            <li><b>Tip:</b> Ask questions, experiment, and have fun!</li>
+          </ul>
+          <aside class="notes">
+            <h3>🎤 Building Excitement (30 seconds)</h3>
+            <p><strong>"Alright everyone, we've talked about what programming is, what C++ can do, and where we're headed. Now it's time for the fun part - actually DOING it!"</strong></p>
+            <p><strong>"In just a few minutes, you're going to write a real program that runs on your computer. How cool is that?"</strong></p>
+            
+            <h3>Setting Expectations & Encouragement (30 seconds)</h3>
+            <p><strong>"Here's the thing - programming is like learning a new language, and just like when you started learning English, you didn't become fluent overnight. But you also didn't wait until you were fluent to start talking, right?"</strong></p>
+            <p><strong>"So here's my promise to you: if you can imagine something, C++ can help you build it. Want to create a game? You can do that. Want to program a robot? Totally possible. Want to build an app that does something nobody's thought of yet? That's where the real magic happens!"</strong></p>
+            <p><strong>"The most important thing is to ask questions when you're confused, experiment when you're curious, and remember that every expert programmer was once exactly where you are right now."</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>Programming is about imagination, experimentation, and persistence - you're ready to begin!</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"So let's stop talking and start coding! Time to create your first C++ program!"</strong></p>
+          </aside>
+        </section>
+        <!-- Lesson 1: Create Your First C++ Application -->
+        <section>
+          <h1>🚀 Create Your First C++ Application</h1>
+          <h3>
+            <span class="emoji">🛠️</span> Get Set Up and Run Your First Program
+          </h3>
+          <aside class="notes">
+            <h3>🎤 Energy & Excitement (30 seconds)</h3>
+            <p><strong>"Alright, this is where the real fun begins! We've talked about what programming is - now we're actually going to DO it!"</strong></p>
+            <p><strong>"In the next few slides, you're going to write a program that actually runs on your computer. Not a simulation, not a game - a real program that YOU created!"</strong></p>
+            
+            <h3>Reality Check & Encouragement (45 seconds)</h3>
+            <p><strong>"Now, I'm going to be honest with you - the first time you write code, it might feel a little weird. It's like learning a new language, because that's exactly what you're doing!"</strong></p>
+            <p><strong>"Some of you might think 'I'm not a computer person' or 'this looks too complicated.' But here's the thing - by the end of this lesson, every single one of you will have a working program. I guarantee it!"</strong></p>
+            <p><strong>"We're going to start super simple. Our first program is going to print 'Hello, world!' to the screen. Sounds boring? Maybe. But this is the exact same first program that every professional programmer in the world has written, including the people who made Fortnite, Instagram, and Tesla's self-driving cars!"</strong></p>
+            
+            <h3>Set Expectations (45 seconds)</h3>
+            <p><strong>"Here's what we're going to do step by step:</strong></p>
+            <p><strong>1. Set up our tools - like getting your art supplies ready before painting</strong></p>
+            <p><strong>2. Write our first program - just a few lines of code</strong></p>
+            <p><strong>3. Run it and see it work - the magic moment when YOUR code comes to life!"</strong></p>
+            <p><strong>"Don't worry about understanding every detail right now. Think of this like learning to drive - first you just need to know 'gas pedal makes car go.' The details come later!"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>Today you become a real programmer by creating something that actually works.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"So let's get our tools ready! First thing we need is..."</strong></p>
+          </aside>
+        </section>
+        <section>
+          <h2><span class="modern-icon">◈</span>What You Need</h2>
+          <ul>
+            <li>
+              <b>C++ Compiler</b> (e.g.,
+              <span class="highlight">clang++</span> or
+              <span class="highlight">g++</span>)
+            </li>
+            <li>
+              <b>Text Editor or IDE</b> (e.g., VS Code, Xcode, Sublime Text)
+            </li>
+            <li>A terminal (the <b>Terminal</b> app on Mac)</li>
+          </ul>
+          <aside class="notes">
+            <h3>🎤 Introduction (30 seconds)</h3>
+            <p><strong>"Alright, before we can start programming, we need to set up our tools! Think of this like getting your gaming setup ready - you need the right equipment to play."</strong></p>
+            <p><strong>"Don't worry if this sounds technical - we're going to walk through everything step by step, and I'll help anyone who gets stuck!"</strong></p>
+            
+            <h3>Breaking Down the Requirements (2 minutes)</h3>
+            <p><strong>"We need three main things:"</strong></p>
+            <p><strong>"First, a C++ Compiler. This is like a translator that converts your human-readable code into something the computer can actually run. It's like having Google Translate, but for computers!"</strong></p>
+            <p><em>[Point to the slide]</em></p>
+            <p><strong>"The two most common ones are called 'clang++' and 'g++'. Don't worry about the difference - they both do the same job. We'll get one of these installed in just a minute."</strong></p>
+            <p><strong>"Second, we need a Text Editor or IDE. IDE stands for 'Integrated Development Environment' - fancy name for a really good text editor made specifically for programming."</strong></p>
+            <p><strong>"Think of it like the difference between writing a paper in Notepad versus Microsoft Word. You CAN write code in any text editor, but these special ones have features that make programming much easier - they highlight your code in colors, catch mistakes, and help you organize everything."</strong></p>
+            <p><strong>"And third, we need access to the Terminal. This is like the 'behind the scenes' control panel for your computer. It looks a bit retro and scary at first, but it's actually really powerful!"</strong></p>
+            
+            <h3>Encouragement (30 seconds)</h3>
+            <p><strong>"I know this might seem like a lot of setup, but here's the cool part - once we get this done today, you'll have the same exact tools that professional programmers at Google, Apple, and game studios use every day!"</strong></p>
+            <p><strong>"Plus, all of this software is free! You don't need to buy anything expensive to start programming."</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>Professional programming tools are free and accessible - we're setting up a real development environment.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"Let's start with getting the compiler installed. For Mac users, this is actually pretty easy..."</strong></p>
+          </aside>
+        </section>
+        <section>
+          <h2><span class="modern-icon">▲</span>Installing a Compiler (Mac)</h2>
+          <ul>
+            <li>
+              Open <b>Terminal</b> (find it in Applications &gt; Utilities)
+            </li>
+            <li>Type: <code>xcode-select --install</code></li>
+            <li>
+              This installs <span class="highlight">clang++</span>, a C++
+              compiler
+            </li>
+            <li>Check it works: <code>clang++ --version</code></li>
+          </ul>
+        </section>
+        <section>
+          <h2>📝 Choosing an Editor or IDE</h2>
+          <ul>
+            <li><b>VS Code</b> (free, popular, lots of extensions)</li>
+            <li><b>Xcode</b> (Apple's official IDE, great for Mac users)</li>
+            <li>
+              <b>CLion</b> (powerful C++ IDE by JetBrains, free for students)
+            </li>
+            <li>
+              <b>Sublime Text</b>, <b>Atom</b>, or even <b>TextEdit</b> (for
+              simple editing)
+            </li>
+            <li>
+              <b
+                >We'll be using VS Code in this course, but feel free to try out
+                any of them!</b
+              >
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📄 Your First C++ Program</h2>
+          <pre><code>// hello.cpp
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+  cout &lt;&lt; "Hello, world!" &lt;&lt; endl;
+  return 0;
+}</code></pre>
+          <ul>
+            <li>Save this as <code>hello.cpp</code></li>
+          </ul>
+          <aside class="notes">
+            <h3>🎤 The Big Moment (1 minute)</h3>
+            <p><strong>"Alright everyone, here it is - your first real C++ program! This might look a bit mysterious right now, but I promise it will make sense soon."</strong></p>
+            <p><strong>"This is called a 'Hello, World!' program, and it's basically the programming equivalent of saying your first word as a baby. Every programmer in the world has written this exact program at some point!"</strong></p>
+            <p><em>[Display the code prominently on screen]</em></p>
+            <p><strong>"Let's type this together. Open up your text editor and create a new file. We're going to type this exactly as shown - every character matters in programming!"</strong></p>
+            
+            <h3>Code Walkthrough (2 minutes 30 seconds)</h3>
+            <p><strong>"Let me break this down line by line:"</strong></p>
+            <p><strong>"First line: `// hello.cpp` - This is a comment. Comments are notes for humans that the computer ignores. The '//' tells C++ 'ignore everything after this on this line.'"</strong></p>
+            <p><strong>"Second line: `#include <iostream>` - This is like importing a toolbox. 'iostream' gives us the tools to talk to the user - to show messages and get input."</strong></p>
+            <p><strong>"Third line: `using namespace std;` - Don't worry too much about this for now. It's like telling C++ 'when I say cout, I mean the cout from the standard library.'"</strong></p>
+            <p><strong>"Fourth line: `int main() {` - This is where your program actually starts running. Every C++ program needs a main function - it's like the front door of your program."</strong></p>
+            <p><strong>"Fifth line: `cout << "Hello, world!" << endl;` - This is the magic! 'cout' means 'console output' - it displays text on the screen. The '<<' sends the text to cout, and 'endl' makes a new line."</strong></p>
+            <p><strong>"Sixth line: `return 0;` - This tells the computer 'the program finished successfully.' 0 means everything went okay."</strong></p>
+            <p><strong>"Last line: `}` - This closes the main function. Every opening brace '{' needs a closing brace '}'."</strong></p>
+            
+            <h3>Typing Together (1 minute 30 seconds)</h3>
+            <p><strong>"Now let's type this together. I'll go slowly, and call out any important details:"</strong></p>
+            <p><em>[Type the program live, calling out each character]</em></p>
+            <p><strong>"Remember - programming is VERY picky about spelling and punctuation. Every semicolon, every quotation mark, every bracket matters!"</strong></p>
+            <p><strong>"When you're done typing, save the file as 'hello.cpp' - the '.cpp' tells the computer this is a C++ program."</strong></p>
+            <p><em>[Check that students are following along]</em></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>This simple program contains all the fundamental elements of C++ programming.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"Great! Everyone should now have a hello.cpp file saved. Next, we need to transform this human-readable code into something the computer can actually run..."</strong></p>
+          </aside>
+        </section>
+        <section>
+          <h2>⚡ Compile and Run</h2>
+          <ul>
+            <li>In Terminal, go to the folder with <code>hello.cpp</code></li>
+            <li>Type: <code>clang++ hello.cpp -o hello</code></li>
+            <li>Run it: <code>./hello</code></li>
+            <li>
+              You should see: <span class="highlight">Hello, world!</span>
+            </li>
+          </ul>
+          <aside class="notes">
+            <h3>🎤 The Magic Moment Setup (1 minute)</h3>
+            <p><strong>"Okay everyone, this is THE moment! We're about to take your code and bring it to life. This is when you officially become a programmer!"</strong></p>
+            <p><strong>"Right now, your hello.cpp file is just text that humans can read. But computers don't understand text - they need machine code. The compiler is going to translate your code into computer language."</strong></p>
+            <p><strong>"It's like having a script for a play written in English, but your actors only speak Spanish. You need a translator!"</strong></p>
+            
+            <h3>Terminal Navigation (2 minutes)</h3>
+            <p><strong>"First, we need to open Terminal and navigate to where your hello.cpp file is saved."</strong></p>
+            <p><em>[Demonstrate on screen]</em></p>
+            <p><strong>"Open Terminal - on Mac, you can press Cmd+Space and type 'Terminal', or find it in Applications > Utilities."</strong></p>
+            <p><strong>"Now we need to navigate to the folder where you saved hello.cpp. If you saved it on your Desktop, type: `cd Desktop`"</strong></p>
+            <p><strong>"The 'cd' command means 'change directory' - it's like opening a folder. You can type `ls` to see what files are in the current folder."</strong></p>
+            <p><em>[Wait for students to catch up]</em></p>
+            <p><strong>"Can everyone see their hello.cpp file when you type `ls`? If not, raise your hand and I'll help you find it!"</strong></p>
+            
+            <h3>The Compilation Step (2 minutes)</h3>
+            <p><strong>"Now for the magic! Type exactly this: `clang++ hello.cpp -o hello`"</strong></p>
+            <p><em>[Type it slowly and clearly]</em></p>
+            <p><strong>"Let me break this down: 'clang++' is our compiler. 'hello.cpp' is our source code file. The '-o hello' part says 'create an output file called hello'."</strong></p>
+            <p><strong>"Press Enter and... hopefully you don't see any error messages! If everything worked, you should just see a new command prompt appear. No news is good news in programming!"</strong></p>
+            <p><em>[Check with students - help with any compilation errors]</em></p>
+            <p><strong>"If you got an error message, don't panic! Raise your hand and we'll debug it together. Error messages are the computer trying to help you!"</strong></p>
+            
+            <h3>Running the Program (1 minute 30 seconds)</h3>
+            <p><strong>"Now comes the best part - running your program! Type: `./hello`"</strong></p>
+            <p><strong>"The './' tells the computer 'run the program called hello in this folder'."</strong></p>
+            <p><strong>"Press Enter and..."</strong></p>
+            <p><em>[Dramatic pause]</em></p>
+            <p><strong>"You should see 'Hello, world!' appear on your screen! If you see that, congratulations - you just wrote and executed your first C++ program!"</strong></p>
+            
+            <h3>Celebration & Troubleshooting (30 seconds)</h3>
+            <p><strong>"Everyone who sees 'Hello, world!' on their screen, give yourself a round of applause! You're officially a programmer now!"</strong></p>
+            <p><strong>"If you didn't get the right output, no worries - let's fix it together. Programming is all about solving problems!"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>You just transformed human-readable code into a working computer program - that's real programming!</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"Amazing! Now that we've got our first program working, let's understand a bit more about what we just did..."</strong></p>
+          </aside>
+        </section>
+        <section>
+          <h2>🗂️ What is a namespace?</h2>
+          <ul>
+            <li>
+              A <span class="highlight">namespace</span> is like a "last name"
+              for code.
+            </li>
+            <li>It helps the computer know exactly which thing you mean.</li>
+            <li>
+              Example: <code>std::cout</code> means "cout from the standard
+              library."
+            </li>
+            <li>
+              If you write <code>using namespace std;</code>, you can just say
+              <code>cout</code> instead of <code>std::cout</code>.
+            </li>
+          </ul>
+          <aside class="notes">
+            Explain that in real life, names can be confusing if more than one
+            person has the same name. Namespaces in C++ help avoid this
+            confusion by grouping names, just like saying "Alex from Math Club"
+            vs. "Alex from Soccer Team." Mention that <code>std</code> is the
+            standard namespace in C++ for things like <code>cout</code> and
+            <code>cin</code>. Show both with and without
+            <code>using namespace std;</code> so students see the difference.
+          </aside>
+        </section>
+        <section>
+          <h2>💬 Input and Output with cin and cout</h2>
+          <ul>
+            <li>
+              Programs are more fun when they can
+              <span class="highlight">talk</span> to users!
+            </li>
+            <li><b>cout</b> displays messages to the user (output)</li>
+            <li><b>cin</b> gets information from the user (input)</li>
+            <li>
+              Think of it like a conversation between you and the computer!
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📤 Output with cout</h2>
+          <ul>
+            <li>
+              <b>cout</b> means "console output" - it prints to the screen
+            </li>
+            <li>Use <code>&lt;&lt;</code> to send text or numbers to cout</li>
+            <li>Use <code>endl</code> to create a new line</li>
+          </ul>
+          <pre><code>cout << "Hello, World!" << endl;
+cout << "I am learning C++!" << endl;
+
+int score = 95;
+cout << "Your score is: " << score << endl;
+cout << "Great job!" << endl;</code></pre>
+        </section>
+        <section>
+          <h2>📥 Input with cin</h2>
+          <ul>
+            <li>
+              <b>cin</b> means "console input" - it gets data from the user
+            </li>
+            <li>Use <code>&gt;&gt;</code> to read data into a variable</li>
+            <li>
+              The program waits until the user types something and presses Enter
+            </li>
+          </ul>
+          <pre><code>string playerName;
+int playerAge;
+
+cout << "What's your name? ";
+cin >> playerName;
+
+cout << "How old are you? ";
+cin >> playerAge;
+
+cout << "Hi " << playerName << ", you are " << playerAge << " years old!" << endl;</code></pre>
+        </section>
+        <section>
+          <h2>💡 cin and cout Tips</h2>
+          <ul>
+            <li><b>Always prompt first:</b> Tell users what to enter</li>
+            <li>
+              <b>Use descriptive messages:</b> "Enter your age: " not just
+              "Number: "
+            </li>
+            <li>
+              <b>cin stops at spaces:</b> For names with spaces, use
+              <code>getline()</code>
+            </li>
+            <li>
+              <b>Chain outputs:</b>
+              <code>cout << "Score: " << score << " points!" << endl;</code>
+            </li>
+          </ul>
+          <pre><code>// For names with spaces
+string fullName;
+cout << "Enter your full name: ";
+cin.ignore(); // Clear any leftover input
+getline(cin, fullName); // Gets the whole line including spaces</code></pre>
+        </section>
+        <section>
+          <h2>🛠️ What are Operators?</h2>
+          <ul>
+            <li>
+              Operators are symbols that let you do things like add coins,
+              subtract health, or multiply your score in a Roblox game.
+            </li>
+            <li>
+              They help you change and calculate values stored in variables.
+            </li>
+            <li>Think of them as the action buttons in your code!</li>
+          </ul>
+        </section>
+        <section>
+          <h2>➕ Arithmetic Operators</h2>
+          <ul>
+            <li>
+              <b>+</b> (add): <code>coins = coins + 10;</code>
+              <small>(add 10 coins)</small>
+            </li>
+            <li>
+              <b>-</b> (subtract): <code>health = health - 5;</code>
+              <small>(lose 5 health)</small>
+            </li>
+            <li>
+              <b>*</b> (multiply): <code>score = score * 2;</code>
+              <small>(double your score)</small>
+            </li>
+            <li>
+              <b>/</b> (divide):
+              <code>lootPerPlayer = totalLoot / numPlayers;</code>
+              <small>(split loot)</small>
+            </li>
+            <li>
+              <b>%</b> (modulo):
+              <code>leftover = totalCoins % numPlayers;</code>
+              <small>(coins left after sharing)</small>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🎮 Example: Roblox Coin Collector</h2>
+          <pre><code>// Roblox Coin Collector Example
+int coins = 50;
+int bonus = 20;
+int total = coins + bonus;
+cout << "You collected " << total << " coins in Roblox!" << endl;
+</code></pre>
+          <ul>
+            <li>Try changing the values and see what happens!</li>
+          </ul>
+        </section>
+        <section>
+          <h2>🚀 Challenge: Roblox Game Stats Calculator</h2>
+          <ul>
+            <li>
+              Write a program that asks for the number of coins you collected
+              and the number of bonus coins you earned in a Roblox game.
+            </li>
+            <li>Calculate and display your total coins.</li>
+            <li>
+              <b>Bonus:</b> Ask how many players are in the game, then show how
+              many coins each player gets and how many are left over.
+            </li>
+            <li>
+              Tip: Use <code>int</code> for whole numbers and the arithmetic
+              operators you just learned!
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🔧 Engineering Challenge: Gear Ratios</h2>
+          <ul>
+            <li>
+              Let's apply operators to solve real
+              <span class="highlight">robotics engineering</span> problems!
+            </li>
+            <li>Robots use gears to control speed and power.</li>
+            <li>
+              We'll create functions to calculate gear ratios and output speeds.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>⚙️ Exercise 1: Calculate Gear Ratio</h2>
+          <ul>
+            <li><b>Gear Ratio = Driven Gear ÷ Driving Gear</b></li>
+            <li>This tells us how much the speed changes.</li>
+            <li>
+              <b>Try it:</b> Ask the user for gear sizes and calculate the
+              ratio!
+            </li>
+          </ul>
+          <pre><code>// Function to calculate gear ratio
+double calculateGearRatio(int drivingGear, int drivenGear) {
+  return (double)drivenGear / drivingGear;
+}
+
+int main() {
+  int driving, driven;
+  
+  cout << "⚙️ Gear Ratio Calculator ⚙️" << endl;
+  cout << "Enter driving gear teeth: ";
+  cin >> driving;
+  cout << "Enter driven gear teeth: ";
+  cin >> driven;
+  
+  double ratio = calculateGearRatio(driving, driven);
+  cout << "Gear ratio: " << ratio << ":1" << endl;
+  
+  if (ratio > 1) {
+    cout << "Result: SLOWER speed, MORE torque" << endl;
+  } else if (ratio < 1) {
+    cout << "Result: FASTER speed, LESS torque" << endl;
+  } else {
+    cout << "Result: SAME speed, SAME torque" << endl;
+  }
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Exercise 2: Calculate Output RPM</h2>
+          <ul>
+            <li><b>Output RPM = Input RPM ÷ Gear Ratio</b></li>
+            <li>This tells us the final spinning speed.</li>
+            <li>
+              <b>Interactive:</b> Let users test their own motor and gear
+              combinations!
+            </li>
+          </ul>
+          <pre><code>// Function to calculate output RPM
+double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear) {
+  double gearRatio = calculateGearRatio(drivingGear, drivenGear);
+  return inputRPM / gearRatio;
+}
+
+int main() {
+  int inputRPM, driving, driven;
+  
+  cout << "🚀 Robot RPM Calculator 🚀" << endl;
+  cout << "Enter motor input RPM: ";
+  cin >> inputRPM;
+  cout << "Enter driving gear teeth: ";
+  cin >> driving;
+  cout << "Enter driven gear teeth: ";
+  cin >> driven;
+  
+  double gearRatio = calculateGearRatio(driving, driven);
+  double outputRPM = calculateOutputRPM(inputRPM, driving, driven);
+  
+  cout << "\n🔧 RESULTS 🔧" << endl;
+  cout << "Input: " << inputRPM << " RPM" << endl;
+  cout << "Gear Ratio: " << gearRatio << ":1" << endl;
+  cout << "Output: " << outputRPM << " RPM" << endl;
+  
+  return 0;
+}</code></pre>
+        </section>
+
+        <section>
+          <h2>🏁 Lesson 1 Recap</h2>
+          <ul>
+            <li>Variables store info for your program</li>
+            <li>Different data types for different kinds of info</li>
+            <li>Use <b>cin</b> and <b>cout</b> for user interaction</li>
+            <li>Practice makes perfect—experiment and have fun!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 1 -->
+        <!-- Lesson 2: Control Flow -->
+        <section>
+          <h1>🔀 Lesson 2: Control Flow</h1>
+          <h3>
+            <span class="emoji">🕹️</span> Making Decisions and Repeating Actions
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What is Control Flow?</h2>
+          <ul>
+            <li>
+              Control flow is how your program decides
+              <span class="highlight">what to do next</span>.
+            </li>
+            <li>
+              It lets you make choices and repeat actions—like a game character
+              deciding to jump or run!
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🔎 If Statements</h2>
+          <ul>
+            <li>
+              Use <span class="highlight">if</span> to make decisions in your
+              code.
+            </li>
+            <li>Example:</li>
+          </ul>
+          <pre><code>int score = 100;
+if (score &gt; 50) {
+  cout &lt;&lt; "You win!" &lt;&lt; endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>⚖️ Comparison Operators</h2>
+          <ul>
+            <li>Used to compare values in if statements:</li>
+            <li><code>==</code> (equal), <code>!=</code> (not equal)</li>
+            <li><code>&gt;</code> (greater), <code>&lt;</code> (less)</li>
+            <li>
+              <code>&gt;=</code> (greater or equal), <code>&lt;=</code> (less or
+              equal)
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🧩 Else and Else If</h2>
+          <ul>
+            <li>
+              Use <span class="highlight">if</span>,
+              <span class="highlight">else if</span>, and
+              <span class="highlight">else</span> to check age and print a
+              label:
+            </li>
+          </ul>
+          <pre><code>int age;
+cout << "Enter your age: ";
+cin >> age;
+
+if (age < 13) {
+  cout << "You are a Child." << endl;
+} else if (age < 20) {
+  cout << "You are a Teen." << endl;
+} else if (age < 65) {
+  cout << "You are an Adult." << endl;
+} else {
+  cout << "You are a Senior." << endl;
+}
+</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 1: Roblox Obby Ranker</h2>
+          <ul>
+            <li>
+              Write a program that asks how many obstacles ("obbies") you
+              completed in a Roblox game.
+            </li>
+            <li>Print your rank:</li>
+            <li class="no-bullet">
+              <ul>
+                <li><b>Legend</b>: 50 or more</li>
+                <li><b>Pro</b>: 30–49</li>
+                <li><b>Gamer</b>: 15–29</li>
+                <li><b>Rookie</b>: 5–14</li>
+                <li><b>Noob</b>: less than 5</li>
+                <li>Try different numbers to see your rank!</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🔁 Loops: While and For</h2>
+          <ul>
+            <li>Loops let you repeat actions.</li>
+            <li><b>while</b> loop: repeats while a condition is true</li>
+            <li><b>for</b> loop: repeats a set number of times</li>
+          </ul>
+          <pre><code>// while loop
+int count = 1;
+while (count &lt;= 5) {
+  cout &lt;&lt; count &lt;&lt; endl;
+  count++;
+}
+
+// for loop
+for (int i = 1; i &lt;= 5; i++) {
+  cout &lt;&lt; i &lt;&lt; endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 2: Counting Game</h2>
+          <ul>
+            <li>
+              Write a program that prints numbers from 1 to 10 using a loop.
+            </li>
+            <li>Can you make it count down from 10 to 1?</li>
+          </ul>
+        </section>
+        <section>
+          <h2>🚀 Challenge 3: Guessing Game</h2>
+          <ul>
+            <li>
+              Write a program that asks the user to guess a number between 1 and
+              10.
+            </li>
+            <li>If the guess is correct, print "You win!"</li>
+            <li>
+              If the guess is incorrect, print "Too high!" or "Too low!"
+              followed by " Please try again" and ask the user to guess again.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🛑 The break Statement</h2>
+          <ul>
+            <li>
+              <span class="highlight">break</span> lets you exit a loop early.
+            </li>
+            <li>
+              When the program hits <code>break;</code>, it jumps out of the
+              loop.
+            </li>
+          </ul>
+          <pre><code>while (true) {
+  cin >> guess;
+  if (guess == secret) {
+    cout << "You win!" << endl;
+    break; // exit the loop
+  }
+  // ...
+}
+</code></pre>
+          <ul>
+            <li>
+              Use <span class="highlight">break</span> when you want to stop
+              looping as soon as a condition is met.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🤖 Real Robot Example</h2>
+          <pre><code>// Complete gear analysis program
+#include &lt;iostream&gt;
+using namespace std;
+
+double calculateGearRatio(int drivingGear, int drivenGear) {
+  return (double)drivenGear / drivingGear;
+}
+
+double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear) {
+  double gearRatio = calculateGearRatio(drivingGear, drivenGear);
+  return inputRPM / gearRatio;
+}
+
+int main() {
+  cout << "🤖 Robot Drivetrain Calculator 🤖" << endl;
+  
+  // Test different configurations
+  int configs[][3] = {{100, 12, 24}, {200, 24, 48}, {600, 36, 12}};
+  
+  for (int i = 0; i < 3; i++) {
+    int rpm = configs[i][0];
+    int driving = configs[i][1];
+    int driven = configs[i][2];
+    
+    double ratio = calculateGearRatio(driving, driven);
+    double output = calculateOutputRPM(rpm, driving, driven);
+    
+    cout << "Input: " << rpm << " RPM | ";
+    cout << "Gears: " << driving << "T → " << driven << "T | ";
+    cout << "Ratio: " << ratio << ":1 | ";
+    cout << "Output: " << output << " RPM" << endl;
+  }
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🏁 Lesson 2 Recap</h2>
+          <ul>
+            <li><b>If</b> statements let your program make decisions</li>
+            <li><b>Loops</b> let your program repeat actions</li>
+            <li>
+              <b>Functions</b> organize code and solve engineering problems
+            </li>
+            <li><b>Operators</b> perform calculations like gear ratios</li>
+            <li>Practice using control flow to make your programs smarter!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 2 -->
+        <!-- Lesson 3: Arrays -->
+        <section>
+          <h1>📦 Lesson 3: Arrays</h1>
+          <h3>
+            <span class="emoji">🗂️</span> Working with Collections of Data
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What are Arrays?</h2>
+          <ul>
+            <li>
+              An <span class="highlight">array</span> is like a backpack that
+              can hold multiple items of the same type.
+            </li>
+            <li>
+              Instead of creating 10 separate variables for 10 player scores,
+              you can use one array!
+            </li>
+            <li>
+              Think of it as a row of lockers, each with a number (called an
+              <span class="highlight">index</span>).
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📋 Creating Arrays</h2>
+          <pre><code>// Creating an array of 5 integers
+int scores[5];
+
+// Creating and initializing an array
+int levels[4] = {1, 5, 10, 15};
+
+// Let C++ figure out the size
+int coins[] = {100, 250, 500, 750, 1000};</code></pre>
+          <ul>
+            <li>
+              Array indexes start at <span class="highlight">0</span>, not 1!
+            </li>
+            <li><code>levels[0]</code> is the first element (value: 1)</li>
+            <li><code>levels[3]</code> is the fourth element (value: 15)</li>
+          </ul>
+        </section>
+        <section>
+          <h2>🎮 Array Example: Roblox Inventory</h2>
+          <pre><code>// Player's gem collection
+int gems[5] = {12, 8, 25, 3, 17};
+
+cout << "Your gem inventory:" << endl;
+for (int i = 0; i < 5; i++) {
+  cout << "Slot " << i+1 << ": " << gems[i] << " gems" << endl;
+}
+
+// Add gems to slot 2 (index 1)
+gems[1] = gems[1] + 5;
+cout << "After finding 5 more gems in slot 2: " << gems[1] << endl;</code></pre>
+        </section>
+        <section>
+          <h2>🔍 Accessing and Modifying Arrays</h2>
+          <ul>
+            <li><b>Access:</b> <code>int firstScore = scores[0];</code></li>
+            <li><b>Modify:</b> <code>scores[2] = 95;</code></li>
+            <li><b>Loop through:</b> Use a for loop to visit each element</li>
+          </ul>
+          <pre><code>int playerScores[3] = {85, 92, 78};
+
+// Print all scores
+for (int i = 0; i < 3; i++) {
+  cout << "Player " << i+1 << ": " << playerScores[i] << endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🎯 What are Strings?</h2>
+          <ul>
+            <li>
+              A <span class="highlight">string</span> is text—like player names,
+              game messages, or chat text.
+            </li>
+            <li>In C++, we use <code>string</code> to store text.</li>
+            <li>
+              You need to include <code>&lt;string&gt;</code> at the top of your
+              program.
+            </li>
+          </ul>
+          <pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+string playerName = "CoolGamer123";
+string welcomeMessage = "Welcome to the game!";
+cout << welcomeMessage << " Hello, " << playerName << endl;</code></pre>
+        </section>
+        <section>
+          <h2>📝 Arrays of Strings</h2>
+          <ul>
+            <li>You can create arrays that hold multiple strings!</li>
+            <li>
+              Perfect for storing player names, game levels, or item names.
+            </li>
+          </ul>
+          <pre><code>string playerNames[4] = {"Alex", "Jordan", "Casey", "Riley"};
+string gameItems[3] = {"Sword", "Shield", "Potion"};
+
+cout << "Players in the game:" << endl;
+for (int i = 0; i < 4; i++) {
+  cout << (i+1) << ". " << playerNames[i] << endl;
+}
+
+cout << "You picked up a " << gameItems[0] << "!" << endl;</code></pre>
+        </section>
+
+        <section>
+          <h2>💡 Real-World Applications</h2>
+          <ul>
+            <li>
+              <b>Game Development:</b> Player scoreboards, inventory lists,
+              level data
+            </li>
+            <li>
+              <b>Robotics:</b> Sensor readings, coordinate paths, measurement
+              data
+            </li>
+            <li>
+              <b>Apps:</b> User lists, message history, shopping cart items
+            </li>
+            <li>
+              <b>Data Analysis:</b> Survey responses, test scores, measurement
+              collections
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🏁 Lesson 3 Recap</h2>
+          <ul>
+            <li><b>Arrays</b> store multiple values of the same type</li>
+            <li><b>Strings</b> handle text data in your programs</li>
+            <li><b>Array indexing</b> starts at 0, not 1</li>
+            <li><b>Loops</b> help you work with arrays efficiently</li>
+            <li><b>Arrays of strings</b> manage text collections</li>
+            <li>Arrays are perfect for organizing related data!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 3 -->
+
+        <!-- Lesson 4: Functions -->
+        <section>
+          <h1>🔧 Lesson 4: Functions</h1>
+          <h3>
+            <span class="emoji">⚙️</span> Organizing Code and Eliminating Repetition
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What are Functions?</h2>
+          <ul>
+            <li>
+              A <span class="highlight">function</span> is a reusable block of code that performs a specific task.
+            </li>
+            <li>
+              Like a <b>recipe</b>: you write it once, then use it whenever you need it!
+            </li>
+            <li>
+              Functions help you <span class="highlight">organize</span> code and <span class="highlight">avoid repetition</span>.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📝 Function Syntax</h2>
+          <pre><code>// Function definition
+returnType functionName(parameters) {
+  // code to execute
+  return value; // optional
+}
+
+// Example: Calculate area of a rectangle
+int calculateArea(int length, int width) {
+  int area = length * width;
+  return area;
+}
+
+// Using the function
+int main() {
+  int roomArea = calculateArea(10, 12);
+  cout << "Room area: " << roomArea << " sq ft" << endl;
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🎮 Function Example: Roblox Score Calculator</h2>
+          <pre><code>// Function to calculate bonus score
+int calculateBonus(int baseScore, int multiplier) {
+  return baseScore * multiplier;
+}
+
+// Function to display player stats
+void displayPlayerStats(string name, int score, int level) {
+  cout << "🎮 PLAYER STATS 🎮" << endl;
+  cout << "Name: " << name << endl;
+  cout << "Score: " << score << endl;
+  cout << "Level: " << level << endl;
+}
+
+int main() {
+  int baseScore = 1000;
+  int bonusScore = calculateBonus(baseScore, 3);
+  
+  displayPlayerStats("CoolGamer", bonusScore, 15);
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🔄 Return Values vs Void Functions</h2>
+          <ul>
+            <li><b>Functions with return values:</b> Give back a result you can use</li>
+            <li><b>Void functions:</b> Perform an action but don't return anything</li>
+          </ul>
+          <pre><code>// Returns a value - you can use the result
+double calculateGearRatio(int driving, int driven) {
+  return (double)driven / driving;
+}
+
+// Void function - performs an action
+void printWelcomeMessage(string playerName) {
+  cout << "Welcome to the game, " << playerName << "!" << endl;
+  cout << "Get ready for adventure!" << endl;
+}
+
+// Usage
+double ratio = calculateGearRatio(12, 24);  // Store the result
+printWelcomeMessage("Alex");                // Just run the action</code></pre>
+        </section>
+        <section>
+          <h2>📊 Parameters: Passing Information to Functions</h2>
+          <ul>
+            <li><b>Parameters</b> are the inputs your function needs to work</li>
+            <li>Think of them as <span class="highlight">customizable settings</span> for your function</li>
+            <li>You can have zero, one, or many parameters</li>
+          </ul>
+          <pre><code>// No parameters
+void printGameTitle() {
+  cout << "🎮 ULTIMATE ROBOT BATTLE 🎮" << endl;
+}
+
+// One parameter
+void levelUp(int currentLevel) {
+  cout << "Level up! You are now level " << (currentLevel + 1) << endl;
+}
+
+// Multiple parameters
+int calculateDamage(int baseDamage, int weaponBonus, double critMultiplier) {
+  return (baseDamage + weaponBonus) * critMultiplier;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🤖 Refactoring Project 1: Gear Functions</h2>
+          <ul>
+            <li>Let's take the gear calculations from Project 1 and organize them into functions!</li>
+            <li>This makes the code <span class="highlight">cleaner</span>, <span class="highlight">reusable</span>, and easier to understand</li>
+          </ul>
+          <pre><code>// Clean, reusable functions for gear calculations
+double calculateGearRatio(int drivingGear, int drivenGear) {
+  return (double)drivenGear / drivingGear;
+}
+
+double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear) {
+  double gearRatio = calculateGearRatio(drivingGear, drivenGear);
+  return inputRPM / gearRatio;
+}
+
+void displayGearInfo(int inputRPM, int driving, int driven) {
+  double ratio = calculateGearRatio(driving, driven);
+  double outputRPM = calculateOutputRPM(inputRPM, driving, driven);
+  
+  cout << "Input: " << inputRPM << " RPM | ";
+  cout << "Gears: " << driving << "T → " << driven << "T | ";
+  cout << "Ratio: " << ratio << ":1 | ";
+  cout << "Output: " << outputRPM << " RPM" << endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Enhanced Project 1: Using Functions</h2>
+          <pre><code>// Enhanced Robot Gear System with Functions
+#include <iostream>
+using namespace std;
+
+// Function prototypes (declarations)
+double calculateGearRatio(int drivingGear, int drivenGear);
+double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear);
+void displayGearInfo(int inputRPM, int driving, int driven);
+void findOptimalSetup(int inputRPMs[], int gearSizes[], int rpmCount, int gearCount);
+
+int main() {
+  int inputRPMs[] = {100, 200, 600};
+  int gearSizes[] = {12, 24, 36, 48, 60, 72, 80};
+  
+  cout << "🤖 ENHANCED ROBOT GEAR ANALYZER 🤖" << endl;
+  cout << "=====================================" << endl;
+  
+  // Use functions to organize the analysis
+  findOptimalSetup(inputRPMs, gearSizes, 3, 7);
+  
+  return 0;
+}
+
+// Function implementations go here...</code></pre>
+        </section>
+        <section>
+          <h2>🎯 Function Best Practices</h2>
+          <ul>
+            <li><b>One job per function:</b> Each function should do one specific thing well</li>
+            <li><b>Descriptive names:</b> <code>calculateArea()</code> not <code>doMath()</code></li>
+            <li><b>Clear parameters:</b> Use meaningful parameter names</li>
+            <li><b>Document your functions:</b> Add comments explaining what they do</li>
+            <li><b>Keep them short:</b> If a function is getting long, split it into smaller functions</li>
+          </ul>
+          <pre><code>// Good function: clear purpose and name
+double convertMphToKph(double milesPerHour) {
+  return milesPerHour * 1.60934;
+}
+
+// Good function: well-documented
+// Calculates robot wheel speed needed for desired movement speed
+double calculateWheelRPM(double robotSpeed, double wheelDiameter) {
+  double wheelCircumference = 3.14159 * wheelDiameter;
+  return (robotSpeed * 60) / wheelCircumference;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🔬 Real-World Function Applications</h2>
+          <ul>
+            <li><b>Game Development:</b> Physics calculations, AI behavior, rendering</li>
+            <li><b>Robotics:</b> Sensor processing, motor control, path planning</li>
+            <li><b>Mobile Apps:</b> User authentication, data processing, UI updates</li>
+            <li><b>Web Development:</b> Database queries, API calls, form validation</li>
+            <li><b>Scientific Computing:</b> Mathematical models, data analysis, simulations</li>
+          </ul>
+        </section>
+        <section>
+          <h2>🏁 Lesson 4 Recap</h2>
+          <ul>
+            <li><b>Functions</b> organize code and eliminate repetition</li>
+            <li><b>Parameters</b> let you customize function behavior</li>
+            <li><b>Return values</b> give you results to use elsewhere</li>
+            <li><b>Void functions</b> perform actions without returning values</li>
+            <li><b>Good function design</b> makes code cleaner and easier to understand</li>
+            <li>Functions are the building blocks of larger programs!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 4 -->
+
+        <!-- Project 1: Robot Gear System Optimizer -->
+        <section>
+          <h1>🤖 PROJECT 1: Robot Gear System Optimizer</h1>
+          <h3>
+            <span class="emoji">⚙️</span> Engineering Challenge: Find the
+            Perfect Gear Setup
+          </h3>
+        </section>
+        <section>
+          <h2>🎯 Project Mission</h2>
+          <ul>
+            <li>
+              You're designing a <b>robot drivetrain system</b> for competition!
+            </li>
+            <li>
+              Your team has <b>different motor speeds</b> and
+              <b>gear sizes</b> available.
+            </li>
+            <li>
+              Calculate <b>ALL possible combinations</b> to find the perfect
+              setup.
+            </li>
+            <li>
+              Analyze the results to optimize for speed, torque, or balance.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📊 Available Components</h2>
+          <ul>
+            <li>
+              <b>Input RPM Options:</b> 100, 200, 600 (different motor speeds)
+            </li>
+            <li><b>Available Gears:</b> 12, 24, 36, 48, 60, 72, 80 teeth</li>
+            <li><b>Each gear can be:</b> Driving gear OR Driven gear</li>
+            <li>
+              <b>Total Combinations:</b> 3 × 7 × 7 =
+              <span class="highlight">147 setups</span>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🧮 Engineering Formulas</h2>
+          <ul>
+            <li><b>Gear Ratio = Driven Gear ÷ Driving Gear</b></li>
+            <li><b>Output RPM = Input RPM ÷ Gear Ratio</b></li>
+          </ul>
+          <pre><code>// Use the functions from Lesson 1!
+double calculateGearRatio(int drivingGear, int drivenGear) {
+  return (double)drivenGear / drivingGear;
+}
+
+double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear) {
+  double gearRatio = calculateGearRatio(drivingGear, drivenGear);
+  return inputRPM / gearRatio;
+}</code></pre>
+        </section>
+        <section>
+          <h2>💻 Project Code Structure</h2>
+          <pre><code>// Robot Gear System Optimizer
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+  // Available options (use arrays!)
+  int inputRPMs[] = {100, 200, 600};
+  int gearSizes[] = {12, 24, 36, 48, 60, 72, 80};
+  
+  cout << "🤖 ROBOT GEAR SYSTEM ANALYSIS 🤖" << endl;
+  cout << "=====================================" << endl;
+  
+  // YOUR CODE HERE: Use nested loops to test all combinations
+  // For each input RPM...
+  //   For each driving gear...
+  //     For each driven gear...
+  //       Calculate ratio and output RPM
+  //       Display the results
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>📋 Expected Output Format</h2>
+          <pre><code>🤖 ROBOT GEAR SYSTEM ANALYSIS 🤖
+=====================================
+Input: 100 RPM | Driving: 12T | Driven: 12T | Ratio: 1.00 | Output: 100 RPM
+Input: 100 RPM | Driving: 12T | Driven: 24T | Ratio: 2.00 | Output: 50 RPM
+Input: 100 RPM | Driving: 12T | Driven: 36T | Ratio: 3.00 | Output: 33 RPM
+Input: 100 RPM | Driving: 12T | Driven: 48T | Ratio: 4.00 | Output: 25 RPM
+...
+Input: 600 RPM | Driving: 80T | Driven: 80T | Ratio: 1.00 | Output: 600 RPM
+
+ANALYSIS COMPLETE: 147 combinations tested!</code></pre>
+        </section>
+        <section>
+          <h2>🏆 Bonus Challenges</h2>
+          <ul>
+            <li>
+              <b>Speed Demon:</b> Find and highlight the fastest setup (highest
+              output RPM)
+            </li>
+            <li>
+              <b>Balanced Bot:</b> Find the setup closest to 300 RPM output
+            </li>
+            <li>
+              <b>Perfect Ratios:</b> Count how many setups have whole number
+              ratios (1:1, 2:1, 3:1, etc.)
+            </li>
+            <li>
+              <b>Efficiency Expert:</b> Find setups where input gear = output
+              gear (1:1 ratio)
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🔬 Real-World Engineering</h2>
+          <ul>
+            <li>
+              <b>FRC/VEX Robotics:</b> Teams use this exact analysis for
+              competition robots
+            </li>
+            <li>
+              <b>Automotive:</b> Car transmissions work on the same principles
+            </li>
+            <li>
+              <b>Manufacturing:</b> Conveyor belts and factory machines use gear
+              calculations
+            </li>
+            <li><b>Drones/RC:</b> Motor and propeller combinations</li>
+          </ul>
+        </section>
+        <section>
+          <h2>✅ Project Checklist</h2>
+          <ul>
+            <li>☐ Use <b>arrays</b> to store RPM and gear options</li>
+            <li>☐ Use <b>nested loops</b> to test all combinations</li>
+            <li>☐ Use <b>functions</b> from Lesson 1 for calculations</li>
+            <li>☐ Display all 147 combinations in a clear format</li>
+            <li>☐ Add at least one bonus challenge</li>
+            <li>☐ Test your program with the expected output</li>
+          </ul>
+        </section>
+        <section>
+          <h2>🚀 Ready to Build?</h2>
+          <ul>
+            <li>
+              This project combines <b>everything</b> you've learned so far!
+            </li>
+            <li>
+              <b>Arrays</b> for data storage, <b>loops</b> for repetition,
+              <b>functions</b> for calculations
+            </li>
+            <li>
+              You're solving <b>real engineering problems</b> that robotics
+              teams face every day
+            </li>
+            <li>
+              <b>Have fun and experiment!</b> Try different approaches and see
+              what works
+            </li>
+          </ul>
+        </section>
+        <!-- End Project 1 -->
+
+        <!-- Lesson 5: Objects & Structs -->
+        <section>
+          <h1>🏗️ Lesson 5: Objects & Structs</h1>
+          <h3>
+            <span class="emoji">📦</span> Grouping Related Information Together
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What are Structs?</h2>
+          <ul>
+            <li>
+              A <span class="highlight">struct</span> lets you group related
+              information together in one place.
+            </li>
+            <li>
+              Like creating a player profile with name, level, health, and coins
+              all bundled together!
+            </li>
+            <li>
+              Think of it as a custom container or blueprint for your data.
+            </li>
+            <li>
+              Perfect for organizing complex information that belongs together.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📋 Creating Your First Struct</h2>
+          <ul>
+            <li>
+              Use the <code>struct</code> keyword to define your blueprint
+            </li>
+            <li>List all the related data inside curly braces</li>
+            <li>Don't forget the semicolon at the end!</li>
+          </ul>
+          <pre><code>struct Player {
+  string name;
+  int level;
+  int health;
+  int coins;
+  bool isOnline;
+};</code></pre>
+          <ul>
+            <li>
+              This creates a <b>blueprint</b> - like a template for making
+              players
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🎮 Using Structs: Creating Objects</h2>
+          <pre><code>struct Player {
+  string name;
+  int level;
+  int health;
+  int coins;
+};
+
+int main() {
+  // Create a player object
+  Player hero;
+  hero.name = "DragonSlayer";
+  hero.level = 15;
+  hero.health = 100;
+  hero.coins = 250;
+  
+  cout << "Player: " << hero.name << endl;
+  cout << "Level: " << hero.level << endl;
+  cout << "Health: " << hero.health << endl;
+  cout << "Coins: " << hero.coins << endl;
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>⚡ Initializing Structs</h2>
+          <ul>
+            <li>You can set values when you create the struct object</li>
+            <li>Two ways: individual assignment or list initialization</li>
+          </ul>
+          <pre><code>// Method 1: List initialization (C++11 and newer)
+Player hero = {"DragonSlayer", 15, 100, 250};
+
+// Method 2: Individual assignment
+Player sidekick;
+sidekick.name = "MagicArcher";
+sidekick.level = 12;
+sidekick.health = 85;
+sidekick.coins = 180;
+
+// Method 3: Default then modify
+Player newbie = {"Rookie", 1, 50, 10};
+newbie.health = 75;  // Power up!</code></pre>
+        </section>
+        <section>
+          <h2>🎯 Struct Example: Robot Sensor Data</h2>
+          <pre><code>struct SensorReading {
+  string sensorName;
+  double temperature;
+  double humidity;
+  bool isWorking;
+  int batteryLevel;
+};
+
+int main() {
+  SensorReading frontSensor = {"Front-Cam", 23.5, 45.2, true, 87};
+  
+  cout << "🤖 Robot Sensor Report 🤖" << endl;
+  cout << "Sensor: " << frontSensor.sensorName << endl;
+  cout << "Temperature: " << frontSensor.temperature << "°C" << endl;
+  cout << "Humidity: " << frontSensor.humidity << "%" << endl;
+  cout << "Status: " << (frontSensor.isWorking ? "Working" : "Broken") << endl;
+  cout << "Battery: " << frontSensor.batteryLevel << "%" << endl;
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>👥 Arrays of Structs</h2>
+          <ul>
+            <li>You can create arrays that hold multiple struct objects!</li>
+            <li>
+              Perfect for managing teams, inventories, or sensor networks.
+            </li>
+          </ul>
+          <pre><code>struct Enemy {
+  string name;
+  int health;
+  int damage;
+  string type;
+};
+
+Enemy bosses[3] = {
+  {"Fire Dragon", 500, 75, "Mythical"},
+  {"Ice Giant", 400, 60, "Legendary"},  
+  {"Shadow Warrior", 300, 85, "Elite"}
+};
+
+cout << "🏰 Boss Battle Arena 🏰" << endl;
+for (int i = 0; i < 3; i++) {
+  cout << bosses[i].name << " (" << bosses[i].type << ")" << endl;
+  cout << "  HP: " << bosses[i].health << " | DMG: " << bosses[i].damage << endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 1: Project 1 Extension - Gear Data Structures</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Convert Project 1 to use structs instead of just
+              printing results
+            </li>
+            <li>
+              Create a <code>GearCombination</code> struct to store each setup
+            </li>
+            <li>
+              Generate all 147 combinations and store them in an array of
+              structs
+            </li>
+            <li>Display the data in an organized way</li>
+            <li>
+              <b>Bonus:</b> Find the fastest combination using struct data!
+            </li>
+          </ul>
+          <pre><code>// Hint: Start with this structure
+struct GearCombination {
+  int inputRPM;
+  int drivingGear;
+  int drivenGear;
+  double gearRatio;
+  double outputRPM;
+};
+
+// Create array to store all combinations
+GearCombination allCombinations[147];
+
+// Use your Project 1 nested loops to fill the array
+// Then display and analyze the data!</code></pre>
+        </section>
+        <section>
+          <h2>🔧 Functions with Structs</h2>
+          <ul>
+            <li>You can pass structs to functions just like other variables</li>
+            <li>Great for organizing code and reusing logic</li>
+            <li>Perfect for processing your gear combination data!</li>
+          </ul>
+          <pre><code>struct GearCombination {
+  int inputRPM;
+  int drivingGear;
+  int drivenGear;
+  double outputRPM;
+};
+
+// Function to display a single combination
+void displayCombination(GearCombination combo) {
+  cout << "Input: " << combo.inputRPM << " RPM | ";
+  cout << "Gears: " << combo.drivingGear << "T → " << combo.drivenGear << "T | ";
+  cout << "Output: " << combo.outputRPM << " RPM" << endl;
+}
+
+// Function to find fastest combination
+GearCombination findFastest(GearCombination combos[], int size) {
+  GearCombination fastest = combos[0];
+  for (int i = 1; i < size; i++) {
+    if (combos[i].outputRPM > fastest.outputRPM) {
+      fastest = combos[i];
+    }
+  }
+  return fastest;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 2: Roblox Game Collection Manager</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create a digital library to track your favorite
+              Roblox games
+            </li>
+            <li>
+              Design a <code>RobloxGame</code> struct to store game information
+            </li>
+            <li>Build functions to manage and analyze your game collection</li>
+            <li>Find your gaming patterns and discover new favorites!</li>
+            <li>
+              <b>Super Bonus:</b> Create a recommendation system based on your
+              preferences!
+            </li>
+          </ul>
+          <pre><code>// Hint: Start with this structure
+struct RobloxGame {
+  string name;
+  string genre;      // "Adventure", "Simulator", "Fighting", etc.
+  double rating;     // 1.0 to 5.0 stars
+  int playtimeHours;
+  bool isFavorite;
+  string lastPlayed; // "2024-01-15"
+};
+
+// Create your game collection
+RobloxGame myGames[10];
+
+// Functions to implement:
+// - displayGame() - show game details
+// - findHighestRated() - discover your top games  
+// - calculateTotalPlaytime() - see your gaming hours
+// - findGamesByGenre() - filter by game type</code></pre>
+        </section>
+
+        <section>
+          <h2>💡 Real-World Applications</h2>
+          <ul>
+            <li><b>Game Development:</b> Player stats, items, NPCs, levels</li>
+            <li>
+              <b>Robotics:</b> Sensor data, motor configurations, waypoints
+            </li>
+            <li>
+              <b>Database Systems:</b> User records, product catalogs,
+              transactions
+            </li>
+            <li>
+              <b>Scientific Computing:</b> Experiment data, measurements,
+              results
+            </li>
+            <li>
+              <b>Mobile Apps:</b> User profiles, settings, content objects
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🎓 Structs vs Arrays: When to Use What?</h2>
+          <ul>
+            <li>
+              <b>Use Arrays when:</b> You have multiple items of the
+              <u>same type</u>
+            </li>
+            <li>
+              <b>Use Structs when:</b> You need to group
+              <u>different types</u> of related data
+            </li>
+          </ul>
+          <pre><code>// Array: Multiple items of same type
+int playerScores[5] = {100, 85, 92, 78, 95};
+
+// Struct: Different types of related data
+struct Player {
+  string name;    // text
+  int score;      // number
+  bool isActive;  // true/false
+  double rating;  // decimal
+};
+
+// Best of both: Array of structs!
+Player team[5];</code></pre>
+        </section>
+        <section>
+          <h2>🏁 Lesson 5 Recap</h2>
+          <ul>
+            <li>
+              <b>Structs</b> group related data of different types together
+            </li>
+            <li><b>Dot notation</b> (.) accesses individual struct members</li>
+            <li>
+              <b>Arrays of structs</b> manage collections of complex objects
+            </li>
+            <li><b>Functions with structs</b> organize and reuse your code</li>
+            <li>
+              <b>Real applications</b> everywhere: games, robots, databases,
+              apps
+            </li>
+            <li>
+              Structs make your programs more organized and easier to
+              understand!
+            </li>
+          </ul>
+        </section>
+        <!-- End Lesson 5 -->
+        
+        <!-- Lesson 6: Standard Library Power Tools -->
+        <section>
+          <h1>🛠️ Lesson 6: Standard Library Power Tools</h1>
+          <h3>
+            <span class="emoji">⚡</span> Unlock C++'s Built-in Superpowers
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What is the Standard Library?</h2>
+          <ul>
+            <li>
+              The <span class="highlight">Standard Library</span> is like a toolbox of pre-built functions that come with C++.
+            </li>
+            <li>
+              Instead of writing everything from scratch, you can use these powerful, tested tools!
+            </li>
+            <li>
+              Think of it as <b>superpowers for your code</b> - math, text processing, data handling, and more.
+            </li>
+            <li>
+              Just add <code>#include</code> statements to unlock these features.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🎯 String Power Functions</h2>
+          <ul>
+            <li>
+              Beyond basic string storage, C++ provides amazing text manipulation tools!
+            </li>
+            <li>Perfect for chat systems, usernames, game text, and data processing.</li>
+          </ul>
+          <pre><code>#include &lt;string&gt;
+using namespace std;
+
+string playerName = "DragonSlayer123";
+string message = "Welcome to the epic battle arena!";
+
+// Find text within strings
+if (playerName.find("Dragon") != string::npos) {
+  cout << "You have dragon powers!" << endl;
+}
+
+// Get part of a string (substring)
+string shortName = playerName.substr(0, 6); // "Dragon"
+cout << "Short name: " << shortName << endl;
+
+// Replace text
+string cleanMessage = message;
+size_t pos = cleanMessage.find("battle");
+if (pos != string::npos) {
+  cleanMessage.replace(pos, 6, "peaceful");
+}
+cout << cleanMessage << endl; // "Welcome to the epic peaceful arena!"</code></pre>
+        </section>
+        <section>
+          <h2>🎮 Challenge 1: Roblox Username Validator</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create a username validation system for a Roblox-style game!
+            </li>
+            <li>Check if usernames meet requirements and suggest improvements.</li>
+          </ul>
+          <pre><code>// Username validation function
+bool isValidUsername(string username) {
+  // Check length (must be 3-20 characters)
+  if (username.length() < 3 || username.length() > 20) {
+    return false;
+  }
+  
+  // Check for inappropriate words
+  if (username.find("admin") != string::npos || 
+      username.find("moderator") != string::npos) {
+    return false;
+  }
+  
+  // Must contain at least one letter
+  bool hasLetter = false;
+  for (char c : username) {
+    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) {
+      hasLetter = true;
+      break;
+    }
+  }
+  
+  return hasLetter;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🔢 Math Library Magic</h2>
+          <ul>
+            <li>
+              The <code>&lt;cmath&gt;</code> library provides powerful mathematical functions.
+            </li>
+            <li>Perfect for physics simulations, graphics, robotics calculations!</li>
+          </ul>
+          <pre><code>#include &lt;cmath&gt;
+using namespace std;
+
+// Distance between two points (Pythagorean theorem)
+double calculateDistance(double x1, double y1, double x2, double y2) {
+  double deltaX = x2 - x1;
+  double deltaY = y2 - y1;
+  return sqrt(deltaX * deltaX + deltaY * deltaY);
+}
+
+// Power calculations for robot motors
+double motorPower = pow(2.5, 3); // 2.5^3 = 15.625
+
+// Trigonometry for robot arm positioning
+double angle = 45.0;
+double radians = angle * M_PI / 180.0; // Convert to radians
+double armX = 10 * cos(radians);       // X position
+double armY = 10 * sin(radians);       // Y position
+
+cout << "Arm position: (" << armX << ", " << armY << ")" << endl;</code></pre>
+        </section>
+        <section>
+          <h2>🎲 Random Number Generation</h2>
+          <ul>
+            <li>
+              Create unpredictable games, simulations, and challenges!
+            </li>
+            <li>C++11 introduced much better random number tools.</li>
+          </ul>
+          <pre><code>#include &lt;random&gt;
+using namespace std;
+
+// Modern C++ random number generation
+random_device rd;  // Hardware random seed
+mt19937 gen(rd()); // Mersenne Twister generator
+
+// Generate random integers in a range
+uniform_int_distribution&lt;int&gt; diceRoll(1, 6);
+uniform_int_distribution&lt;int&gt; damage(10, 50);
+
+// Generate random floating point numbers
+uniform_real_distribution&lt;double&gt; critChance(0.0, 1.0);
+
+// Use in your game
+int playerDice = diceRoll(gen);
+int enemyDamage = damage(gen);
+double criticalHit = critChance(gen);
+
+cout << "🎲 Dice roll: " << playerDice << endl;
+cout << "💥 Enemy damage: " << enemyDamage << endl;
+if (criticalHit > 0.8) {
+  cout << "⚡ CRITICAL HIT!" << endl;
+}</code></pre>
+        </section>
+        <section>
+          <h2>📊 Vector: Dynamic Arrays</h2>
+          <ul>
+            <li>
+              <span class="highlight">vector</span> is like an array that can grow and shrink automatically!
+            </li>
+            <li>No more worrying about fixed sizes - perfect for game inventories, sensor data, scoreboards.</li>
+          </ul>
+          <pre><code>#include &lt;vector&gt;
+using namespace std;
+
+// Create a vector (dynamic array)
+vector&lt;int&gt; playerScores;
+vector&lt;string&gt; inventory;
+
+// Add items to the vector
+playerScores.push_back(1250);  // Add score
+playerScores.push_back(980);
+playerScores.push_back(1500);
+
+inventory.push_back("Sword");
+inventory.push_back("Shield");
+inventory.push_back("Health Potion");
+
+// Access elements just like arrays
+cout << "Best score: " << playerScores[2] << endl;
+cout << "First item: " << inventory[0] << endl;
+
+// Vector automatically knows its size
+cout << "Total scores: " << playerScores.size() << endl;
+cout << "Inventory items: " << inventory.size() << endl;
+
+// Remove the last item
+inventory.pop_back(); // Removes "Health Potion"</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 2: Dynamic Sensor Array</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create a robot sensor monitoring system that can handle any number of sensors!
+            </li>
+            <li>Use vectors to store sensor data and calculate statistics.</li>
+          </ul>
+          <pre><code>#include &lt;vector&gt;
+#include &lt;string&gt;
+#include &lt;numeric&gt; // for accumulate
+
+struct SensorReading {
+  string name;
+  double value;
+  bool isOnline;
+};
+
+int main() {
+  vector&lt;SensorReading&gt; sensors;
+  
+  // Add sensors dynamically
+  sensors.push_back({"Temperature", 23.5, true});
+  sensors.push_back({"Humidity", 67.2, true});
+  sensors.push_back({"Distance", 45.8, false});
+  sensors.push_back({"Light", 892.1, true});
+  
+  // Process all sensors
+  cout << "🤖 Robot Sensor Dashboard 🤖" << endl;
+  int onlineCount = 0;
+  vector&lt;double&gt; validReadings;
+  
+  for (const auto& sensor : sensors) {
+    cout << sensor.name << ": " << sensor.value;
+    if (sensor.isOnline) {
+      cout << " ✅ ONLINE" << endl;
+      onlineCount++;
+      validReadings.push_back(sensor.value);
+    } else {
+      cout << " ❌ OFFLINE" << endl;
+    }
+  }
+  
+  cout << "\n📊 Statistics:" << endl;
+  cout << "Total sensors: " << sensors.size() << endl;
+  cout << "Online sensors: " << onlineCount << endl;
+  
+  return 0;
+}</code></pre>
+        </section>
+        <section>
+          <h2>🔍 Algorithm Library</h2>
+          <ul>
+            <li>
+              The <code>&lt;algorithm&gt;</code> library provides powerful functions for working with data collections.
+            </li>
+            <li>Sorting, searching, counting - all optimized and ready to use!</li>
+          </ul>
+          <pre><code>#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+using namespace std;
+
+vector&lt;int&gt; gameScores = {1250, 890, 1500, 750, 1100, 2000, 650};
+vector&lt;string&gt; players = {"Alex", "Jordan", "Casey", "Riley", "Sam"};
+
+// Sort scores from highest to lowest
+sort(gameScores.begin(), gameScores.end(), greater&lt;int&gt;());
+
+// Find specific values
+auto it = find(players.begin(), players.end(), "Jordan");
+if (it != players.end()) {
+  cout << "Found Jordan at position " << (it - players.begin()) << endl;
+}
+
+// Count how many scores are above 1000
+int highScores = count_if(gameScores.begin(), gameScores.end(), 
+                         [](int score) { return score > 1000; });
+cout << "Players with 1000+ points: " << highScores << endl;
+
+// Find the maximum score
+auto maxScore = *max_element(gameScores.begin(), gameScores.end());
+cout << "Highest score: " << maxScore << endl;</code></pre>
+        </section>
+        <section>
+          <h2>📁 File Input/Output Basics</h2>
+          <ul>
+            <li>
+              Save game progress, load configuration files, log robot sensor data!
+            </li>
+            <li>C++ makes it easy to work with files.</li>
+          </ul>
+          <pre><code>#include &lt;fstream&gt;
+#include &lt;string&gt;
+using namespace std;
+
+// Write data to a file
+void saveGameData(const string& playerName, int level, int score) {
+  ofstream file("savegame.txt");
+  if (file.is_open()) {
+    file << "Player: " << playerName << endl;
+    file << "Level: " << level << endl;
+    file << "Score: " << score << endl;
+    file.close();
+    cout << "Game saved successfully!" << endl;
+  }
+}
+
+// Read data from a file
+void loadGameData() {
+  ifstream file("savegame.txt");
+  string line;
+  
+  if (file.is_open()) {
+    cout << "📁 Loading save game:" << endl;
+    while (getline(file, line)) {
+      cout << line << endl;
+    }
+    file.close();
+  } else {
+    cout << "No save file found!" << endl;
+  }
+}</code></pre>
+        </section>
+        <section>
+          <h2>🗺️ Map: Key-Value Storage</h2>
+          <ul>
+            <li>
+              <span class="highlight">map</span> stores pairs of keys and values - like a dictionary!
+            </li>
+            <li>Perfect for player inventories, settings, translations, or any lookup system.</li>
+          </ul>
+          <pre><code>#include &lt;map&gt;
+using namespace std;
+
+// Player inventory using map
+map&lt;string, int&gt; inventory;
+inventory["Sword"] = 1;
+inventory["Health Potion"] = 5;
+inventory["Gold Coins"] = 247;
+inventory["Magic Shield"] = 1;
+
+// Check if player has an item
+if (inventory.find("Sword") != inventory.end()) {
+  cout << "Player has a sword!" << endl;
+}
+
+// Display all inventory items
+cout << "🎒 Player Inventory:" << endl;
+for (const auto& item : inventory) {
+  cout << item.first << ": " << item.second << endl;
+}
+
+// Add or modify items
+inventory["Health Potion"] += 3; // Add 3 more potions
+inventory["Magic Bow"] = 1;      // Add new item
+
+cout << "Health Potions: " << inventory["Health Potion"] << endl;</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 3: Advanced Game Statistics System</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create a comprehensive game statistics tracker that uses multiple standard library tools!
+            </li>
+            <li>Track players, scores, achievements, and generate reports.</li>
+          </ul>
+          <pre><code>// Hint: Combine multiple standard library features
+#include &lt;vector&gt;
+#include &lt;map&gt;
+#include &lt;algorithm&gt;
+#include &lt;string&gt;
+#include &lt;random&gt;
+
+struct PlayerStats {
+  string name;
+  vector&lt;int&gt; gameScores;
+  map&lt;string, bool&gt; achievements;
+  int totalPlaytime; // minutes
+};
+
+class GameStatsManager {
+private:
+  vector&lt;PlayerStats&gt; players;
+  map&lt;string, int&gt; globalAchievements;
+  
+public:
+  void addPlayer(const string& name);
+  void recordScore(const string& playerName, int score);
+  void unlockAchievement(const string& playerName, const string& achievement);
+  void generateLeaderboard();
+  void generatePlayerReport(const string& playerName);
+  PlayerStats findTopPlayer();
+  vector&lt;string&gt; getPlayersWithAchievement(const string& achievement);
+};
+
+// Your task: Implement all these functions using standard library tools!</code></pre>
+        </section>
+        <section>
+          <h2>⏰ Time and Date Utilities</h2>
+          <ul>
+            <li>
+              Track play sessions, measure performance, create timestamps!
+            </li>
+            <li>C++ provides several ways to work with time.</li>
+          </ul>
+          <pre><code>#include &lt;chrono&gt;
+#include &lt;ctime&gt;
+using namespace std;
+
+// Measure how long code takes to run
+auto start = chrono::high_resolution_clock::now();
+
+// ... your code here (like a complex calculation) ...
+vector&lt;int&gt; bigArray(1000000);
+for (int i = 0; i < 1000000; i++) {
+  bigArray[i] = i * i;
+}
+
+auto end = chrono::high_resolution_clock::now();
+auto duration = chrono::duration_cast&lt;chrono::milliseconds&gt;(end - start);
+cout << "Code took " << duration.count() << " milliseconds" << endl;
+
+// Get current date and time
+time_t now = time(0);
+string timeStr = ctime(&now);
+cout << "Game session started: " << timeStr;</code></pre>
+        </section>
+        <section>
+          <h2>🎯 Best Practices: When to Use What</h2>
+          <ul>
+            <li><b>vector</b> instead of arrays when size changes</li>
+            <li><b>map</b> for key-value lookups (inventories, settings)</li>
+            <li><b>string functions</b> for text processing and validation</li>
+            <li><b>algorithm</b> functions instead of writing your own loops</li>
+            <li><b>random</b> library for any randomness (not rand()!)</li>
+            <li><b>chrono</b> for precise timing measurements</li>
+          </ul>
+          <pre><code>// Good practices examples
+vector&lt;int&gt; scores;        // Dynamic size ✅
+map&lt;string, Player&gt; team;  // Fast lookups ✅
+sort(scores.begin(), scores.end()); // Optimized sorting ✅
+
+// Avoid these older approaches
+int scores[100];           // Fixed size ❌
+srand(time(NULL)); rand(); // Old random ❌</code></pre>
+        </section>
+        <section>
+          <h2>💡 Real-World Applications</h2>
+          <ul>
+            <li><b>Game Development:</b> Inventory systems, leaderboards, save files, random events</li>
+            <li><b>Robotics:</b> Sensor data processing, pathfinding algorithms, configuration files</li>
+            <li><b>Data Analysis:</b> Processing CSV files, statistical calculations, data visualization</li>
+            <li><b>Web Development:</b> JSON parsing, template systems, user session management</li>
+            <li><b>Scientific Computing:</b> Mathematical modeling, data collection, result analysis</li>
+          </ul>
+        </section>
+        <section>
+          <h2>🏁 Lesson 6 Recap</h2>
+          <ul>
+            <li><b>Standard Library</b> provides powerful, tested tools out of the box</li>
+            <li><b>String functions</b> handle text processing and validation</li>
+            <li><b>vector</b> gives you dynamic arrays that grow as needed</li>
+            <li><b>map</b> provides fast key-value storage and lookups</li>
+            <li><b>Algorithm library</b> offers optimized sorting, searching, and processing</li>
+            <li><b>Random, math, and time</b> libraries handle specialized tasks</li>
+            <li>These tools make your programs more powerful and professional!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 6 -->
+        
+        <!-- Lesson 7: Classes & Object-Oriented Programming -->
+        <section>
+          <h1>🏗️ Lesson 7: Classes</h1>
+          <h3>
+            <span class="emoji">🎭</span> Structs with Superpowers
+          </h3>
+        </section>
+        <section>
+          <h2>🤔 What are Classes?</h2>
+          <ul>
+            <li>
+              A <span class="highlight">class</span> is like a struct that can also have functions!
+            </li>
+            <li>
+              Classes bundle data and actions together in one place.
+            </li>
+            <li>
+              Think of it as a <b>blueprint</b> - like a recipe for making objects.
+            </li>
+            <li>
+              Perfect for creating game characters, robots, or any "thing" that has both properties and behaviors.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>📋 Your First Class</h2>
+          <ul>
+            <li>
+              Let's upgrade our Player struct to a Player class with built-in abilities!
+            </li>
+          </ul>
+          <pre><code>class Player {
+private:
+  string name;
+  int level;
+  int health;
+  int coins;
+
+public:
+  // Constructor - runs when you create a player
+  Player(string playerName) {
+    name = playerName;
+    level = 1;
+    health = 100;
+    coins = 50;
+  }
+  
+  // Functions that belong to the player
+  void showStats() {
+    cout << "🎮 " << name << " (Level " << level << ")" << endl;
+    cout << "Health: " << health << " | Coins: " << coins << endl;
+  }
+  
+  void takeDamage(int damage) {
+    health -= damage;
+    cout << name << " takes " << damage << " damage!" << endl;
+  }
+  
+  void earnCoins(int amount) {
+    coins += amount;
+    cout << name << " earned " << amount << " coins!" << endl;
+  }
+};</code></pre>
+        </section>
+        <section>
+          <h2>🎮 Using Your Class</h2>
+          <pre><code>int main() {
+  // Create players using your class
+  Player hero("DragonSlayer");
+  Player friend("MagicArcher");
+  
+  // Use their built-in abilities
+  hero.showStats();
+  friend.showStats();
+  
+  // Simulate gameplay
+  cout << "\n⚔️ Adventure begins!" << endl;
+  hero.takeDamage(25);
+  hero.earnCoins(100);
+  hero.showStats();
+  
+  return 0;
+}</code></pre>
+          <ul>
+            <li>
+              Creating objects automatically runs the constructor
+            </li>
+            <li>
+              Use dot notation to call methods: <code>hero.showStats()</code>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🔒 Private vs Public</h2>
+          <ul>
+            <li>
+              <b>Private:</b> Data that only the class can access (hidden and protected)
+            </li>
+            <li>
+              <b>Public:</b> Functions that other code can use
+            </li>
+            <li>
+              This protects your data from being accidentally broken!
+            </li>
+          </ul>
+          <pre><code>class Robot {
+private:
+  int batteryLevel;  // Can't access this directly from outside
+  double speed;      // Protected from external changes
+  
+public:
+  Robot(string name) {
+    batteryLevel = 100;
+    speed = 0;
+  }
+  
+  // Safe ways to interact with private data
+  void moveForward() {
+    if (batteryLevel > 10) {
+      speed = 5.0;
+      batteryLevel -= 10;
+      cout << "Moving forward!" << endl;
+    } else {
+      cout << "Battery too low!" << endl;
+    }
+  }
+  
+  int getBatteryLevel() {
+    return batteryLevel;
+  }
+};</code></pre>
+        </section>
+        <section>
+          <h2>🚀 Challenge 1: Game Inventory Class</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create an Inventory class for managing game items!
+            </li>
+            <li>Keep track of items and make sure players can't cheat.</li>
+          </ul>
+          <pre><code>class Inventory {
+private:
+  map&lt;string, int&gt; items;
+  int maxSlots;
+  
+public:
+  Inventory(int slots = 10) {
+    maxSlots = slots;
+  }
+  
+  // Methods to implement:
+  bool addItem(string itemName, int quantity = 1);
+  bool removeItem(string itemName, int quantity = 1);
+  void showInventory();
+  int getItemCount(string itemName);
+  bool isFull();
+  
+  // Bonus: Add weight limits, rare items, item categories!
+};</code></pre>
+        </section>
+        <section>
+          <h2>👑 Inheritance: Making Specialized Classes</h2>
+          <ul>
+            <li>
+              <span class="highlight">Inheritance</span> lets you create specialized versions of a class.
+            </li>
+            <li>
+              Like how a Gaming Laptop is a type of Computer - it has everything a Computer has, plus gaming features!
+            </li>
+          </ul>
+          <pre><code>// Base class - the general version
+class Character {
+protected:  // Like private, but child classes can use it
+  string name;
+  int health;
+  int level;
+  
+public:
+  Character(string charName) {
+    name = charName;
+    health = 100;
+    level = 1;
+  }
+  
+  void showInfo() {
+    cout << name << " (Level " << level << ", HP: " << health << ")" << endl;
+  }
+  
+  virtual void attack() {  // virtual = can be customized by child classes
+    cout << name << " attacks!" << endl;
+  }
+};
+
+// Specialized class - inherits from Character
+class Warrior : public Character {
+public:
+  Warrior(string name) : Character(name) {
+    health = 150;  // Warriors have more health
+  }
+  
+  void attack() override {  // Custom attack for warriors
+    cout << name << " swings a mighty sword! ⚔️" << endl;
+  }
+};</code></pre>
+        </section>
+        <section>
+          <h2>🎮 Simple Inheritance Example</h2>
+          <pre><code>// Let's see inheritance in action!
+int main() {
+  Character basicChar("Alex");
+  Warrior strongHero("Conan");
+  
+  cout << "Basic character:" << endl;
+  basicChar.showInfo();
+  basicChar.attack();
+  
+  cout << "\nWarrior character:" << endl;
+  strongHero.showInfo();
+  strongHero.attack();  // Uses the warrior's special attack!
+  
+  return 0;
+}</code></pre>
+          <ul>
+            <li>
+              The Warrior gets everything from Character, plus its own special abilities
+            </li>
+            <li>
+              You can override methods to make specialized versions
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>🚀 Challenge 2: Robot Family</h2>
+          <ul>
+            <li>
+              <b>Mission:</b> Create different types of robots using inheritance!
+            </li>
+            <li>Each robot type should have unique abilities.</li>
+          </ul>
+          <pre><code>// Base Robot class
+class Robot {
+protected:
+  string name;
+  int batteryLevel;
+  double x, y;  // position
+  
+public:
+  Robot(string robotName) {
+    name = robotName;
+    batteryLevel = 100;
+    x = 0; y = 0;
+  }
+  
+  void showStatus() {
+    cout << name << " - Battery: " << batteryLevel << "%" << endl;
+  }
+  
+  virtual void performTask() {
+    cout << name << " is working..." << endl;
+  }
+};
+
+// Your task: Create these robot types
+class CleaningRobot : public Robot {
+  // Should vacuum and mop
+};
+
+class SecurityRobot : public Robot {
+  // Should patrol and sound alarms
+};
+
+class DeliveryRobot : public Robot {
+  // Should carry packages and navigate
+};</code></pre>
+        </section>
+        <section>
+          <h2>💡 When to Use Classes</h2>
+          <ul>
+            <li><b>Game Development:</b> Players, enemies, items with special abilities</li>
+            <li><b>Robotics:</b> Different robot types with specialized functions</li>
+            <li><b>Apps:</b> User accounts, posts, messages with behaviors</li>
+            <li><b>Simulations:</b> Cars, animals, particles that act and react</li>
+          </ul>
+          <pre><code>// Classes make code cleaner and more organized
+class Car {
+private:
+  double fuel, speed;
+  bool engineOn;
+  
+public:
+  Car() { fuel = 100; speed = 0; engineOn = false; }
+  
+  void startEngine() { engineOn = true; }
+  void accelerate() { if (engineOn) speed += 10; }
+  void brake() { speed = max(0.0, speed - 15); }
+  void showDashboard() {
+    cout << "Speed: " << speed << " | Fuel: " << fuel << "%" << endl;
+  }
+};</code></pre>
+        </section>
+        <section>
+          <h2>🏁 Lesson 7 Recap</h2>
+          <ul>
+            <li><b>Classes</b> are structs that can also contain functions</li>
+            <li><b>Private/Public</b> controls who can access your data</li>
+            <li><b>Constructors</b> set up objects when they're created</li>
+            <li><b>Inheritance</b> lets you create specialized versions of classes</li>
+            <li><b>Methods</b> are functions that belong to objects</li>
+            <li>Classes help organize complex programs and keep data safe!</li>
+          </ul>
+        </section>
+        <!-- End Lesson 7 -->
+      </div>
+    </div>
+    <script src="libs/revealjs/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+        hash: true,
+        controls: true,
+        progress: true,
+        slideNumber: true,
+        jumpToSlide: true,
+        transition: "slide",
+        backgroundTransition: "zoom",
+        embedded: false,
+        center: false,
+        width: 1280,
+        height: 720,
+        margin: 0.05,
+        minScale: 0.1,
+        maxScale: 2.0,
+        disableLayout: true,
+        touch: true,
+        scrollActivationWidth: null,
+        
+        // Enable speaker notes
+        showNotes: false,
+        
+        // Add keyboard shortcuts for speaker notes
+        keyboard: {
+          83: function() {
+            // Press 's' to open speaker view
+            openSpeakerView();
+          }
+        }
+      });
+
+      // Dynamic scaling system to ensure content is always fully visible
+      function adjustPresentationScale() {
+        const slides = document.querySelector('.reveal .slides');
+        const currentSlide = document.querySelector('.reveal .slides section.present');
+        
+        if (!currentSlide || !slides) return;
+
+        // Reset any existing transform to get true dimensions
+        slides.style.transform = '';
+        
+        // Force a reflow to ensure accurate measurements
+        slides.offsetHeight;
+        
+        // Get viewport dimensions with padding
+        const viewportWidth = window.innerWidth * 0.95;
+        const viewportHeight = window.innerHeight * 0.95;
+        
+        // Get actual content dimensions - use scrollHeight/Width for full content
+        const slideScrollHeight = currentSlide.scrollHeight;
+        const slideScrollWidth = currentSlide.scrollWidth;
+        
+        // Add the slides container padding to the measurements
+        const slidesStyle = window.getComputedStyle(slides);
+        const slidePaddingTop = parseFloat(slidesStyle.paddingTop) || 0;
+        const slidePaddingBottom = parseFloat(slidesStyle.paddingBottom) || 0;
+        const slidePaddingLeft = parseFloat(slidesStyle.paddingLeft) || 0;
+        const slidePaddingRight = parseFloat(slidesStyle.paddingRight) || 0;
+        
+        const totalContentWidth = slideScrollWidth + slidePaddingLeft + slidePaddingRight;
+        const totalContentHeight = slideScrollHeight + slidePaddingTop + slidePaddingBottom;
+        
+        // Calculate required scale factors
+        const scaleX = viewportWidth / totalContentWidth;
+        const scaleY = viewportHeight / totalContentHeight;
+        
+        // Use the smaller scale factor to ensure everything fits
+        const scale = Math.min(scaleX, scaleY, 1); // Don't scale up beyond 100%
+        
+        // Only apply scaling if we need to scale down
+        if (scale < 1) {
+          slides.style.transform = `scale(${scale})`;
+          
+          // Adjust the reveal container to prevent overflow
+          const reveal = document.querySelector('.reveal');
+          if (reveal) {
+            reveal.style.overflow = 'hidden';
+          }
+        } else {
+          // Reset overflow for normal cases
+          const reveal = document.querySelector('.reveal');
+          if (reveal) {
+            reveal.style.overflow = '';
+          }
+        }
+        
+                 // Debug info (remove this in production)
+         // console.log('Scale calculation:', { viewportWidth, viewportHeight, totalContentWidth, totalContentHeight, scaleX, scaleY, finalScale: scale });
+      }
+
+      // Run scaling on slide changes with slight delay for rendering
+      Reveal.on('slidechanged', () => {
+        setTimeout(adjustPresentationScale, 50);
+      });
+      
+      Reveal.on('ready', () => {
+        setTimeout(adjustPresentationScale, 100);
+      });
+      
+      // Run scaling on window resize with debouncing
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(adjustPresentationScale, 150);
+      });
+
+      // Also run after delays to ensure everything is loaded
+      setTimeout(adjustPresentationScale, 300);
+      setTimeout(adjustPresentationScale, 800);
+      
+      // Run scaling when fonts are loaded
+      if (document.fonts) {
+        document.fonts.ready.then(() => {
+          setTimeout(adjustPresentationScale, 100);
+        });
+      }
+      
+      // Speaker view functionality
+      function openSpeakerView() {
+        // Build speaker view URL
+        const currentUrl = window.location.href.split('?')[0].split('#')[0];
+        const speakerUrl = currentUrl + '?speaker-view=true';
+        
+        // Open speaker window
+        const speakerWindow = window.open(
+          speakerUrl, 
+          'speaker-view', 
+          'width=1400,height=900,scrollbars=yes,resizable=yes,location=yes'
+        );
+        
+        if (!speakerWindow) {
+          alert('🚫 Speaker view blocked!\n\nPlease:\n1. Allow popups for this site\n2. Try again\n3. Or manually open a second browser window\n\n💡 Manual URL: ' + speakerUrl);
+          console.log('🎯 Manual speaker view URL:', speakerUrl);
+        } else {
+          console.log('✅ Speaker view opened successfully!');
+          
+          // Set up communication between windows
+          window.speakerWindow = speakerWindow;
+          
+          // Sync navigation from main window to speaker view
+          Reveal.on('slidechanged', (event) => {
+            if (window.speakerWindow && !window.speakerWindow.closed) {
+              try {
+                window.speakerWindow.postMessage({
+                  type: 'slidechange',
+                  slide: event.indexh,
+                  fragment: event.indexv || 0
+                }, '*');
+              } catch (e) {
+                console.log('Sync message failed:', e);
+              }
+            }
+          });
+        }
+      }
+      
+      // Check if this is speaker view
+      const urlParams = new URLSearchParams(window.location.search);
+      const isSpeakerView = urlParams.has('speaker-view');
+      
+      if (isSpeakerView) {
+        // Modify the page for speaker view
+        document.title = '🎤 Speaker View - ' + document.title;
+        document.body.style.background = '#1a1f2e';
+        
+        // Add speaker view styling
+        const speakerStyle = document.createElement('style');
+        speakerStyle.textContent = `
+          .reveal .slides section {
+            transform: scale(0.6);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+          }
+          
+          .speaker-notes-display {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100vh;
+            background: #1a1f2e;
+            color: #e8eaed;
+            padding: 20px;
+            overflow-y: auto;
+            font-family: "Space Grotesk", sans-serif;
+            border-left: 2px solid #00f2fe;
+          }
+          
+          .speaker-timer {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background: #00f2fe;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 18px;
+          }
+          
+          .slide-counter {
+            position: fixed;
+            bottom: 20px;
+            left: 150px;
+            background: #a78bfa;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+          }
+        `;
+        document.head.appendChild(speakerStyle);
+        
+        // Create speaker notes display
+        const notesDisplay = document.createElement('div');
+        notesDisplay.className = 'speaker-notes-display';
+        notesDisplay.innerHTML = '<h2>🎤 Teaching Script</h2><p>Navigate to a slide to see the script...</p>';
+        document.body.appendChild(notesDisplay);
+        
+        // Create timer
+        const timer = document.createElement('div');
+        timer.className = 'speaker-timer';
+        timer.textContent = '⏱️ 00:00';
+        document.body.appendChild(timer);
+        
+        // Create slide counter
+        const counter = document.createElement('div');
+        counter.className = 'slide-counter';
+        counter.textContent = '📊 Slide 1';
+        document.body.appendChild(counter);
+        
+        // Start timer
+        const startTime = Date.now();
+        setInterval(() => {
+          const elapsed = Math.floor((Date.now() - startTime) / 1000);
+          const minutes = Math.floor(elapsed / 60);
+          const seconds = elapsed % 60;
+          timer.textContent = `⏱️ ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }, 1000);
+        
+        // Update notes on slide change
+        Reveal.on('slidechanged', (event) => {
+          const currentSlide = event.currentSlide;
+          const slideIndex = event.indexh + 1;
+          const totalSlides = Reveal.getTotalSlides();
+          
+          // Update counter
+          counter.textContent = `📊 Slide ${slideIndex} of ${totalSlides}`;
+          
+          // Get notes from current slide
+          const notesElement = currentSlide.querySelector('aside.notes');
+          if (notesElement) {
+            notesDisplay.innerHTML = '<h2>🎤 Teaching Script</h2>' + notesElement.innerHTML;
+          } else {
+            notesDisplay.innerHTML = '<h2>🎤 Teaching Script</h2><p><em>No script available for this slide.</em></p>';
+          }
+        });
+        
+                 // Initialize with first slide
+         setTimeout(() => {
+           const firstSlide = document.querySelector('.reveal .slides section');
+           if (firstSlide) {
+             const notesElement = firstSlide.querySelector('aside.notes');
+             if (notesElement) {
+               notesDisplay.innerHTML = '<h2>🎤 Teaching Script</h2>' + notesElement.innerHTML;
+             }
+           }
+         }, 500);
+         
+         // Listen for navigation sync from main window
+         window.addEventListener('message', (event) => {
+           if (event.data.type === 'slidechange') {
+             Reveal.slide(event.data.slide, event.data.fragment);
+           }
+         });
+       }
+    </script>
+  </body>
+</html>
