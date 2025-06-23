@@ -1623,70 +1623,6 @@ for (int i = 1; i &lt;= 5; i++) {
           </aside>
         </section>
         <section>
-          <h2>🤖 Real Robot Example</h2>
-          <pre><code>// Complete gear analysis program
-#include &lt;iostream&gt;
-using namespace std;
-
-double calculateGearRatio(int drivingGear, int drivenGear) {
-  return (double)drivenGear / drivingGear;
-}
-
-double calculateOutputRPM(int inputRPM, int drivingGear, int drivenGear) {
-  double gearRatio = calculateGearRatio(drivingGear, drivenGear);
-  return inputRPM / gearRatio;
-}
-
-int main() {
-  cout << "🤖 Robot Drivetrain Calculator 🤖" << endl;
-  
-  // Test different configurations
-  int configs[][3] = {{100, 12, 24}, {200, 24, 48}, {600, 36, 12}};
-  
-  for (int i = 0; i < 3; i++) {
-    int rpm = configs[i][0];
-    int driving = configs[i][1];
-    int driven = configs[i][2];
-    
-    double ratio = calculateGearRatio(driving, driven);
-    double output = calculateOutputRPM(rpm, driving, driven);
-    
-    cout << "Input: " << rpm << " RPM | ";
-    cout << "Gears: " << driving << "T → " << driven << "T | ";
-    cout << "Ratio: " << ratio << ":1 | ";
-    cout << "Output: " << output << " RPM" << endl;
-  }
-  
-  return 0;
-}</code></pre>
-          <aside class="notes">
-            <h3>🎤 Putting It All Together (1 minute)</h3>
-            <p><strong>"Here's where everything from Lessons 1 and 2 comes together in a real engineering application!"</strong></p>
-            <p><strong>"This program uses functions from Lesson 1, but now adds control flow concepts we just learned - specifically the FOR loop to automate testing multiple gear configurations!"</strong></p>
-            <p><strong>"Instead of manually testing each gear combination one by one, we let the computer do the repetitive work while we focus on analyzing the results!"</strong></p>
-            
-            <h3>Code Analysis (2 minutes)</h3>
-            <p><strong>"Let's analyze what makes this program powerful:"</strong></p>
-            <p><strong>"The functions calculateGearRatio and calculateOutputRPM handle the engineering math - we wrote these in Lesson 1."</strong></p>
-            <p><strong>"The array 'configs' stores different test scenarios: {RPM, driving gear, driven gear}. This is smart data organization!"</strong></p>
-            <p><strong>"The FOR loop processes each configuration automatically: for (int i = 0; i < 3; i++). No manual repetition needed!"</strong></p>
-            <p><strong>"Inside the loop, we extract each configuration, perform calculations, and display results in a consistent format."</strong></p>
-            
-            <h3>Engineering Insight (1 minute)</h3>
-            <p><strong>"Look at the actual results this would produce:"</strong></p>
-            <p><strong>"Config 1: 100 RPM through 12T→24T gives 2:1 ratio, 50 RPM output - good for torque"</strong></p>
-            <p><strong>"Config 2: 200 RPM through 24T→48T gives 2:1 ratio, 100 RPM output - scaling up"</strong></p>
-            <p><strong>"Config 3: 600 RPM through 36T→12T gives 0.33:1 ratio, 1800 RPM output - optimized for speed!"</strong></p>
-            <p><strong>"This program would help robotics teams quickly compare designs!"</strong></p>
-            
-            <h3>🎯 Key Message</h3>
-            <p>Control flow transforms single-use calculations into powerful automation tools for real engineering work.</p>
-            
-            <h3>🚦 Transition</h3>
-            <p><strong>"Amazing progress! Let's recap everything you've mastered in Lesson 2..."</strong></p>
-          </aside>
-        </section>
-        <section>
           <h2>🏁 Lesson 2 Recap</h2>
           <ul>
             <li><b>If</b> statements let your program make decisions</li>
@@ -2405,6 +2341,7 @@ int calculateDamage(int baseDamage, int weaponBonus, double critMultiplier) {
             <p><strong>"Let's see how these concepts apply to real robotics and engineering challenges..."</strong></p>
           </aside>
         </section>
+        
         <section>
           <h2>🤖 Refactoring Project 1: Gear Functions</h2>
           <ul>
