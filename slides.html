@@ -1727,6 +1727,10 @@ for (int i = 1; i &lt;= 5; i++) {
               Think of it as a row of lockers, each with a number (called an
               <span class="highlight">index</span>).
             </li>
+            <li>
+              Arrays have a <span class="highlight">fixed size</span> that you 
+              set when creating them - they can't grow or shrink!
+            </li>
           </ul>
           <aside class="notes">
             <h3>🎤 Concept Introduction with Analogies (2 minutes)</h3>
@@ -1793,6 +1797,60 @@ int coins[] = {100, 250, 500, 750, 1000};</code></pre>
             
             <h3>🚦 Transition</h3>
             <p><strong>"Let's see arrays in action with a game inventory example..."</strong></p>
+          </aside>
+        </section>
+        <section>
+          <h2>📏 Getting the Size of an Array</h2>
+          <ul>
+            <li>
+              Use <code>std::size(arrayName)</code> to get the number of elements (C++17+)
+            </li>
+            <li>
+              Much cleaner than the old <code>sizeof</code> calculation!
+            </li>
+            <li>
+              Need to include <code>&lt;array&gt;</code> header.
+            </li>
+            <li>
+              Returns the exact number of elements in the array
+            </li>
+            <li>
+              Add <code>-std=c++17</code> to the compiler flags if <code>std::size</code> is not working.
+            </li>
+          </ul>
+          <pre><code>#include &lt;array&gt;
+
+int scores[5] = {85, 92, 78, 96, 88};
+int arraySize = std::size(scores);
+
+cout << "The array has " << arraySize << " elements" << endl;
+
+// Use the size in loops instead of hardcoding numbers
+for (int i = 0; i < arraySize; i++) {
+  cout << "Score " << i+1 << ": " << scores[i] << endl;
+}</code></pre>
+          <aside class="notes">
+            <h3>🎤 Modern Array Size with std::size (2 minutes)</h3>
+            <p><strong>"Here's a modern C++ feature that makes getting array sizes super clean and professional!"</strong></p>
+            <p><em>[Point to the std::size usage]</em></p>
+            <p><strong>"std::size(scores) is the modern way to get array size - much cleaner than the old sizeof calculation!"</strong></p>
+            <p><strong>"Just include the &lt;array&gt; header and use std::size(). It returns exactly what you need - the number of elements!"</strong></p>
+            <p><strong>"This is available in C++17 and later, which is what most modern projects use. Much more readable and less error-prone!"</strong></p>
+            
+            <h3>Why This Matters (1 minute)</h3>
+            <p><strong>"Instead of hardcoding '5' in your loops, you get the size dynamically with std::size()!"</strong></p>
+            <p><strong>"If you later change the array from 5 elements to 10 elements, your loop automatically adjusts. No need to remember to update the loop condition!"</strong></p>
+            <p><strong>"This prevents bugs and makes your code self-maintaining. Professional programmers always prefer dynamic sizing over hardcoded numbers!"</strong></p>
+            
+            <h3>Real-World Benefits (30 seconds)</h3>
+            <p><strong>"std::size() prevents 'off-by-one' errors and makes your arrays easier to modify. Change the array initialization, and everything else updates automatically!"</strong></p>
+            <p><strong>"It's the modern, idiomatic C++ way to handle array sizes. Clean, readable, and professional!"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>Use std::size() for clean, modern array size calculation in C++17+ code.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"Now let's see this modern sizing technique in action with a game inventory example..."</strong></p>
           </aside>
         </section>
         <section>
@@ -1875,7 +1933,7 @@ for (int i = 0; i < 3; i++) {
           </aside>
         </section>
         <section>
-          <h2>🎯 What are Strings?</h2>
+          <h2>🎯 What are Strings (Recap)?</h2>
           <ul>
             <li>
               A <span class="highlight">string</span> is text—like player names,
@@ -1969,7 +2027,306 @@ cout << "You picked up a " << gameItems[0] << "!" << endl;</code></pre>
             <p>String arrays manage collections of text data efficiently, enabling powerful features like player lists and inventories.</p>
             
             <h3>🚦 Transition</h3>
-            <p><strong>"Let's see how arrays apply to real-world programming scenarios..."</strong></p>
+            <p><strong>"But here's something amazing - strings themselves have array-like superpowers too!"</strong></p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>🔤 Strings as Character Arrays</h2>
+          <ul>
+            <li>Every <span class="highlight">string</span> is like an array of individual characters!</li>
+            <li>You can access any character using <span class="highlight">square brackets [index]</span></li>
+            <li>Perfect for text processing, validation, and character manipulation!</li>
+          </ul>
+          <pre><code>string playerName = "Alex";
+string gameName = "Minecraft";
+
+cout << "First letter of player name: " << playerName[0] << endl;  // A
+cout << "Last letter of game name: " << gameName[8] << endl;       // t
+
+// Loop through each character in a string
+cout << "Letters in player name:" << endl;
+for (int i = 0; i < playerName.length(); i++) {
+  cout << "Position " << i << ": " << playerName[i] << endl;
+}</code></pre>
+          <aside class="notes">
+            <h3>🎤 String Array Powers (2 minutes 30 seconds)</h3>
+            <p><strong>"Here's where it gets really cool! Every string in C++ is actually like an array of characters under the hood!"</strong></p>
+            <p><em>[Walk through the character access examples]</em></p>
+            
+            <h3>Character Access Magic</h3>
+            <p><strong>"'playerName[0]' gets the first character 'A' from 'Alex'. Just like arrays, strings start counting at 0!"</strong></p>
+            <p><strong>"'gameName[8]' gets the 't' from 'Minecraft'. Remember: M-i-n-e-c-r-a-f-t has 9 characters, so index 8 is the last one!"</strong></p>
+            <p><strong>"This is exactly how spell-checkers, search functions, and text validators work - they examine strings character by character!"</strong></p>
+            
+            <h3>String Length vs Array Size</h3>
+            <p><strong>"Notice '.length()' instead of a fixed array size! Strings are smart - they know how long they are!"</strong></p>
+            <p><strong>"'playerName.length()' returns 4 for 'Alex'. No counting needed!"</strong></p>
+            
+            <h3>Real-World Character Processing (1 minute)</h3>
+            <p><strong>"Character-by-character processing powers tons of features:"</strong></p>
+            <p><strong>"- Username validation: checking for illegal characters"</strong></p>
+            <p><strong>"- Password strength: counting uppercase, numbers, symbols"</strong></p>
+            <p><strong>"- Text formatting: capitalizing first letters, removing spaces"</strong></p>
+            <p><strong>"- Game features: analyzing player input, chat filters, name generators"</strong></p>
+            <p><strong>"- Search algorithms: finding text patterns, autocomplete suggestions"</strong></p>
+            
+            <h3>Professional Text Processing (30 seconds)</h3>
+            <p><strong>"Pro tip: You can modify string characters too! 'playerName[0] = 'B'' would change 'Alex' to 'Blex'. This enables powerful text manipulation!"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>Strings have array-like features for accessing and processing individual characters, enabling sophisticated text manipulation.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"But wait - what if you don't know how many items you'll need? That's where vectors come to the rescue!"</strong></p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>📦 What are Vectors?</h2>
+          <ul>
+            <li>A <span class="highlight">vector</span> is like a smart array that can grow and shrink!</li>
+            <li>Arrays have fixed sizes, but vectors adapt to your needs</li>
+            <li>Perfect when you don't know how many items you'll have</li>
+          </ul>
+          <div style="display: flex; justify-content: space-around; margin: 20px 0;">
+            <div style="text-align: center;">
+              <h4>📏 Regular Array</h4>
+              <p>Fixed size: <code>int scores[5];</code></p>
+              <p>❌ Can't add more than 5 items</p>
+            </div>
+            <div style="text-align: center;">
+              <h4>📈 Vector</h4>
+              <p>Dynamic size: <code>vector&lt;int&gt; scores;</code></p>
+              <p>✅ Add as many items as needed!</p>
+            </div>
+          </div>
+          <aside class="notes">
+            <h3>🎤 The Smart Array Revolution (2 minutes)</h3>
+            <p><strong>"Imagine you're building a multiplayer game. With regular arrays, you'd have to guess: 'I think maybe 10 players will join, so I'll make an array of size 10.'"</strong></p>
+            <p><strong>"But what if 15 players want to join? Your array is full! What if only 3 players join? You're wasting memory!"</strong></p>
+            
+            <h3>Vector vs Array Comparison (1 minute)</h3>
+            <p><strong>"Regular arrays are like having a parking lot with exactly 5 spaces. Once it's full, no more cars can park there!"</strong></p>
+            <p><strong>"Vectors are like a magic parking lot that creates new spaces whenever a car arrives!"</strong></p>
+            <p><strong>"Need 1 space? Vector gives you 1. Need 100 spaces? Vector grows to 100!"</strong></p>
+            
+            <h3>Real-World Examples (1 minute)</h3>
+            <p><strong>"Think about apps you use:"</strong></p>
+            <p><strong>"- Instagram feed: new posts appear as you scroll (dynamic!)"</strong></p>
+            <p><strong>"- Shopping cart: you add/remove items as you shop (dynamic!)"</strong></p>
+            <p><strong>"- Game lobby: players join and leave (dynamic!)"</strong></p>
+            <p><strong>"- Text messages: new messages appear in chat (dynamic!)"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>Vectors solve the fixed-size limitation of arrays by automatically growing and shrinking as needed.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"Let's learn how to create these amazing dynamic arrays..."</strong></p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>🎯 Creating Vectors</h2>
+          <ul>
+            <li>First, include the vector library: <code>#include &lt;vector&gt;</code></li>
+            <li>Use template syntax: <code>vector&lt;type&gt; name;</code></li>
+            <li>Vectors start empty and grow as you add items</li>
+          </ul>
+          <pre><code>#include &lt;iostream&gt;
+#include &lt;vector&gt;
+#include &lt;string&gt;
+using namespace std;
+
+vector&lt;int&gt; playerScores;        // Empty vector for integers
+vector&lt;string&gt; playerNames;     // Empty vector for strings
+vector&lt;double&gt; temperatures;    // Empty vector for decimal numbers
+
+cout << "All vectors created and ready to use!" << endl;</code></pre>
+          <aside class="notes">
+            <h3>🎤 Vector Creation Step-by-Step (2 minutes 30 seconds)</h3>
+            <p><strong>"Creating vectors is super simple once you understand the pattern!"</strong></p>
+            
+            <h3>Step 1: Include the Library</h3>
+            <p><strong>"'#include <vector>' tells C++ you want to use the vector feature. Just like we needed '#include <string>' for strings!"</strong></p>
+            <p><strong>"This gives you access to all the vector superpowers!"</strong></p>
+            
+            <h3>Step 2: Template Syntax (1 minute)</h3>
+            <p><strong>"'vector<int>' means 'a vector that holds integers'"</strong></p>
+            <p><strong>"'vector<string>' means 'a vector that holds strings'"</strong></p>
+            <p><strong>"'vector<double>' means 'a vector that holds decimal numbers'"</strong></p>
+            <p><strong>"The <type> part tells the vector what kind of data to expect!"</strong></p>
+            
+            <h3>Step 3: Starting Empty (1 minute)</h3>
+            <p><strong>"Notice we don't specify a size! 'vector<int> playerScores;' starts with zero items."</strong></p>
+            <p><strong>"Think of it like starting with an empty box that can magically expand as you put things in it!"</strong></p>
+            <p><strong>"This is perfect because you often don't know how many items you'll need when you start!"</strong></p>
+            
+            <h3>Common Vector Types (30 seconds)</h3>
+            <p><strong>"You can make vectors of any type:"</strong></p>
+            <p><strong>"- Game scores: vector<int>"</strong></p>
+            <p><strong>"- Player names: vector<string>"</strong></p>
+            <p><strong>"- Precise measurements: vector<double>"</strong></p>
+            <p><strong>"- True/false flags: vector<bool>"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>Creating vectors requires including the library and using template syntax to specify the data type.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"Now let's learn how to add items to our empty vectors..."</strong></p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>➕ Adding Items with push_back()</h2>
+          <ul>
+            <li>Use <code>.push_back(item)</code> to add items to the end</li>
+            <li>Vector automatically grows to fit new items</li>
+            <li>Add as many items as you want - no size limits!</li>
+          </ul>
+          <pre><code>vector&lt;string&gt; inventory;        // Start with empty inventory
+
+// Add items one by one
+inventory.push_back("Health Potion");
+inventory.push_back("Magic Sword");
+inventory.push_back("Shield");
+inventory.push_back("Gold Coin");
+
+cout << "Items added to inventory successfully!" << endl;</code></pre>
+          <aside class="notes">
+            <h3>🎤 The Magic of push_back (2 minutes 30 seconds)</h3>
+            <p><strong>"This is where vectors get really exciting! The push_back() method is like having a magic wand that makes your collection grow!"</strong></p>
+            
+            <h3>How push_back Works (1 minute)</h3>
+            <p><strong>"'inventory.push_back(\"Health Potion\");' does three things:"</strong></p>
+            <p><strong>"1. Takes the item you give it (\"Health Potion\")"</strong></p>
+            <p><strong>"2. Makes space at the end of the vector"</strong></p>
+            <p><strong>"3. Places the item in that new space"</strong></p>
+            <p><strong>"The vector automatically handles all the memory management for you!"</strong></p>
+            
+            <h3>Growing Step by Step (1 minute)</h3>
+            <p><strong>"Watch what happens to our inventory:"</strong></p>
+            <p><strong>"Start: inventory is empty []"</strong></p>
+            <p><strong>"After first push_back: [\"Health Potion\"]"</strong></p>
+            <p><strong>"After second push_back: [\"Health Potion\", \"Magic Sword\"]"</strong></p>
+            <p><strong>"After third push_back: [\"Health Potion\", \"Magic Sword\", \"Shield\"]"</strong></p>
+            <p><strong>"And so on! The vector grows automatically!"</strong></p>
+            
+            <h3>Real Game Example (30 seconds)</h3>
+            <p><strong>"This is exactly how game inventories work! Player finds a health potion? push_back(\"Health Potion\"). Player finds a sword? push_back(\"Magic Sword\")."</strong></p>
+            <p><strong>"No need to predict how many items the player will find - just add them as they're discovered!"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>push_back() adds items to the end of vectors, automatically growing the vector to accommodate new items.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"Now that we can add items, let's learn how to check how many items we have and access them..."</strong></p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>📏 Getting Size and Accessing Items</h2>
+          <ul>
+            <li>Use <code>.size()</code> to get the number of items</li>
+            <li>Access items with <code>[index]</code> just like arrays</li>
+            <li>Index still starts at 0, just like regular arrays</li>
+          </ul>
+          <pre><code>vector&lt;string&gt; playerNames;
+playerNames.push_back("Alex");
+playerNames.push_back("Jordan");
+playerNames.push_back("Casey");
+
+cout << "Total players: " << playerNames.size() << endl;         // 3
+cout << "First player: " << playerNames[0] << endl;              // Alex
+cout << "Last player: " << playerNames[2] << endl;               // Casey
+
+// Loop through all players
+for (int i = 0; i < playerNames.size(); i++) {
+  cout << "Player " << (i+1) << ": " << playerNames[i] << endl;
+}</code></pre>
+          <aside class="notes">
+            <h3>🎤 Accessing Vector Data (2 minutes 30 seconds)</h3>
+            <p><strong>"Great! Now we can add items to vectors. But how do we work with the data once it's in there?"</strong></p>
+            
+            <h3>The size() Method (1 minute)</h3>
+            <p><strong>"'.size()' is incredibly useful! It tells you exactly how many items are in your vector right now."</strong></p>
+            <p><strong>"'playerNames.size()' returns 3 because we added 3 names."</strong></p>
+            <p><strong>"This is perfect for loops, checking if the vector is empty, or displaying counts to users!"</strong></p>
+            <p><strong>"Unlike arrays where you had to remember the size, vectors always know their own size!"</strong></p>
+            
+            <h3>Array-Style Access (1 minute)</h3>
+            <p><strong>"Good news! Accessing vector items works exactly like arrays!"</strong></p>
+            <p><strong>"'playerNames[0]' gets the first player (Alex)"</strong></p>
+            <p><strong>"'playerNames[2]' gets the third player (Casey)"</strong></p>
+            <p><strong>"Index still starts at 0, just like arrays. This consistency makes vectors easy to learn!"</strong></p>
+            
+            <h3>Looping Through Vectors (30 seconds)</h3>
+            <p><strong>"The for loop pattern is almost identical to arrays, but we use '.size()' instead of a fixed number!"</strong></p>
+            <p><strong>"'for (int i = 0; i < playerNames.size(); i++)' processes every item, whether there are 3 items or 300!"</strong></p>
+            <p><strong>"This makes your code flexible - it works no matter how the vector size changes!"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>Vectors provide .size() to get the count and use familiar [index] syntax for accessing items.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"Let's explore some other useful things you can do with vectors..."</strong></p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>🔧 More Vector Operations</h2>
+          <ul>
+            <li><code>.pop_back()</code> removes the last item</li>
+            <li><code>.clear()</code> removes all items</li>
+            <li><code>.empty()</code> checks if vector has no items</li>
+          </ul>
+          <pre><code>vector&lt;string&gt; inventory;
+inventory.push_back("Sword");
+inventory.push_back("Shield");
+inventory.push_back("Potion");
+
+cout << "Items: " << inventory.size() << endl;           // 3
+
+inventory.pop_back();                                    // Remove "Potion"
+cout << "After using potion: " << inventory.size() << endl;  // 2
+
+if (!inventory.empty()) {
+  cout << "Still have: " << inventory[0] << endl;       // Still have: Sword
+}
+
+inventory.clear();                                       // Remove everything
+cout << "After clearing: " << inventory.size() << endl;      // 0</code></pre>
+          <aside class="notes">
+            <h3>🎤 Vector Power Tools (2 minutes 30 seconds)</h3>
+            <p><strong>"Vectors have several more useful operations that make them incredibly powerful for real applications!"</strong></p>
+            
+            <h3>pop_back() - Removing Items (1 minute)</h3>
+            <p><strong>"'.pop_back()' removes the last item from the vector."</strong></p>
+            <p><strong>"Perfect for game mechanics: player uses a potion? pop_back() removes it from inventory!"</strong></p>
+            <p><strong>"The vector automatically shrinks - if it had 3 items, now it has 2!"</strong></p>
+            <p><strong>"Think of it as the opposite of push_back() - one adds to the end, the other removes from the end!"</strong></p>
+            
+            <h3>empty() - Checking for Items (30 seconds)</h3>
+            <p><strong>"'.empty()' returns true if the vector has no items, false if it has items."</strong></p>
+            <p><strong>"'!inventory.empty()' means 'if the inventory is NOT empty' - a common pattern for safety checks!"</strong></p>
+            <p><strong>"This prevents errors like trying to access items when there aren't any!"</strong></p>
+            
+            <h3>clear() - Fresh Start (1 minute)</h3>
+            <p><strong>"'.clear()' removes ALL items from the vector, making it empty again."</strong></p>
+            <p><strong>"Perfect for game scenarios: new game level? clear() the old inventory and start fresh!"</strong></p>
+            <p><strong>"After clear(), the vector size becomes 0, ready for new items!"</strong></p>
+            
+            <h3>Real-World Applications</h3>
+            <p><strong>"These operations power real features:"</strong></p>
+            <p><strong>"- Shopping cart: clear() when checkout is complete"</strong></p>
+            <p><strong>"- Game inventory: pop_back() when items are used"</strong></p>
+            <p><strong>"- Chat room: empty() to check if there are messages"</strong></p>
+            
+            <h3>🎯 Key Message</h3>
+            <p>Vectors provide powerful operations for removing items, clearing data, and checking vector status.</p>
+            
+            <h3>🚦 Transition</h3>
+            <p><strong>"Now let's see how all these array and vector concepts apply to real-world programming scenarios..."</strong></p>
           </aside>
         </section>
 
@@ -2039,6 +2396,8 @@ cout << "You picked up a " << gameItems[0] << "!" << endl;</code></pre>
             <li><b>Array indexing</b> starts at 0, not 1</li>
             <li><b>Loops</b> help you work with arrays efficiently</li>
             <li><b>Arrays of strings</b> manage text collections</li>
+            <li><b>Strings as character arrays</b> enable character-level text processing</li>
+            <li><b>Vectors</b> provide dynamic arrays that grow and shrink automatically</li>
             <li>Arrays are perfect for organizing related data!</li>
           </ul>
           <aside class="notes">
